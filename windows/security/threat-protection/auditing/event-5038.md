@@ -5,9 +5,12 @@ ms.pagetype: security
 ms.prod: w10
 ms.mktglfcycl: deploy
 ms.sitesec: library
-ms.localizationpriority: medium
-author: Mir0sh
+ms.localizationpriority: none
+author: dansimp
 ms.date: 04/19/2017
+ms.reviewer: 
+manager: dansimp
+ms.author: dansimp
 ---
 
 # 5038(F): Code integrity determined that the image hash of a file is not valid. The file could be corrupt due to unauthorized modification or the invalid hash could indicate a potential disk device error.
@@ -19,7 +22,7 @@ ms.date: 04/19/2017
 
 The file could be corrupt due to unauthorized modification or the invalid hash could indicate a potential disk device error.
 
-This event generates by [Code Integrity](https://technet.microsoft.com/en-us/library/dd348642(v=ws.10).aspx) feature, if signature of a file is not valid.
+This event generates by [Code Integrity](https://technet.microsoft.com/library/dd348642(v=ws.10).aspx) feature, if signature of a file is not valid.
 
 Code Integrity is a feature that improves the security of the operating system by validating the integrity of a driver or system file each time it is loaded into memory. Code Integrity detects whether an unsigned driver or system file is being loaded into the kernel, or whether a system file has been modified by malicious software that is being run by a user account with administrative permissions. On x64-based versions of the operating system, kernel-mode drivers must be digitally signed.
 

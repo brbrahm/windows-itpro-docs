@@ -1,3 +1,13 @@
+---
+author: eavena
+ms.author: eravena
+ms.date:  10/02/2018
+ms.reviewer: 
+audience: itpromanager: dansimp
+ms.prod: edge
+ms.topic: include
+---
+
 <!-- ## Configure Windows Defender SmartScreen -->
 >*Supported versions: Microsoft Edge on Windows 10*<br>
 >*Default setting:  Enabled (Turned on)*
@@ -6,11 +16,12 @@
 
 ### Supported values
 
-|Group Policy  |MDM |Registry |Description |Most restricted |
-|---|:---:|:---:|---|:---:|
-|Not configured |Blank |Blank |Users can choose to use Windows Defender SmartScreen. | |
-|Disabled |0 |0 |Turned off. Do not protect users from potential threats and prevent users from turning it on. | |
-|Enabled |1 |1 |Turned on. Protect users from potential threats and prevent users from turning it off. |![Most restricted value](../images/check-gn.png) |
+|  Group Policy  |  MDM  | Registry |                                          Description                                          |                 Most restricted                  |
+|----------------|:-----:|:--------:|-----------------------------------------------------------------------------------------------|:------------------------------------------------:|
+| Not configured | Blank |  Blank   |                     Users can choose to use Windows Defender SmartScreen.                     |                                                  |
+|    Disabled    |   0   |    0     | Turned off. Do not protect users from potential threats and prevent users from turning it on. |                                                  |
+|    Enabled     |   1   |    1     |    Turned on. Protect users from potential threats and prevent users from turning it off.     | ![Most restricted value](../images/check-gn.png) |
+
 ---
 
 To verify Windows Defender SmartScreen is turned off (disabled): 
@@ -26,7 +37,7 @@ To verify Windows Defender SmartScreen is turned off (disabled):
 - **GP ADMX file name:** MicrosoftEdge.admx
 
 #### MDM settings
-- **MDM name:** Browser/[AllowSmartScreen](https://docs.microsoft.com/en-us/windows/client-management/mdm/policy-csp-browser#browser-allowsmartscreen)
+- **MDM name:** Browser/[AllowSmartScreen](https://docs.microsoft.com/windows/client-management/mdm/policy-csp-browser#browser-allowsmartscreen)
 - **Supported devices:** Desktop and Mobile
 - **URI full path:** ./Vendor/MSFT/Policy/Config/Browser/AllowSmartScreen  
 - **Data type:** Integer

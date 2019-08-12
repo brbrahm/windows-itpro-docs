@@ -2,11 +2,13 @@
 title: EnterpriseAssignedAccess CSP
 description: EnterpriseAssignedAccess CSP
 ms.assetid: 5F88E567-77AA-4822-A0BC-3B31100639AA
-ms.author: maricia
+ms.reviewer: 
+manager: dansimp
+ms.author: dansimp
 ms.topic: article
 ms.prod: w10
 ms.technology: windows
-author: MariciaAlforque
+author: manikadhiman
 ms.date: 07/12/2017
 ---
 
@@ -18,7 +20,7 @@ The EnterpriseAssignedAccess configuration service provider allows IT administra
 > **Note**   The EnterpriseAssignedAccess CSP is only supported in Windows 10 Mobile.
 
 
-To use an app to create a lockdown XML see [Use the Lockdown Designer app to create a Lockdown XML file](https://docs.microsoft.com/en-us/windows/configuration/mobile-devices/mobile-lockdown-designer). For more information about how to interact with the lockdown XML at runtime, see [**DeviceLockdownProfile class**](https://msdn.microsoft.com/library/windows/hardware/mt186983).
+To use an app to create a lockdown XML see [Use the Lockdown Designer app to create a Lockdown XML file](https://docs.microsoft.com/windows/configuration/mobile-devices/mobile-lockdown-designer). For more information about how to interact with the lockdown XML at runtime, see [**DeviceLockdownProfile class**](https://msdn.microsoft.com/library/windows/hardware/mt186983).
 
 The following diagram shows the EnterpriseAssignedAccess configuration service provider in tree format as used by both the Open Mobile Alliance (OMA) Device Management (DM) and OMA Client Provisioning.
 
@@ -39,8 +41,8 @@ Supported operations are Add, Delete, Get and Replace.
 
 The Apps and Settings sections of lockdown XML constitute an Allow list. Any app or setting that is not specified in AssignedAccessXML will not be available on the device to users. The following table describes the entries in lockdown XML.
 
-> [!Important]    
-> When using the AssignedAccessXml in the EnterpriseAssignedAccess CSP through an MDM, the XML must use escaped characters, such as \&lt; instead of &lt; because it is embedded in an XML. The examples provided in the topic are formatted for readability.
+> [!IMPORTANT]
+> When using the AssignedAccessXml in the EnterpriseAssignedAccess CSP through an MDM, the XML must use escaped characters, such as \< instead of < because it is embedded in an XML. The examples provided in the topic are formatted for readability.
 
 When using the AssignedAccessXml in a provisioning package using the Windows Configuration Designer tool, do not use escaped characters.
 
@@ -51,15 +53,15 @@ ActionCenter | Example: `<ActionCenter enabled="true"></ActionCenter>`
 ActionCenter | In Windows 10, when the Action Center is disabled, Above Lock notifications and toasts are also disabled. When the Action Center is enabled, the following policies are also enabled;  **AboveLock/AllowActionCenterNotifications** and **AboveLock/AllowToasts**. For more information about these policies, see [Policy CSP](policy-configuration-service-provider.md)
 ActionCenter | You can also add the following optional attributes to the ActionCenter element to override the default behavior: **aboveLockToastEnabled** and **actionCenterNotificationEnabled**. Valid values are 0 (policy disabled), 1 (policy enabled), and -1 (not set, policy enabled). In this example, the Action Center is enabled and both policies are disabled.: `<ActionCenter enabled="true" aboveLockToastEnabled="0" actionCenterNotificationEnabled="0"/>`
 ActionCenter | These optional attributes are independent of each other. In this example, Action Center is enabled, the notifications policy is disabled, and the toast policy is enabled by default because it is not set. `<ActionCenter enabled="true" actionCenterNotificationEnabled="0"/>`
-StartScreenSize | Specify the size of the Start screen. In addition to 4/6 columns, you can also use 4/6/8 depending on screen resolutions. Valid values: **Small** - sets the width to 4 columns on device with short axis &lt;400epx or 6 columns on devices with short axis &gt;=400epx. **Large** - sets the width to 6 columns on devices with short axis &lt;400epx or 8 columns on devices with short axis &gt;=400epx.
-StartScreenSize | If you have existing lockdown XML, you must update it if your device has &gt;=400epx on its short axis so that tiles on Start can fill all 8 columns if you want to use all 8 columns instead of 6, or use 6 columns instead of 4. Example: `<StartScreenSize>Large</StartScreenSize>`
+StartScreenSize | Specify the size of the Start screen. In addition to 4/6 columns, you can also use 4/6/8 depending on screen resolutions. Valid values: **Small** - sets the width to 4 columns on device with short axis <400epx or 6 columns on devices with short axis >=400epx. **Large** - sets the width to 6 columns on devices with short axis <400epx or 8 columns on devices with short axis >=400epx.
+StartScreenSize | If you have existing lockdown XML, you must update it if your device has >=400epx on its short axis so that tiles on Start can fill all 8 columns if you want to use all 8 columns instead of 6, or use 6 columns instead of 4. Example: `<StartScreenSize>Large</StartScreenSize>`
 Application | Provide the product ID for each app that will be available on the device. You can find the product ID for a locally developed app in the AppManifest.xml file of the app. For the list of product ID and AUMID see [ProductIDs in Windows 10 Mobile](#productid).
 Application | To turn on the notification for a Windows app, you must include the application's AUMID in the lockdown XML. However, the user can change the setting at any time from user interface. Example: `<Application productId="{A558FEBA-85D7-4665-B5D8-A2FF9C19799B}" aumid="microsoft.windowscommunicationsapps_8wekyb3d8bbwe!microsoft.windowslive.mail"/>`
 Application | <img src="images/enterpriseassignedaccess-csp.png" alt="modern app notification" />
 Application | Include PinToStart to display an app on the Start screen. For apps pinned to the Start screen, identify a tile size (small, medium, or large), and a location. The size of a small tile is 1 column x 1 row, a medium tile is 2 x 2, and a large tile is 4 x 2. For the tile location, the first value indicates the column and the second value indicates the row. A value of 0 (zero) indicates the first column, a value of 1 indicates the second column, and so on. Include autoRun as an attribute to configure the application to run automatically.
 
 Application example:
-``` syntax
+```xml
 <Application productId="{2A4E62D8-8809-4787-89F8-69D0F01654FB}" autoRun="true">
    <PinToStart>
       <Size>Large</Size>
@@ -76,7 +78,7 @@ Entry | Description
 Application | Multiple App Packages enable multiple apps to exist inside the same package. Since ProductIds identify packages and not applications, specifying a ProductId is not enough to distinguish between individual apps inside a multiple app package. Trying to include application from a multiple app package with just a ProductId can result in unexpected behavior. To support pinning applications in multiple app packages, use an AUMID parameter in lockdown XML. For the list of product ID and AUMID, see [ProductIDs in Windows 10 Mobile](#productid). The following example shows how to pin both Outlook mail and Outlook calendar.
 
 Application example:
-``` syntax
+```xml
 <Apps>
     <!-- Outlook Calendar -->
     <Application productId="{A558FEBA-85D7-4665-B5D8-A2FF9C19799B}"
@@ -105,10 +107,10 @@ aumid="microsoft.windowscommunicationsapps_8wekyb3d8bbwe!microsoft.windowslive.m
 
 Entry | Description
 ----------- | ------------
-Folder | A folder should be contained in &lt;Applications/&gt; node among with other &lt;Application/&gt; nodes, it shares most grammar with the Application Node, **folderId** is mandatory, **folderName** is optional, which is the folder name displayed on Start. **folderId** is a unique unsigned integer for each folder.
+Folder | A folder should be contained in `<Applications/>` node among with other `<Application/>` nodes, it shares most grammar with the Application Node, **folderId** is mandatory, **folderName** is optional, which is the folder name displayed on Start. **folderId** is a unique unsigned integer for each folder.
 
 Folder example:
-``` syntax
+```xml
 <Application folderId="4" folderName="foldername">
     <PinToStart>
         <Size>Large</Size>
@@ -121,7 +123,7 @@ Folder example:
 ```
 An application that belongs in the folder would add an optional attribute **ParentFolderId**, which maps to **folderId** of the folder. In this case, the location of this application will be located inside the folder.
 
-``` syntax
+```xml
 <Application productId="{2A4E62D8-8809-4787-89F8-69D0F01654FB}">
     <PinToStart>
         <Size>Medium</Size>
@@ -246,11 +248,11 @@ Entry | Description
 ----------- | ------------
 Settings | Starting in Windows 10, version 1703, you can specify the settings pages using the settings URI.
 
-For example, in place of SettingPageDisplay, you would use ms-settings:display. See [ms-settings: URI scheme reference](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/launch-settings-app#ms-settings-uri-scheme-reference) to find the URI for each settings page.
+For example, in place of SettingPageDisplay, you would use ms-settings:display. See [ms-settings: URI scheme reference](https://docs.microsoft.com/windows/uwp/launch-resume/launch-settings-app#ms-settings-uri-scheme-reference) to find the URI for each settings page.
 
 Here is an example for Windows 10, version 1703.
 
-``` syntax
+```xml
 <Settings>
   <System name="ms-settings:display"/>
   <System name="ms-settings:appsforwebsites"/>
@@ -266,7 +268,7 @@ Here is an example for Windows 10, version 1703.
 
 Starting in Windows 10, version 1511, you can specify the following quick action settings in the lockdown XML file. The following list shows the quick action settings and settings page dependencies (group and page).
 
-> [!Note]
+> [!NOTE]
 > Only Windows 10, versions 1511 and 1607, the dependent settings group and pages are automatically added when the quick action item is specified in the lockdown XML. In Windows 10, version 1703, Quick action settings no longer require any dependencies from related group or page.
 
 <ul>
@@ -325,14 +327,14 @@ Starting in Windows 10, version 1703, Quick action settings no longer require an
 
 In this example, all settings pages and quick action settings are allowed. An empty \<Settings> node indicates that none of the settings are blocked.
 
-``` syntax
+```xml
 <Settings>
 </Settings>
 ```
 
 In this example for Windows 10, version 1511, all System setting pages are enabled. Note that the System page group is added as well as all of the System subpage names.
 
-``` syntax
+```xml
 <Settings>
   <System name="SettingsPageGroupPCSystem" />
   <System name="SettingsPageDisplay" />
@@ -348,7 +350,7 @@ In this example for Windows 10, version 1511, all System setting pages are ena
 ```
 Here is an example for Windows 10, version 1703.
 
-``` syntax
+```xml
 <Settings>
   <System name="ms-settings:display"/>
   <System name="ms-settings:appsforwebsites"/>
@@ -374,13 +376,13 @@ Buttons | The following list identifies the hardware buttons on the device that 
 <li><p>Custom3</p></li>
 </ul>
 
-> [!Note]
+> [!NOTE]
 > Lock down of the Start button only prevents the press and hold event.
 >
 > Custom buttons are hardware buttons that can be added to devices by OEMs.
 
 Buttons example:
-``` syntax
+```xml
 <Buttons>
    <ButtonLockdownList>
       <!-- Lockdown all buttons -->
@@ -398,14 +400,14 @@ Buttons example:
 ```
 The Search and custom buttons can be <em>remapped</em> or configured to open a specific application. Button remapping takes effect for the device and applies to all users.
 
-> [!Note]
+> [!NOTE]
 > The lockdown settings for a button, per user role, will apply regardless of the button mapping.
 >
 > Button remapping can enable a user to open an application that is not in the Allow list. Use button lock down to prevent application access for a user role.
 
-To remap a button in lockdown XML, you supply the button name, the button event (typically &quot;press&quot;), and the product ID for the application the button will open.
+To remap a button in lockdown XML, you supply the button name, the button event (typically "press"), and the product ID for the application the button will open.
 
-``` syntax
+```xml
 <ButtonRemapList>
    <Button name="Search">
       <ButtonEvent name="Press">
@@ -420,7 +422,7 @@ To disable navigation buttons (such as Home or Back) in lockdown XML, you supply
 
 The following section contains a sample lockdown XML file that shows how to disable navigation buttons.
 
-``` syntax
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <HandheldLockdown version="1.0" >
     <Default>
@@ -496,12 +498,12 @@ Entry | Description
 ----------- | ------------
 MenuItems | Use **DisableMenuItems** to prevent use of the context menu, which is displayed when a user presses and holds an application in the All Programs list. You can include this entry in the default profile and in any additional user role profiles that you create.
 
-> [!Important]
+> [!IMPORTANT]
 > If **DisableMenuItems** is not included in a profile, users of that profile can uninstall apps.
 
 MenuItems example:
 
-``` syntax
+```xml
 <MenuItems>
    <DisableMenuItems/>
 </MenuItems>
@@ -511,15 +513,15 @@ Entry | Description
 ----------- | ------------
 Tiles | **Turning-on tile manipulation** - By default, under Assigned Access, tile manipulation is turned off (blocked) and only available if enabled in the user’s profile. If tile manipulation is enabled in the user’s profile, they can pin/unpin, move, and resize tiles based on their preferences. When multiple people use one device and you want to enable tile manipulation for multiple users, you must enable it for each user in their user profile.
 
-> [!Important]
+> [!IMPORTANT]
 >  If a device is turned off then back on, the tiles reset to their predefined layout. If a device has only one profile, the only way to reset the tiles is to turn off then turn on the device. If a device has multiple profiles, the device resets the tiles to the predefined layout based on the logged-in user’s profile.
 
 The following sample file contains configuration for enabling tile manipulation.
 
-> [!Note]
+> [!NOTE]
 > Tile manipulation is disabled when you don’t have a `<Tiles>` node in lockdown XML, or if you have a `<Tiles>` node but don’t have the `<EnableTileManipulation>` node.
 
-``` syntax
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <HandheldLockdown version="1.0" >
     <Default>
@@ -594,7 +596,7 @@ The following sample file contains configuration for enabling tile manipulation.
 Entry | Description
 ----------- | ------------
 CSP Runner | Allows CSPs to be executed on the device per user role. You can use this to implement role specific policies, such as changing the color scheme when an admin logs on the device, or to set configurations per role.
- 
+ 
 
 <a href="" id="lockscreenwallpaper-"></a>**LockscreenWallpaper/**
 The parent node of the lock screen-related parameters that let administrators query and manage the lock screen image on devices. Supported operations are Add, Delete, Get and Replace.
@@ -720,7 +722,7 @@ The accent color to apply as the foreground color for tiles, controls, and other
 </tbody>
 </table>
 
- 
+ 
 
 Supported operations are Get and Replace.
 
@@ -1166,7 +1168,7 @@ Supported operations are Get and Replace.
 </tr>
 <tr class="odd">
 <td><p><strong>2500</strong></p></td>
-<td><p>UTC+13 Nuku'alofa</p></td>
+<td><p>UTC+13 Nuku&#39;alofa</p></td>
 </tr>
 </tbody>
 </table>
@@ -1188,20 +1190,20 @@ The XML examples in this section show how to perform various tasks by using OMA 
 
 > **Note**  These examples are XML snippets and do not include all sections that are required for a complete lockdown XML file.
 
- 
+ 
 
 ### Assigned Access settings
 
 The following example shows how to add a new policy.
 
-``` syntax
+```xml
 <wap-provisioningdoc>
-  <characteristic type="EnterpriseAssignedAccess">
-    <characteristic type="AssignedAccess">
-      <parm name=" AssignedAccessXml" datatype="string"
-            value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;HandheldLockdown version=&quot;1.0&quot;&gt;&lt;Default&gt;&lt;Apps&gt;&lt;Application productId=&quot;{5B04B775-356B-4AA0-AAF8-6491FFEA5615}&quot; pinToStart=&quot;1&quot;/&gt;&lt;Application productId=&quot;{5B04B775-356B-4AA0-AAF8-6491FFEA5612}&quot; pinToStart=&quot;0&quot;/&gt;&lt;/Apps&gt;&lt;Settings&gt;&lt;System name=&quot;Microsoft.Themes&quot; /&gt;&lt;System name=&quot;Microsoft.About&quot; /&gt;&lt;/Settings&gt;&lt;Buttons&gt;&lt;ButtonLockdownList&gt;&lt;Button name=&quot;Start&quot;&gt;&lt;ButtonEvent name=&quot;Press&quot; /&gt;&lt;ButtonEvent name=&quot;PressAndHold&quot; /&gt;&lt;/Button&gt;&lt;Button name=&quot;Camera&quot;&gt;&lt;ButtonEvent name=&quot;Press&quot; /&gt;&lt;ButtonEvent name=&quot;PressAndHold&quot; /&gt;&lt;/Button&gt;&lt;Button name=&quot;Search&quot;&gt;&lt;ButtonEvent name=&quot;Press&quot; /&gt;&lt;ButtonEvent name=&quot;PressAndHold&quot; /&gt;&lt;/Button&gt;&lt;/ButtonLockdownList&gt;&lt;ButtonRemapList/&gt;&lt;/Buttons&gt;&lt;MenuItems&gt;&lt;DisableMenuItems/&gt;&lt;/MenuItems&gt;&lt;/Default&gt;&lt;RoleList&gt;&lt;Role guid=&quot;{76C01983-A872-4C4E-B4C6-321EAC709CEA}&quot; name=&quot;Associate&quot;&gt;&lt;Apps&gt;&lt;Application productId=&quot;{5B04B775-356B-4AA0-AAF8-6491FFEA5615}&quot; pinToStart=&quot;1&quot;/&gt;&lt;/Apps&gt;&lt;Settings&gt;&lt;System name=&quot;Microsoft.Themes&quot; /&gt;&lt;System name=&quot;Microsoft.About&quot; /&gt;&lt;/Settings&gt;&lt;Buttons&gt;&lt;ButtonLockdownList&gt;&lt;Button name=&quot;Start&quot;&gt;&lt;ButtonEvent name=&quot;Press&quot; /&gt;&lt;ButtonEvent name=&quot;PressAndHold&quot; /&gt;&lt;/Button&gt;&lt;Button name=&quot;Camera&quot;&gt;&lt;ButtonEvent name=&quot;Press&quot; /&gt;&lt;ButtonEvent name=&quot;PressAndHold&quot; /&gt;&lt;/Button&gt;&lt;/ButtonLockdownList&gt;&lt;ButtonRemapList/&gt;&lt;/Buttons&gt;&lt;MenuItems&gt;&lt;DisableMenuItems/&gt;&lt;/MenuItems&gt;&lt;/Role&gt;&lt;Role guid=&quot;{8ABB8A10-4418-4467-9E18-99D11FA54E30}&quot; name=&quot;Manager&quot;&gt;&lt;Apps&gt;&lt;Application productId=&quot;{5B04B775-356B-4AA0-AAF8-6491FFEA5612}&quot; pinToStart=&quot;1&quot;/&gt;&lt;/Apps&gt;&lt;Settings&gt;&lt;System name=&quot;Microsoft.Themes&quot; /&gt;&lt;/Settings&gt;&lt;Buttons&gt;&lt;ButtonLockdownList&gt;&lt;Button name=&quot;Start&quot;&gt;&lt;ButtonEvent name=&quot;Press&quot; /&gt;&lt;ButtonEvent name=&quot;PressAndHold&quot; /&gt;&lt;/Button&gt;&lt;/ButtonLockdownList&gt;&lt;ButtonRemapList/&gt;&lt;/Buttons&gt;&lt;MenuItems&gt;&lt;DisableMenuItems/&gt;&lt;/MenuItems&gt;&lt;/Role&gt;&lt;/RoleList&gt;&lt;/HandheldLockdown&gt;"/>
-    </characteristic>
-  </characteristic>
+  <characteristic type="EnterpriseAssignedAccess">
+    <characteristic type="AssignedAccess">
+      <parm name=" AssignedAccessXml" datatype="string"
+            value="<?xml version="1.0" encoding="utf-8"?><HandheldLockdown version="1.0"><Default><Apps><Application productId="{5B04B775-356B-4AA0-AAF8-6491FFEA5615}" pinToStart="1"/><Application productId="{5B04B775-356B-4AA0-AAF8-6491FFEA5612}" pinToStart="0"/></Apps><Settings><System name="Microsoft.Themes" /><System name="Microsoft.About" /></Settings><Buttons><ButtonLockdownList><Button name="Start"><ButtonEvent name="Press" /><ButtonEvent name="PressAndHold" /></Button><Button name="Camera"><ButtonEvent name="Press" /><ButtonEvent name="PressAndHold" /></Button><Button name="Search"><ButtonEvent name="Press" /><ButtonEvent name="PressAndHold" /></Button></ButtonLockdownList><ButtonRemapList/></Buttons><MenuItems><DisableMenuItems/></MenuItems></Default><RoleList><Role guid="{76C01983-A872-4C4E-B4C6-321EAC709CEA}" name="Associate"><Apps><Application productId="{5B04B775-356B-4AA0-AAF8-6491FFEA5615}" pinToStart="1"/></Apps><Settings><System name="Microsoft.Themes" /><System name="Microsoft.About" /></Settings><Buttons><ButtonLockdownList><Button name="Start"><ButtonEvent name="Press" /><ButtonEvent name="PressAndHold" /></Button><Button name="Camera"><ButtonEvent name="Press" /><ButtonEvent name="PressAndHold" /></Button></ButtonLockdownList><ButtonRemapList/></Buttons><MenuItems><DisableMenuItems/></MenuItems></Role><Role guid="{8ABB8A10-4418-4467-9E18-99D11FA54E30}" name="Manager"><Apps><Application productId="{5B04B775-356B-4AA0-AAF8-6491FFEA5612}" pinToStart="1"/></Apps><Settings><System name="Microsoft.Themes" /></Settings><Buttons><ButtonLockdownList><Button name="Start"><ButtonEvent name="Press" /><ButtonEvent name="PressAndHold" /></Button></ButtonLockdownList><ButtonRemapList/></Buttons><MenuItems><DisableMenuItems/></MenuItems></Role></RoleList></HandheldLockdown>"/>
+    </characteristic>
+  </characteristic>
 </wap-provisioningdoc>
 ```
 
@@ -1209,13 +1211,13 @@ The following example shows how to add a new policy.
 
 The following example shows how to specify the language to display on the device.
 
-``` syntax
+```xml
 <wap-provisioningdoc>
-   <characteristic type="EnterpriseAssignedAccess">
-  <characteristic type="Language">
-      <parm name="Language" datatype="string"
+   <characteristic type="EnterpriseAssignedAccess">
+  <characteristic type="Language">
+      <parm name="Language" datatype="string"
    <parm name="Language" value="1033" />
-   </characteristic>
+   </characteristic>
 </wap-provisioningdoc>
 ```
 
@@ -1228,7 +1230,7 @@ These XML examples show how to perform various tasks using OMA DM.
 
 The following example shows how to lock down a device.
 
-``` syntax
+```xml
 <SyncML xmlns="SYNCML:SYNCML1.2">
    <SyncBody>
       <Add>
@@ -1237,7 +1239,7 @@ The following example shows how to lock down a device.
             <Target>
                <LocURI>./Vendor/MSFT/EnterpriseAssignedAccess/AssignedAccess/AssignedAccessXml</LocURI>
             </Target>
-            <Data>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;HandheldLockdown version=&quot;1.0&quot;&gt;&lt;Default&gt;&lt;Apps&gt;&lt;Application productId=&quot;{5B04B775-356B-4AA0-AAF8-6491FFEA5615}&quot; pinToStart=&quot;1&quot;/&gt;&lt;Application productId=&quot;{5B04B775-356B-4AA0-AAF8-6491FFEA5612}&quot; pinToStart=&quot;2&quot;/&gt;&lt;/Apps&gt;&lt;Settings&gt;&lt;System name=&quot;Microsoft.Themes&quot; /&gt;&lt;System name=&quot;Microsoft.About&quot; /&gt;&lt;/Settings&gt;&lt;Buttons&gt;&lt;Button name=&quot;Start&quot; disableEvents=&quot;PressAndHold&quot; /&gt;&lt;Button name=&quot;Camera&quot; disableEvents=&quot;All&quot; /&gt;&lt;Button name=&quot;Search&quot; disableEvents=&quot;All&quot; /&gt;&lt;/Buttons&gt;&lt;MenuItems&gt;&lt;DisableMenuItems/&gt;&lt;/MenuItems&gt;&lt;/Default&gt;&lt;RoleList&gt;&lt;Role guid=&quot;{76C01983-A872-4C4E-B4C6-321EAC709CEA}&quot; name=&quot;Associate&quot;&gt;&lt;Apps&gt;&lt;Application productId=&quot;{5B04B775-356B-4AA0-AAF8-6491FFEA5615}&quot; pinToStart=&quot;1&quot;/&gt;&lt;/Apps&gt;&lt;Settings&gt;&lt;System name=&quot;Microsoft.Themes&quot; /&gt;&lt;System name=&quot;Microsoft.About&quot; /&gt;&lt;/Settings&gt;&lt;Buttons&gt;&lt;Button name=&quot;Start&quot; disableEvents=&quot;PressAndHold&quot; /&gt;&lt;Button name=&quot;Camera&quot; disableEvents=&quot;All&quot; /&gt;&lt;/Buttons&gt;&lt;MenuItems&gt;&lt;DisableMenuItems/&gt;&lt;/MenuItems&gt;&lt;/Role&gt;&lt;Role guid=&quot;{8ABB8A10-4418-4467-9E18-99D11FA54E30}&quot; name=&quot;Manager&quot;&gt;&lt;Apps&gt;&lt;Application productId=&quot;{5B04B775-356B-4AA0-AAF8-6491FFEA5612}&quot; pinToStart=&quot;1&quot;/&gt;&lt;/Apps&gt;&lt;Settings&gt;&lt;System name=&quot;Microsoft.Themes&quot; /&gt;&lt;/Settings&gt;&lt;Buttons&gt;&lt;Button name=&quot;Start&quot; disableEvents=&quot;PressAndHold&quot; /&gt;&lt;/Buttons&gt;&lt;MenuItems&gt;&lt;DisableMenuItems/&gt;&lt;/MenuItems&gt;&lt;/Role&gt;&lt;/RoleList&gt;&lt;/HandheldLockdown&gt;</Data>
+            <Data><?xml version="1.0" encoding="utf-8"?><HandheldLockdown version="1.0"><Default><Apps><Application productId="{5B04B775-356B-4AA0-AAF8-6491FFEA5615}" pinToStart="1"/><Application productId="{5B04B775-356B-4AA0-AAF8-6491FFEA5612}" pinToStart="2"/></Apps><Settings><System name="Microsoft.Themes" /><System name="Microsoft.About" /></Settings><Buttons><Button name="Start" disableEvents="PressAndHold" /><Button name="Camera" disableEvents="All" /><Button name="Search" disableEvents="All" /></Buttons><MenuItems><DisableMenuItems/></MenuItems></Default><RoleList><Role guid="{76C01983-A872-4C4E-B4C6-321EAC709CEA}" name="Associate"><Apps><Application productId="{5B04B775-356B-4AA0-AAF8-6491FFEA5615}" pinToStart="1"/></Apps><Settings><System name="Microsoft.Themes" /><System name="Microsoft.About" /></Settings><Buttons><Button name="Start" disableEvents="PressAndHold" /><Button name="Camera" disableEvents="All" /></Buttons><MenuItems><DisableMenuItems/></MenuItems></Role><Role guid="{8ABB8A10-4418-4467-9E18-99D11FA54E30}" name="Manager"><Apps><Application productId="{5B04B775-356B-4AA0-AAF8-6491FFEA5612}" pinToStart="1"/></Apps><Settings><System name="Microsoft.Themes" /></Settings><Buttons><Button name="Start" disableEvents="PressAndHold" /></Buttons><MenuItems><DisableMenuItems/></MenuItems></Role></RoleList></HandheldLockdown></Data>
          </Item>
       </Add>
       <Final/>
@@ -1249,67 +1251,67 @@ The following example shows how to lock down a device.
 
 The following example shows how to change the accent color to one of the standard colors.
 
-``` syntax
+```xml
 <SyncML xmlns="SYNCML:SYNCML1.2">
-   <SyncBody>
-      <Replace>
-         <CmdID>1</CmdID>
-         <Item>
-            <Target>
-             <LocURI>./Vendor/MSFT/EnterpriseAssignedAccess/Theme/ThemeAccentColorID</LocURI>
-            </Target>
-            <Meta>
-               <Format xmlns="syncml:metinf">int</Format>
-            </Meta>
-            <!-- zero based index of available theme colors -->
-            <Data>7</Data>
-         </Item>
-      </Replace>
-      <Final/>
-   </SyncBody>
+   <SyncBody>
+      <Replace>
+         <CmdID>1</CmdID>
+         <Item>
+            <Target>
+             <LocURI>./Vendor/MSFT/EnterpriseAssignedAccess/Theme/ThemeAccentColorID</LocURI>
+            </Target>
+            <Meta>
+               <Format xmlns="syncml:metinf">int</Format>
+            </Meta>
+            <!-- zero based index of available theme colors -->
+            <Data>7</Data>
+         </Item>
+      </Replace>
+      <Final/>
+   </SyncBody>
 </SyncML>
 ```
 
 The following example shows how to change the theme.
 
-``` syntax
+```xml
 <SyncML xmlns="SYNCML:SYNCML1.2">
-   <SyncBody>
-       <Replace>
-           <CmdID>1</CmdID>
-           <Item>
-               <Target>
-                   <LocURI>./Vendor/MSFT/EnterpriseAssignedAccess/Theme/ThemeBackground</LocURI>
-               </Target>
-               <Meta>
-                   <Format xmlns="syncml:metinf">int</Format>
-               </Meta>
-               <!-- 0 for "light", 1 for "dark" -->
-               <Data>1</Data>
-           </Item>
-       </Replace>
-       <Final/>
-   </SyncBody>
+   <SyncBody>
+       <Replace>
+           <CmdID>1</CmdID>
+           <Item>
+               <Target>
+                   <LocURI>./Vendor/MSFT/EnterpriseAssignedAccess/Theme/ThemeBackground</LocURI>
+               </Target>
+               <Meta>
+                   <Format xmlns="syncml:metinf">int</Format>
+               </Meta>
+               <!-- 0 for "light", 1 for "dark" -->
+               <Data>1</Data>
+           </Item>
+       </Replace>
+       <Final/>
+   </SyncBody>
 </SyncML>
 ```
 
 The following example shows how to set a custom theme accent color for the enterprise environment.
 
-``` syntax
+```xml
 <SyncBody>
-   <Replace>
-      <CmdID>1</CmdID>
-      <Item>
-         <Target>
-             <LocURI>./Vendor/MSFT/EnterpriseAssignedAccess/Theme/ThemeAccentColorID</LocURI>
-         </Target>
-         <Meta>
-            <Format xmlns="syncml:metinf">int</Format>
-         </Meta>
-         <!—set to Enterprise custom -->
-         <Data>151</Data>
-      </Item>
-   </Replace>
+   <Replace>
+      <CmdID>1</CmdID>
+      <Item>
+         <Target>
+             <LocURI>./Vendor/MSFT/EnterpriseAssignedAccess/Theme/ThemeAccentColorID</LocURI>
+         </Target>
+         <Meta>
+            <Format xmlns="syncml:metinf">int</Format>
+         </Meta>
+         <!—set to Enterprise custom -->
+         <Data>151</Data>
+      </Item>
+   </Replace>
    <Replace>
       <CmdID>2</CmdID>
       <Item>
@@ -1331,55 +1333,55 @@ The following example shows how to set a custom theme accent color for the enter
 
 Use the examples in this section to set a new lock screen and manage the lock screen features. If using a UNC path, format the LocURI as \\\\host\\share\\image.jpg.
 
-``` syntax
+```xml
 <Add>
-  <CmdID>2</CmdID>
-  <Item>
-    <Target>
-      <LocURI>./Vendor/MSFT/EnterpriseAssignedAccess/LockScreenWallpaper/BGFileName</LocURI>
-    <Meta>
-      <Format xmlns="syncml:metinf">chr</Format>
-      <Type xmlns="syncml:metinf">text/plain</Type>
-    </Meta>
-    <Data>c:\windows\system32\lockscreen\480x800\Wallpaper_015.jpg </Data>
-    </Target>
-  </Item>
+  <CmdID>2</CmdID>
+  <Item>
+    <Target>
+      <LocURI>./Vendor/MSFT/EnterpriseAssignedAccess/LockScreenWallpaper/BGFileName</LocURI>
+    <Meta>
+      <Format xmlns="syncml:metinf">chr</Format>
+      <Type xmlns="syncml:metinf">text/plain</Type>
+    </Meta>
+    <Data>c:\windows\system32\lockscreen\480x800\Wallpaper_015.jpg </Data>
+    </Target>
+  </Item>
 </Add>
 ```
 
 The following example shows how to query the device for the file being used as the lock screen.
 
-``` syntax
+```xml
 <Get>
-  <CmdID>2</CmdID>
-  <Item>
-    <Target>
-      <LocURI>./Vendor/MSFT/EnterpriseAssignedAccess/LockScreenWallpaper/BGFileName</LocURI>
-    </Target>
-  </Item>
+  <CmdID>2</CmdID>
+  <Item>
+    <Target>
+      <LocURI>./Vendor/MSFT/EnterpriseAssignedAccess/LockScreenWallpaper/BGFileName</LocURI>
+    </Target>
+  </Item>
 </Get>
 ```
 
 The following example shows how to change the existing lock screen image to one of your choosing.
 
-``` syntax
+```xml
 <SyncML xmlns="SYNCML:SYNCML1.2">
-   <SyncBody>
-      <Replace>
-         <CmdID>2</CmdID>
-         <Item>
-            <Target>
-               <LocURI>./Vendor/MSFT/EnterpriseAssignedAccess/LockScreenWallpaper/BGFileName</LocURI>
-            </Target>
-            <Meta>
-               <Format xmlns="syncml:metinf">chr</Format>
-               <Type xmlns="syncml:metinf">text/plain</Type>
-            </Meta>
-            <Data>c:\windows\system32\lockscreen\480x800\Wallpaper_015.jpg</Data>
-         </Item>
-      </Replace>
-      <Final/>
-   </SyncBody>
+   <SyncBody>
+      <Replace>
+         <CmdID>2</CmdID>
+         <Item>
+            <Target>
+               <LocURI>./Vendor/MSFT/EnterpriseAssignedAccess/LockScreenWallpaper/BGFileName</LocURI>
+            </Target>
+            <Meta>
+               <Format xmlns="syncml:metinf">chr</Format>
+               <Type xmlns="syncml:metinf">text/plain</Type>
+            </Meta>
+            <Data>c:\windows\system32\lockscreen\480x800\Wallpaper_015.jpg</Data>
+         </Item>
+      </Replace>
+      <Final/>
+   </SyncBody>
 </SyncML>
 ```
 
@@ -1387,45 +1389,45 @@ The following example shows how to change the existing lock screen image to one 
 
 The following example shows how to set the time zone to UTC-07 Mountain Time (US & Canada).
 
-``` syntax
+```xml
 <SyncML xmlns="SYNCML:SYNCML1.2">
-   <SyncBody>
-      <Replace>
-         <CmdID>2</CmdID>
-         <Item>
-            <Target>
-               <LocURI>./Vendor/MSFT/EnterpriseAssignedAccess/Clock/TimeZone</LocURI>
-            </Target>
-            <Meta>
-               <Format xmlns="syncml:metinf">int</Format>
-            </Meta>
-            <Data>500</Data>
-         </Item>
-      </Replace>
-      <Final/>
-   </SyncBody>
+   <SyncBody>
+      <Replace>
+         <CmdID>2</CmdID>
+         <Item>
+            <Target>
+               <LocURI>./Vendor/MSFT/EnterpriseAssignedAccess/Clock/TimeZone</LocURI>
+            </Target>
+            <Meta>
+               <Format xmlns="syncml:metinf">int</Format>
+            </Meta>
+            <Data>500</Data>
+         </Item>
+      </Replace>
+      <Final/>
+   </SyncBody>
 </SyncML>
 ```
 
 The following example shows how to set the time zone to Pacific Standard Time (UTC-08:00) without observing daylight savings time (UTC+01:00).
 
-``` syntax
+```xml
 <SyncML xmlns="SYNCML:SYNCML1.2">
-   <SyncBody>
-      <Replace>
-         <CmdID>2</CmdID>
-         <Item>
-            <Target>
-               <LocURI>./Vendor/MSFT/EnterpriseAssignedAccess/Clock/TimeZone</LocURI>
-            </Target>
-            <Meta>
-               <Format xmlns="syncml:metinf">int</Format>
-            </Meta>
-            <Data>400 </Data>
-         </Item>
-      </Replace>
-      <Final/>
-   </SyncBody>
+   <SyncBody>
+      <Replace>
+         <CmdID>2</CmdID>
+         <Item>
+            <Target>
+               <LocURI>./Vendor/MSFT/EnterpriseAssignedAccess/Clock/TimeZone</LocURI>
+            </Target>
+            <Meta>
+               <Format xmlns="syncml:metinf">int</Format>
+            </Meta>
+            <Data>400 </Data>
+         </Item>
+      </Replace>
+      <Final/>
+   </SyncBody>
 </SyncML>
 ```
 
@@ -1433,23 +1435,23 @@ The following example shows how to set the time zone to Pacific Standard Time (U
 
 The following example shows how to set the language.
 
-``` syntax
+```xml
 <SyncML xmlns="SYNCML:SYNCML1.2">
-   <SyncBody>
-      <Replace>
-         <CmdID>1</CmdID>
-         <Item>
-            <Target>
-               <LocURI>./Vendor/MSFT/EnterpriseAssignedAccess/Locale/Language</LocURI>
-            </Target>
-            <Meta>
-               <Format xmlns="syncml:metinf">int</Format>
-            </Meta>
-            <Data>1033</Data>
-         </Item>
-      </Replace>
-      <Final/>
-   </SyncBody>
+   <SyncBody>
+      <Replace>
+         <CmdID>1</CmdID>
+         <Item>
+            <Target>
+               <LocURI>./Vendor/MSFT/EnterpriseAssignedAccess/Locale/Language</LocURI>
+            </Target>
+            <Meta>
+               <Format xmlns="syncml:metinf">int</Format>
+            </Meta>
+            <Data>1033</Data>
+         </Item>
+      </Replace>
+      <Final/>
+   </SyncBody>
 </SyncML>
 ```
 
@@ -1664,15 +1666,3 @@ The following table lists the product ID and AUMID for each app that is included
 </tr>
 </tbody>
 </table>
-
- 
-
- 
-
- 
-
-
-
-
-
-

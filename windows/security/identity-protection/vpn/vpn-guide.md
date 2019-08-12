@@ -4,9 +4,12 @@ description: Use this guide to configure VPN deployment for Windows 10.
 ms.prod: w10
 ms.mktglfcycl: deploy
 ms.sitesec: library
-author: jdeckerms
+author: dulcemontemayor
 ms.localizationpriority: medium
 ms.date: 07/27/2017
+ms.reviewer: 
+manager: dansimp
+ms.author: dolmont
 ---
 
 # Windows 10 VPN technical guide
@@ -17,7 +20,7 @@ ms.date: 07/27/2017
 - Windows 10
 - Windows 10 Mobile
 
-This guide will walk you through the decisions you will make for Windows 10 clients in your enterprise VPN solution and how to configure your deployment. This guide references the [VPNv2 Configuration Service Provider (CSP)](https://msdn.microsoft.com/en-us/library/windows/hardware/dn914776.aspx) and provides mobile device management (MDM) configuration instructions using Microsoft Intune and the VPN Profile template for Windows 10.
+This guide will walk you through the decisions you will make for Windows 10 clients in your enterprise VPN solution and how to configure your deployment. This guide references the [VPNv2 Configuration Service Provider (CSP)](https://msdn.microsoft.com/library/windows/hardware/dn914776.aspx) and provides mobile device management (MDM) configuration instructions using Microsoft Intune and the VPN Profile template for Windows 10.
 
 ![Intune VPN policy template](images/vpn-intune-policy.png)
 

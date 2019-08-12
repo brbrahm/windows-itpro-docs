@@ -5,9 +5,12 @@ ms.pagetype: security
 ms.prod: w10
 ms.mktglfcycl: deploy
 ms.sitesec: library
-ms.localizationpriority: medium
-author: Mir0sh
+ms.localizationpriority: none
+author: dansimp
 ms.date: 04/19/2017
+ms.reviewer: 
+manager: dansimp
+ms.author: dansimp
 ---
 
 # 5140(S, F): A network share object was accessed.
@@ -64,7 +67,6 @@ This event generates once per session, when first access attempt was made.
  <Data Name="AccessList">%%4416</Data> 
  </EventData>
  </Event>
-
 ```
 
 ***Required Server Roles:*** None.
@@ -93,7 +95,7 @@ This event generates once per session, when first access attempt was made.
 
     -   Uppercase full domain name: CONTOSO.LOCAL
 
-    -   For some [well-known security principals](https://support.microsoft.com/en-us/kb/243330), such as LOCAL SERVICE or ANONYMOUS LOGON, the value of this field is “NT AUTHORITY”.
+    -   For some [well-known security principals](https://support.microsoft.com/kb/243330), such as LOCAL SERVICE or ANONYMOUS LOGON, the value of this field is “NT AUTHORITY”.
 
     -   For local user accounts, this field will contain the name of the computer or device that this account belongs to, for example: “Win81”.
 
@@ -143,13 +145,13 @@ For 5140(S, F): A network share object was accessed.
 
 > **Important**&nbsp;&nbsp;For this event, also see [Appendix A: Security monitoring recommendations for many audit events](appendix-a-security-monitoring-recommendations-for-many-audit-events.md).
 
--   If you have high-value computers for which you need to monitor all access to all shares or specific shares (“**Share Name**”), monitor this event**.** For example, you could monitor share **C$** on domain controllers.
+- If you have high-value computers for which you need to monitor all access to all shares or specific shares (“**Share Name**”), monitor this event<strong>.</strong> For example, you could monitor share **C$** on domain controllers.
 
--   Monitor this event if the **Network Information\\Source Address** is not from your internal IP range.
+- Monitor this event if the **Network Information\\Source Address** is not from your internal IP range.
 
--   Monitor this event if the **Network Information\\Source Address** should not be able to connect with the specific computer (**Computer:**).
+- Monitor this event if the **Network Information\\Source Address** should not be able to connect with the specific computer (**Computer:**).
 
--   If you need to monitor access attempts to local shares from a specific IP address (“**Network Information\\Source Address”)**, use this event.
+- If you need to monitor access attempts to local shares from a specific IP address (“**Network Information\\Source Address”)**, use this event.
 
--   If you need to monitor for specific Access Types (for example, ReadData or WriteData), for all or specific shares (“**Share Name**”), monitor this event for the “**Access Type**.”
+- If you need to monitor for specific Access Types (for example, ReadData or WriteData), for all or specific shares (“**Share Name**”), monitor this event for the “**Access Type**.”
 

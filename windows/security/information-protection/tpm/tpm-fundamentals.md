@@ -2,12 +2,17 @@
 title: TPM fundamentals (Windows 10)
 description: This topic for the IT professional provides a description of the components of the Trusted Platform Module (TPM 1.2 and TPM 2.0) and explains how they are used to mitigate dictionary attacks.
 ms.assetid: ac90f5f9-9a15-4e87-b00d-4adcf2ec3000
+ms.reviewer: 
 ms.prod: w10
 ms.mktglfcycl: deploy
 ms.sitesec: library
 ms.pagetype: security
-author: andreabichsel
-ms.author: v-anbic
+author: dulcemontemayor
+ms.author: dolmont
+manager: dansimp
+audience: ITPro
+ms.collection: M365-security-compliance
+ms.topic: conceptual
 ms.date: 08/16/2017
 ---
 
@@ -69,7 +74,7 @@ The TPM can be used to protect certificates and RSA keys. The TPM key storage pr
 
 ## TPM Cmdlets
 
-You can manage the TPM using Windows PowerShell. For details, see [TPM Cmdlets in Windows PowerShell](https://docs.microsoft.com/en-us/powershell/module/trustedplatformmodule/).
+You can manage the TPM using Windows PowerShell. For details, see [TPM Cmdlets in Windows PowerShell](https://docs.microsoft.com/powershell/module/trustedplatformmodule/).
 
 ## Physical presence interface
 
@@ -145,6 +150,6 @@ The Windows TPM-based smart card, which is a virtual smart card, can be configur
 ## Related topics
 
 - [Trusted Platform Module](trusted-platform-module-top-node.md) (list of topics)
-- [TPM Cmdlets in Windows PowerShell](https://docs.microsoft.com/en-us/powershell/module/trustedplatformmodule/)
+- [TPM Cmdlets in Windows PowerShell](https://docs.microsoft.com/powershell/module/trustedplatformmodule/)
 - [TPM WMI providers](https://msdn.microsoft.com/library/aa376476.aspx)
 - [Prepare your organization for BitLocker: Planning and Policies - TPM configurations](https://technet.microsoft.com/itpro/windows/keep-secure/prepare-your-organization-for-bitlocker-planning-and-policies#bkmk-tpmconfigurations)

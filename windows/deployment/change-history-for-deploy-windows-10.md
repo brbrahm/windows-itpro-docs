@@ -2,15 +2,18 @@
 title: Change history for Deploy Windows 10 (Windows 10)
 description: This topic lists new and updated topics in the Deploy Windows 10 documentation for Windows 10 and Windows 10 Mobile.
 ms.assetid: 19C50373-6B25-4F5C-A6EF-643D36904349
+ms.reviewer: 
+manager: laurawi
+ms.author: greglin
 ms.prod: w10
 ms.mktglfcycl: deploy
 ms.sitesec: library
-author: greg-lindsay
-ms.date: 11/08/2017
+audience: itproauthor: greg-lindsay
+ms.topic: article
 ---
 
 # Change history for Deploy Windows 10
-This topic lists new and updated topics in the [Deploy Windows 10](https://docs.microsoft.com/en-us/windows/deployment) documentation for [Windows 10 and Windows 10 Mobile](/windows/windows-10).
+This topic lists new and updated topics in the [Deploy Windows 10](https://docs.microsoft.com/windows/deployment) documentation for [Windows 10 and Windows 10 Mobile](/windows/windows-10).
 
 ## April 2018
 

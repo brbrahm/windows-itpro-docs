@@ -3,9 +3,12 @@ ms.localizationpriority: medium
 ms.mktglfcycl: deploy
 ms.pagetype: networking
 description: Auto proxy configuration settings for Internet Explorer 11
-author: shortpatti
+author: dansimp
 ms.prod: ie11
 ms.assetid: 5120aaf9-8ead-438a-8472-3cdd924b7d9e
+ms.reviewer: 
+audience: itpromanager: dansimp
+ms.author: dansimp
 title: Auto proxy configuration settings for Internet Explorer 11 (Internet Explorer 11 for IT Pros)
 ms.sitesec: library
 ms.date: 07/27/2017
@@ -30,7 +33,7 @@ You can use your Internet settings (.ins) files to set up your standard proxy se
 
     -   **Automatic Configuration URL (.INS file) box:** Type the location of the .ins file you want to use for automatic configuration. For more information about setting up **Automatic Configuration**, see [Auto configuration settings for Internet Explorer 11](auto-configuration-settings-for-ie11.md).
 
-    -   **Automatic proxy URL (.JS, .JVS, or .PAC file) box:** Type the location of your automatic proxy script. This script runs whenever IE11 makes a network request and can include multiple proxy servers for each protocol type.<p>**Important**<br>IE11 no longer supports using file server locations with your proxy configuration (.pac) files. To keep using your .pac files, you have to keep them on a web server and reference them using a URL, like `http://share/test.ins`.
+    -   **Automatic proxy URL (.JS, .JVS, or .PAC file) box:** Type the location of your automatic proxy script. This script runs whenever IE11 makes a network request and can include multiple proxy servers for each protocol type.<p>**Important**<br>IE11 no longer supports using file server locations with your proxy configuration (.pac) files. To keep using your .pac files, you have to keep them on a web server and reference them using a URL, like `https://share/test.ins`.
 
 ## Locking your auto-proxy settings
 You have two options to restrict your users' ability to override the automatic configuration settings, based on your environment.

@@ -3,10 +3,12 @@ title: What's new in Windows 10, version 1703 for Surface Hub
 description: Windows 10, version 1703 (Creators Update) brings new features to Microsoft Surface Hub.
 ms.prod: surface-hub
 ms.sitesec: library
-author: jdeckerms
-ms.author: jdecker
+author: levinec
+ms.author: ellevin
 ms.topic: article
 ms.date: 01/18/2018
+ms.reviewer: 
+manager: dansimp
 ms.localizationpriority: medium
 ---
 
@@ -34,7 +36,7 @@ Settings have been added to mobile device management (MDM) and configuration ser
 - Properties/DoNotShowMyMeetingsAndFiles
 - System/AllowStorageCard
 
-Plus settings based on the new [NetworkQoSPolicy CSP](https://msdn.microsoft.com/en-us/windows/hardware/commercialize/customize/mdm/networkqospolicy-csp) and [NetworkProxy CSP](https://msdn.microsoft.com/en-us/windows/hardware/commercialize/customize/mdm/networkproxy-csp).
+Plus settings based on the new [NetworkQoSPolicy CSP](https://msdn.microsoft.com/windows/hardware/commercialize/customize/mdm/networkqospolicy-csp) and [NetworkProxy CSP](https://msdn.microsoft.com/windows/hardware/commercialize/customize/mdm/networkproxy-csp).
 </br>
 
 ## Provisioning wizard

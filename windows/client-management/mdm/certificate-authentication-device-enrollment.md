@@ -2,11 +2,13 @@
 title: Certificate authentication device enrollment
 description: This section provides an example of the mobile device enrollment protocol using certificate authentication policy.
 ms.assetid: 57DB3C9E-E4C9-4275-AAB5-01315F9D3910
-ms.author: maricia
+ms.reviewer: 
+manager: dansimp
+ms.author: lomayor
 ms.topic: article
 ms.prod: w10
 ms.technology: windows
-author: MariciaAlforque
+author: lomayor
 ms.date: 06/26/2017
 ---
 
@@ -187,7 +189,7 @@ The following snippet shows the policy web service response.
 ```
 HTTP/1.1 200 OK
 Date: Fri, 03 Aug 2012 20:00:00 GMT
-Server: <sever name here>
+Server: <server name here>
 Content-Type: application/soap+xml
 Content-Length: xxxx
 

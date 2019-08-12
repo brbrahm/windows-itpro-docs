@@ -1,12 +1,14 @@
 ---
 title: Deploy and configure App-V apps using MDM
 description: Deploy and configure App-V apps using MDM
-ms.author: maricia
+ms.author: lomayor
 ms.topic: article
 ms.prod: w10
 ms.technology: windows
-author: MariciaAlforque
+author: lomayor
 ms.date: 06/26/2017
+ms.reviewer: 
+manager: dansimp
 ---
 
 # Deploy and configure App-V apps using MDM
@@ -19,7 +21,7 @@ ms.date: 06/26/2017
 
 ### EnterpriseAppVManagement CSP node structure
 
-[EnterpriseAppVManagement CSP reference](https://msdn.microsoft.com/en-us/windows/hardware/commercialize/customize/mdm/enterpriseappvmanagement-csp)
+[EnterpriseAppVManagement CSP reference](https://msdn.microsoft.com/windows/hardware/commercialize/customize/mdm/enterpriseappvmanagement-csp)
 
 ![enterpriseappvmanagement csp](images/provisioning-csp-enterpriseappvmanagement.png)
 
@@ -35,7 +37,7 @@ ms.date: 06/26/2017
 	  - LastErrorDescription
 	  - SyncStatusDescription
 	  - SyncProgress
-	- Sync
+    - Sync
 	  - PublishXML
   - AppVDynamicPolicy
 
@@ -54,7 +56,7 @@ ms.date: 06/26/2017
 
 <p>Dynamic policy examples:</p>
 
-[Dynamic configuration processing](https://technet.microsoft.com/en-us/itpro/windows/manage/appv-application-publishing-and-client-interaction#bkmk-dynamic-config">Dynamic configuration processing)
+[Dynamic configuration processing](https://technet.microsoft.com/itpro/windows/manage/appv-application-publishing-and-client-interaction#bkmk-dynamic-config">Dynamic configuration processing)
 
 <p><b>AppVPackageManagement</b> - Primarily read-only App-V package inventory data for MDM servers to query current packages.</p>
 
@@ -83,9 +85,9 @@ ms.date: 06/26/2017
 
 <p>A complete list of App-V policies can be found here:</p>
 
-[ADMX-backed policy reference](https://msdn.microsoft.com/en-us/windows/hardware/commercialize/customize/mdm/policy-admx-backed)
+[ADMX-backed policy reference](https://msdn.microsoft.com/windows/hardware/commercialize/customize/mdm/policy-admx-backed)
 
-[EnterpriseAppVManagement CSP reference](https://msdn.microsoft.com/en-us/windows/hardware/commercialize/customize/mdm/enterpriseappvmanagement-csp)
+[EnterpriseAppVManagement CSP reference](https://msdn.microsoft.com/windows/hardware/commercialize/customize/mdm/enterpriseappvmanagement-csp)
 
 ### SyncML examples
 
@@ -95,7 +97,7 @@ ms.date: 06/26/2017
 
 <p>This example shows how to enable App-V on the device.</p>
 
-``` syntax
+```xml
 <Replace>
 	<CmdID>$CmdID$</CmdID>
 	<Item>
@@ -106,7 +108,7 @@ ms.date: 06/26/2017
 		<Target>
 			<LocURI>./Device/Vendor/MSFT/Policy/Config/AppVirtualization/AllowAppvClient</LocURI>
 		</Target>
-		<Data>&lt;enabled/&gt;</Data>
+		<Data><enabled/></Data>
 	</Item>
 </Replace>
 ```
@@ -115,7 +117,7 @@ ms.date: 06/26/2017
 
 <p>This example shows how to allow package scripts to run during package operations (publish, run, and unpublish).  Allowing package scripts assists in package deployments (add and publish of App-V apps).</p>
 
-``` syntax
+```xml
 <Replace> 
 	<CmdID>$CmdID$</CmdID> 
 	<Item> 
@@ -126,20 +128,20 @@ ms.date: 06/26/2017
 		<Target> 
 			<LocURI>./Device/Vendor/MSFT/Policy/Config/AppVirtualization/AllowPackageScripts</LocURI> 
 		</Target> 
-		<Data>&lt;enabled/&gt;</Data> 
+		<Data><enabled/></Data> 
 	</Item> 
 </Replace> 
 ```
 
 <p>Complete list of App-V policies can be found here:</p>
 
-[Policy CSP](https://msdn.microsoft.com/en-us/windows/hardware/commercialize/customize/mdm/policy-configuration-service-provider)
+[Policy CSP](https://msdn.microsoft.com/windows/hardware/commercialize/customize/mdm/policy-configuration-service-provider)
 
 #### SyncML with package published for a device (global to all users for that device)
 
 <p>This SyncML example shows how to publish a package globally on an MDM enrolled device for all device users.</p>
 
-``` syntax
+```xml
 <Replace>
 	<CmdID>$CmdID$</CmdID>
 	<Item>
@@ -181,7 +183,7 @@ ms.date: 06/26/2017
 
 <p>This SyncML example shows how to publish a package globally, with a policy that adds two shortcuts for the package, on an MDM enrolled device.</p>
 
-``` syntax
+```xml
 <Replace>
 	<CmdID>$CmdID$</CmdID>
 	<Item>
@@ -275,7 +277,7 @@ ms.date: 06/26/2017
 
 <p>This SyncML example shows how to publish a package for a specific MDM user.</p>
 
-``` syntax
+```xml
 <Replace>
 	<CmdID>$CmdID$</CmdID>
 	<Item>
@@ -318,7 +320,7 @@ ms.date: 06/26/2017
 > [!NOTE]
 > The user connection group has the user-only package as optional in this example, which implies users without the optional package can continue to launch the global package within the same connection group.
 
-``` syntax
+```xml
 <Replace>
 	<CmdID>$CmdID$</CmdID>
 	<Item>
@@ -395,7 +397,7 @@ ms.date: 06/26/2017
 
 <p>This SyncML example shows how to unpublish all global packages on the device by sending an empty package and connection group list in the SyncML.</p>
 
-``` syntax
+```xml
 <Replace>
 	<CmdID>$CmdID$</CmdID>
 	<Item>
@@ -431,7 +433,7 @@ ms.date: 06/26/2017
 
 <p>These SyncML examples return all global, and user-published packages on the device.</p>
 
-``` syntax
+```xml
 <Get>
 	<CmdID>$CmdID$</CmdID>
 	<Item>
@@ -442,7 +444,7 @@ ms.date: 06/26/2017
 </Get>
 ```
 
-``` syntax
+```xml
 <Get>
 	<CmdID>$CmdID$</CmdID>
 	<Item>

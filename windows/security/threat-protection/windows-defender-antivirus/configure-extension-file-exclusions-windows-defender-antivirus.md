@@ -9,20 +9,28 @@ ms.mktglfcycl: manage
 ms.sitesec: library
 ms.pagetype: security
 ms.localizationpriority: medium
-author: andreabichsel
-ms.author: v-anbic
-ms.date: 09/03/2018
+author: dansimp
+ms.author: dansimp
+ms.date: 12/10/2018
+ms.reviewer: 
+manager: dansimp
 ---
 
 # Configure and validate exclusions based on file extension and folder location
 
 **Applies to:**
 
-- Windows Defender Advanced Threat Protection (Windows Defender ATP)
+- [Microsoft Defender Advanced Threat Protection (Microsoft Defender ATP)](https://go.microsoft.com/fwlink/p/?linkid=2069559)
+
+> [!IMPORTANT]
+> [Windows Defender Advanced Threat Protection](https://docs.microsoft.com/windows/security/threat-protection/windows-defender-atp/defender-compatibility-windows-defender-advanced-threat-protection) does not adhere to Windows Defender Antivirus exclusion settings. This means that any Windows Defender exclusions, no matter how you created them, are not applied by Windows Defender ATP.
 
 You can exclude certain files from Windows Defender Antivirus scans by modifying exclusion lists.
 
 Generally, you shouldn't need to apply exclusions. Windows Defender Antivirus includes a number of automatic exclusions based on known operating system behaviors and typical management files, such as those used in enterprise management, database management, and other enterprise scenarios and situations.
+
+> [!NOTE]
+> Automatic exclusions apply only to Windows Server 2016 and above. 
 
 >[!TIP]
 >The default antimalware policy we deploy at Microsoft doesn't set any exclusions by default.
@@ -53,9 +61,9 @@ To exclude files opened by a specific process, see [Configure and validate exclu
 The exclusions apply to [scheduled scans](scheduled-catch-up-scans-windows-defender-antivirus.md), [on-demand scans](run-scan-windows-defender-antivirus.md), and [real-time protection](configure-real-time-protection-windows-defender-antivirus.md).
 
 >[!IMPORTANT]
->Exclusion list changes made with Group Policy **will show** in the lists in the [Windows Defender Security Center app](windows-defender-security-center-antivirus.md#exclusions).
+>Exclusion list changes made with Group Policy **will show** in the lists in the [Windows Security app](windows-defender-security-center-antivirus.md#exclusions).
 >
->Changes made in the Windows Defender Security Center app **will not show** in the Group Policy lists.
+>Changes made in the Windows Security app **will not show** in the Group Policy lists.
 
 By default, local changes made to the lists (by users with administrator privileges, including changes made with PowerShell and WMI) will be merged with the lists as defined (and deployed) by Group Policy, Configuration Manager, or Intune. The Group Policy lists will take precedence in case of conflicts.
 
@@ -65,11 +73,11 @@ You can [configure how locally and globally defined exclusions lists are merged]
 
 **Use Intune to configure file name, folder, or file extension exclusions:**
 
-See [Configure device restriction settings in Microsoft Intune](https://docs.microsoft.com/en-us/intune/device-restrictions-configure) and [Windows Defender Antivirus device restriction settings for Windows 10 in Intune](https://docs.microsoft.com/en-us/intune/device-restrictions-windows-10#windows-defender-antivirus) for more details.
+See [Configure device restriction settings in Microsoft Intune](https://docs.microsoft.com/intune/device-restrictions-configure) and [Windows Defender Antivirus device restriction settings for Windows 10 in Intune](https://docs.microsoft.com/intune/device-restrictions-windows-10#windows-defender-antivirus) for more details.
 
 **Use Configuration Manager to configure file name, folder, or file extension exclusions:**
 
-See [How to create and deploy antimalware policies: Exclusion settings](https://docs.microsoft.com/en-us/sccm/protect/deploy-use/endpoint-antimalware-policies#exclusion-settings) for details on configuring System Center Configuration Manager (current branch).
+See [How to create and deploy antimalware policies: Exclusion settings](https://docs.microsoft.com/sccm/protect/deploy-use/endpoint-antimalware-policies#exclusion-settings) for details on configuring System Center Configuration Manager (current branch).
 
 **Use Group Policy to configure folder or file extension exclusions:**
 
@@ -106,7 +114,7 @@ See [How to create and deploy antimalware policies: Exclusion settings](https://
 
 **Use PowerShell cmdlets to configure file name, folder, or file extension exclusions:**
 
-Using PowerShell to add or remove exclusions for files based on the extension, location, or file name requires using a combination of three cmdlets and the appropriate exclusion list parameter. The cmdlets are all in the [Defender module](https://technet.microsoft.com/en-us/itpro/powershell/windows/defender/defender).
+Using PowerShell to add or remove exclusions for files based on the extension, location, or file name requires using a combination of three cmdlets and the appropriate exclusion list parameter. The cmdlets are all in the [Defender module](https://technet.microsoft.com/itpro/powershell/windows/defender/defender).
 
 The format for the cmdlets is:
 
@@ -142,7 +150,7 @@ See [Use PowerShell cmdlets to configure and run Windows Defender Antivirus](use
 
 **Use Windows Management Instruction (WMI) to configure file name, folder, or file extension exclusions:**
 
-Use the [ **Set**, **Add**, and **Remove** methods of the **MSFT_MpPreference**](https://msdn.microsoft.com/en-us/library/dn455323(v=vs.85).aspx) class for the following properties:
+Use the [**Set**, **Add**, and **Remove** methods of the **MSFT_MpPreference**](https://msdn.microsoft.com/library/dn455323(v=vs.85).aspx) class for the following properties:
 
 ```WMI
 ExclusionExtension
@@ -153,13 +161,13 @@ The use of **Set**, **Add**, and **Remove** is analogous to their counterparts i
 
 See the following for more information and allowed parameters:
 
-- [Windows Defender WMIv2 APIs](https://msdn.microsoft.com/en-us/library/dn439477(v=vs.85).aspx)
+- [Windows Defender WMIv2 APIs](https://msdn.microsoft.com/library/dn439477(v=vs.85).aspx)
 
 <a id="man-tools"></a>
 
-**Use the Windows Defender Security Center app to configure file name, folder, or file extension exclusions:**
+**Use the Windows Security app to configure file name, folder, or file extension exclusions:**
 
-See [Add exclusions in the Windows Defender Security Center app](windows-defender-security-center-antivirus.md#exclusions) for instructions.
+See [Add exclusions in the Windows Security app](windows-defender-security-center-antivirus.md#exclusions) for instructions.
 
 <a id="wildcards"></a>
 ## Use wildcards in the file name and folder path or extension exclusion lists
@@ -177,34 +185,34 @@ The following table describes how the wildcards can be used and provides some ex
 <table>
     <tr>
         <th>Wildcard</th>
-        <th>Use in file and file extension exclusions</th>
+        <th>Use in file name and file extension exclusions</th>
         <th>Use in folder exclusions</th>
         <th>Example use</th>
-        <th>Example matches></th>
+        <th>Example matches</th>
     </tr>
     <tr>
-        <td><b>\*</b> (asterisk)</td>
+        <td><b>*</b> (asterisk)</td>
         <td>Replaces any number of characters. <br />Only applies to files in the last folder defined in the argument. </td>
-        <td>Replaces a single folder. <br />Use multiple <b>\*</b> with folder slashes <b>\\</b> to indicate multiple, nested folders. </br>After matching to the number of wilcarded and named folders, all subfolders will also be included.</td>
+        <td>Replaces a single folder. <br />Use multiple <b>*</b> with folder slashes <b>\</b> to indicate multiple, nested folders. </br>After matching the number of wilcarded and named folders, all subfolders will also be included.</td>
         <td>
             <ol>
-                <li>C:\MyData\\<b>\*</b>.txt</li>
-                <li>C:\somepath\\<b>\*</b>\Data</li>
-                <li>C:\Serv\\<b>\*</b>\\<b>\*</b>\Backup
+                <li>C:\MyData\<b>*</b>.txt</li>
+                <li>C:\somepath\<b>*</b>\Data</li>
+                <li>C:\Serv\<b>*</b>\<b>*</b>\Backup
             </ol>
         </td>
         <td>
             <ol>
-                <li><i>C:\MyData\\<b>notes</b>.txt</i></li>
+                <li>C:\MyData\<b>notes</b>.txt</li>
                 <li>Any file in:
                     <ul>
-                        <li><i>C:\somepath\\<b>Archives</b>\Data</i> and its subfolders</li>
-                        <li><i>C:\somepath\\<b>Authorized</b>\Data</i> and its subfolders</li>
+                        <li>C:\somepath\<b>Archives</b>\Data and its subfolders</li>
+                        <li>C:\somepath\<b>Authorized</b>\Data and its subfolders</li>
                     </ul>
                 <li>Any file in:
                 <ul>
-                    <li><i>C:\Serv\\<b>Primary</b>\\<b>Denied</b>\Backup</i> and its subfolders</li>
-                    <li><i>C:\Serv\\<b>Secondary</b>\\<b>Allowed</b>\Backup</i> and its subfolders</li>
+                    <li>C:\Serv\<b>Primary</b>\<b>Denied</b>\Backup and its subfolders</li>
+                    <li>C:\Serv\<b>Secondary</b>\<b>Allowed</b>\Backup and its subfolders</li>
                 </ul>
             </ol>
         </td>
@@ -219,20 +227,20 @@ The following table describes how the wildcards can be used and provides some ex
         </td>
         <td>
             Replaces a single character in a folder name. </br>
-            After matching to the number of wilcarded and named folders, all subfolders will also be included.
+            After matching the number of wilcarded and named folders, all subfolders will also be included.
         </td>
         <td>
             <ol>
                 <li>C:\MyData\my<b>?</b>.zip</li>
-                <li>C:\somepath\\<b>?</b>\Data</li>
+                <li>C:\somepath\<b>?</b>\Data</li>
                 <li>C:\somepath\test0<b>?</b>\Data</li>
             </ol>
         </td>
         <td>
             <ol>
-                <li><i>C:\MyData\my<b>1</b>.zip</i></li>
-                <li>Any file in <i>C:\somepath\\<b>P</b>\Data</i> and its subfolders</li>
-                <li>Any file in <i>C:\somepath\test0<b>1</b>\Data</i> and its subfolders</li>
+                <li>C:\MyData\my<b>1</b>.zip</li>
+                <li>Any file in C:\somepath\<b>P</b>\Data and its subfolders</li>
+                <li>Any file in C:\somepath\test0<b>1</b>\Data and its subfolders</li>
             </ol>
         </td>
     </tr>
@@ -247,7 +255,7 @@ The following table describes how the wildcards can be used and provides some ex
         </td>
         <td>
             <ol>
-                <li><i><b>C:\ProgramData</b>\CustomLogFiles\Folder1\file1.txt</i></li>
+                <li><b>C:\ProgramData</b>\CustomLogFiles\Folder1\file1.txt</li>
             </ol>
         </td>
     </tr>
@@ -264,19 +272,30 @@ The following table describes how the wildcards can be used and provides some ex
 
 ## Review the list of exclusions
 
-You can retrieve the items in the exclusion list with [Intune](https://docs.microsoft.com/en-us/intune/deploy-use/help-secure-windows-pcs-with-endpoint-protection-for-microsoft-intune), [System Center Configuration Manager](https://docs.microsoft.com/en-us/sccm/protect/deploy-use/endpoint-antimalware-policies#exclusion-settings), PowerShell, or the [Windows Defender Security Center app](windows-defender-security-center-antivirus.md#exclusions).
+You can retrieve the items in the exclusion list with [Intune](https://docs.microsoft.com/intune/deploy-use/help-secure-windows-pcs-with-endpoint-protection-for-microsoft-intune), [System Center Configuration Manager](https://docs.microsoft.com/sccm/protect/deploy-use/endpoint-antimalware-policies#exclusion-settings), MpCmdRun, PowerShell, or the [Windows Security app](windows-defender-security-center-antivirus.md#exclusions).
 
 >[!IMPORTANT]
->Exclusion list changes made with Group Policy **will show** in the lists in the [Windows Defender Security Center app](windows-defender-security-center-antivirus.md#exclusions).
+>Exclusion list changes made with Group Policy **will show** in the lists in the [Windows Security app](windows-defender-security-center-antivirus.md#exclusions).
 >
->Changes made in the Windows Defender Security Center app **will not show** in the Group Policy lists.
+>Changes made in the Windows Security app **will not show** in the Group Policy lists.
 
 If you use PowerShell, you can retrieve the list in two ways:
 
 - Retrieve the status of all Windows Defender Antivirus preferences. Each of the lists will be displayed on separate lines, but the items within each list will be combined into the same line.
 - Write the status of all preferences to a variable, and use that variable to only call the specific list you are interested in. Each use of `Add-MpPreference` is written to a new line.
 
-**Review the list of exclusions alongside all other Windows Defender Antivirus preferences:**
+**Validate the exclusion list by using MpCmdRun:**
+
+To check exclusions with the dedicated [command-line tool mpcmdrun.exe](https://docs.microsoft.com/windows/security/threat-protection/windows-defender-antivirus/command-line-arguments-windows-defender-antivirus?branch=v-anbic-wdav-new-mpcmdrun-options), use the following command:
+
+```DOS
+MpCmdRun.exe -CheckExclusion -path <path>
+```
+
+>[!NOTE]
+>Checking exclusions with MpCmdRun requires Windows Defender Antivirus CAMP version 4.18.1812.3 (released in December 2018) or later.
+
+**Review the list of exclusions alongside all other Windows Defender Antivirus preferences by using PowerShell:**
 
 Use the following cmdlet:
 
@@ -290,7 +309,7 @@ In the following example, the items contained in the `ExclusionExtension` list a
 
 See [Use PowerShell cmdlets to configure and run Windows Defender Antivirus](use-powershell-cmdlets-windows-defender-antivirus.md) and [Defender cmdlets](https://technet.microsoft.com/itpro/powershell/windows/defender/index) for more information on how to use PowerShell with Windows Defender Antivirus.
 
-**Retrieve a specific exclusions list:**
+**Retrieve a specific exclusions list by using PowerShell:**
 
 Use the following code snippet (enter each line as a separate command); replace **WDAVprefs** with whatever label you want to name the variable:
 

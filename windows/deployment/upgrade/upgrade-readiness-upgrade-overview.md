@@ -1,9 +1,13 @@
-﻿---
+---
 title: Upgrade Readiness - Upgrade Overview (Windows 10)
+ms.reviewer: 
+manager: laurawi
+ms.author: greglin
 description: Displays the total count of computers sharing data and upgraded.
 ms.prod: w10
-author: greg-lindsay
-ms.date: 08/15/2017
+audience: itproauthor: greg-lindsay
+ms.topic: article
+ms.collection: M365-analytics
 ---
 
 # Upgrade Readiness - Upgrade overview

@@ -4,11 +4,13 @@ description: This section describes the TabletMode settings that you can configu
 ms.prod: w10
 ms.mktglfcycl: deploy
 ms.sitesec: library
-author: jdeckerMS
+author: dansimp
 ms.localizationpriority: medium
-ms.author: jdecker
+ms.author: dansimp
 ms.topic: article
 ms.date: 04/30/2018
+ms.reviewer: 
+manager: dansimp
 ---
 
 # TabletMode (Windows Configuration Designer reference)
@@ -19,7 +21,7 @@ Use TabletMode to configure settings related to tablet mode.
 
 | Setting   | Desktop editions | Mobile editions | Surface Hub | HoloLens | IoT Core |
 | --- | :---: | :---: | :---: | :---: | :---: |
-| All settings | X | X | X |  |  X |
+| All settings | X | X | X |  |  |
 
 ## ConvertibleSlateModePromptPreference
 

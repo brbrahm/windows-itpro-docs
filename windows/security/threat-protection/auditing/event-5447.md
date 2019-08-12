@@ -5,9 +5,12 @@ ms.pagetype: security
 ms.prod: w10
 ms.mktglfcycl: deploy
 ms.sitesec: library
-ms.localizationpriority: medium
-author: Mir0sh
+ms.localizationpriority: none
+author: dansimp
 ms.date: 04/19/2017
+ms.reviewer: 
+manager: dansimp
+ms.author: dansimp
 ---
 
 # 5447(S): A Windows Filtering Platform filter has been changed.
@@ -23,7 +26,7 @@ ms.date: 04/19/2017
 
 ***Event Description:***
 
-This event generates every time a [Windows Filtering Platform](https://msdn.microsoft.com/en-us/library/windows/desktop/aa366510(v=vs.85).aspx) filter has been changed.
+This event generates every time a [Windows Filtering Platform](https://msdn.microsoft.com/library/windows/desktop/aa366510(v=vs.85).aspx) filter has been changed.
 
 It typically generates during Group Policy update procedures.
 

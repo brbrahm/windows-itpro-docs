@@ -5,9 +5,12 @@ ms.pagetype: security
 ms.prod: w10
 ms.mktglfcycl: deploy
 ms.sitesec: library
-ms.localizationpriority: medium
-author: Mir0sh
+ms.localizationpriority: none
+author: dansimp
 ms.date: 04/19/2017
+ms.reviewer: 
+manager: dansimp
+ms.author: dansimp
 ---
 
 # 4908(S): Special Groups Logon table modified.
@@ -33,7 +36,7 @@ More information about Special Groups auditing can be found here:
 
 <http://blogs.technet.com/b/askds/archive/2008/03/11/special-groups-auditing-via-group-policy-preferences.aspx>
 
-<https://support.microsoft.com/en-us/kb/947223>
+<https://support.microsoft.com/kb/947223>
 
 > **Note**&nbsp;&nbsp;For recommendations, see [Security Monitoring Recommendations](#security-monitoring-recommendations) for this event.
 

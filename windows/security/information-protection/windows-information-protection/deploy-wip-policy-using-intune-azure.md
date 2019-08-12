@@ -6,9 +6,15 @@ ms.prod: w10
 ms.mktglfcycl: explore
 ms.sitesec: library
 ms.pagetype: security
-author: justinha
 ms.localizationpriority: medium
-ms.date: 09/11/2017
+author: dulcemontemayor
+ms.author: dolmont
+manager: dansimp
+audience: ITPro
+ms.collection: M365-security-compliance
+ms.topic: conceptual
+ms.date: 03/05/2019
+ms.reviewer: 
 ---
 
 # Deploy your Windows Information Protection (WIP) policy using the Azure portal for Microsoft Intune
@@ -22,23 +28,18 @@ After you’ve created your Windows Information Protection (WIP) policy, you'll 
 
 **To deploy your WIP policy**
 
-1.  On the **App policy** pane, click your newly-created policy, click **User groups** from the menu that appears, and then click **Add user group**.
-
-    A list of user groups, made up of all of the security groups in your Azure Active Directory, appear in the **Add user group** pane.
+1. On the **App protection policies** pane, click your newly-created policy, click **Assignments**, and then select groups to include or exclude from the policy.
 
 2. Choose the group you want your policy to apply to, and then click **Select** to deploy the policy.
 
-    The policy is deployed to the selected users' devices.
+   The policy is deployed to the selected users' devices.
 
-    ![Microsoft Intune: Pick your user groups that should get the policy when it's deployed](images/wip-azure-add-user-groups.png)
+   ![Microsoft Intune: Pick your user groups that should get the policy when it's deployed](images/wip-azure-add-user-groups.png)
 
 
 >[!NOTE]
->Help to make this topic better by providing us with edits, additions, and feedback. For info about how to contribute to this topic, see [Contributing to TechNet content](https://github.com/Microsoft/windows-itpro-docs/blob/master/CONTRIBUTING.md).
+>Help to make this topic better by providing us with edits, additions, and feedback. For info about how to contribute to this topic, see [Editing Windows IT professional documentation](https://github.com/Microsoft/windows-itpro-docs/blob/master/CONTRIBUTING.md).
 
 ## Related topics
-- [Create a Windows Information Protection (WIP) policy using Microsoft Intune](create-wip-policy-using-intune.md)
-
-- [Associate and deploy your Windows Information Protection (WIP) and VPN policies by using Microsoft Intune](create-vpn-and-wip-policy-using-intune.md)
 
 - [General guidance and best practices for Windows Information Protection (WIP)](guidance-and-best-practices-wip.md)

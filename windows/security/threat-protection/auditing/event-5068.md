@@ -5,9 +5,12 @@ ms.pagetype: security
 ms.prod: w10
 ms.mktglfcycl: deploy
 ms.sitesec: library
-ms.localizationpriority: medium
-author: Mir0sh
+ms.localizationpriority: none
+author: dansimp
 ms.date: 04/19/2017
+ms.reviewer: 
+manager: dansimp
+ms.author: dansimp
 ---
 
 # 5068(S, F): A cryptographic function provider operation was attempted.
@@ -21,7 +24,7 @@ This event generates in BCryptAddContextFunctionProvider() and BCryptRemoveConte
 
 For more information about Cryptographic Next Generation (CNG) visit these pages:
 
--   <https://msdn.microsoft.com/en-us/library/windows/desktop/aa376214(v=vs.85).aspx>
+-   <https://msdn.microsoft.com/library/windows/desktop/aa376214(v=vs.85).aspx>
 
 -   <http://www.microsoft.com/en-us/download/details.aspx?id=1251>
 

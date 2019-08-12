@@ -4,9 +4,11 @@ description: This topic explains how you add a device account for your Microsoft
 keywords: multi forest deployment, on prem deployment, device account, Surface Hub
 ms.prod: surface-hub
 ms.sitesec: library
-author: jdeckerms
-ms.author: jdecker
+author: levinec
+ms.author: ellevin
 ms.date: 08/28/2018
+ms.reviewer: 
+manager: dansimp
 ms.localizationpriority: medium
 ---
 
@@ -80,7 +82,7 @@ If you have a multi-forest on-premises deployment with Microsoft Exchange 2013 o
 6. You now need to change the room mailbox to a linked mailbox:
 
     ```PowerShell
-    $cred=Get-Credential AuthForest\LinkedRoomTest1
+    $cred=Get-Credential AuthForest\ADAdmin
     Set-mailbox -Alias LinkedRoomTest1 -LinkedMasterAccount AuthForest\LinkedRoomTest1 -LinkedDomainController AuthForest-4939.AuthForest.extest.contoso.com -Name LinkedRoomTest1 -LinkedCredential $cred -Identity LinkedRoomTest1
     ```
 

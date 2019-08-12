@@ -3,9 +3,12 @@ ms.localizationpriority: low
 ms.mktglfcycl: deploy
 ms.pagetype: appcompat
 description: Use the Enterprise Mode Site List Manager to create and update your Enterprise Mode site list for devices running Windows 7 or Windows 8.1 Update.
-author: eross-msft
+author: eavena
 ms.prod: ie11
 ms.assetid: 17c61547-82e3-48f2-908d-137a71938823
+ms.reviewer: 
+manager: dansimp
+ms.author: eravena
 title: Enterprise Mode schema v.1 guidance (Internet Explorer 11 for IT Pros)
 ms.sitesec: library
 ms.date: 07/27/2017
@@ -28,7 +31,7 @@ If you don't want to use the Enterprise Mode Site List Manager, you also have th
 The following is an example of the Enterprise Mode schema v.1. This schema can run on devices running Windows 7 and Windows 8.1.
 
 **Important**<br>
-Make sure that you don't specify a protocol when adding your URLs. Using a URL like `<domain>contoso.com</domain>` automatically applies to both http://contoso.com and https://contoso.com.
+Make sure that you don't specify a protocol when adding your URLs. Using a URL like `<domain>contoso.com</domain>` automatically applies to both https://contoso.com and https://contoso.com.
 
 ``` xml
 <rules version="1">
@@ -135,7 +138,7 @@ This table includes the elements used by the Enterprise Mode schema.
     &lt;path exclude="true"&gt;/products&lt;/path&gt;
   &lt;/domain&gt;
 &lt;/emie&gt;</pre><p>
-Where http://fabrikam.com doesn't use IE8 Enterprise Mode, but http://fabrikam.com/products does.</td>
+Where https://fabrikam.com doesn't use IE8 Enterprise Mode, but https://fabrikam.com/products does.</td>
 <td>Internet Explorer 11 and Microsoft Edge</td>
 </tr>
 </table>
@@ -167,7 +170,7 @@ This table includes the attributes used by the Enterprise Mode schema.
     &lt;path exclude="true"&gt;/products&lt;/path&gt;
   &lt;/domain&gt;
 &lt;/emie&gt;</pre><p>
-Where http://fabrikam.com doesn't use IE8 Enterprise Mode, but http://fabrikam.com/products does.</td>
+Where https://fabrikam.com doesn't use IE8 Enterprise Mode, but https://fabrikam.com/products does.</td>
 <td>Internet Explorer 11 and Microsoft Edge</td>
 </tr>
 <tr>
@@ -176,7 +179,7 @@ Where http://fabrikam.com doesn't use IE8 Enterprise Mode, but http://fabrikam.c
 <p><b>Example</b>
 <pre class="syntax">
 &lt;docMode&gt;
-  &lt;domain exclude="false"&gt;fakrikam.com
+  &lt;domain exclude="false"&gt;fabrikam.com
     &lt;path docMode="7"&gt;/products&lt;/path&gt;
   &lt;/domain&gt;
 &lt;/docMode&gt;</pre></td>
@@ -203,7 +206,7 @@ For example, say you want all of the sites in the contoso.com domain to open usi
 
 ### What not to include in your schema
 We recommend that you not add any of the following items to your schema because they can make your compatibility list behave in unexpected ways:
-- Don’t use protocols. For example, `http://`, `https://`, or custom protocols. They break parsing.
+- Don’t use protocols. For example, `https://`, `https://`, or custom protocols. They break parsing.
 - Don’t use wildcards.
 - Don’t use query strings, ampersands break parsing.
 

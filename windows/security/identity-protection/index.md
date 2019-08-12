@@ -5,13 +5,19 @@ ms.prod: w10
 ms.mktglfcycl: deploy
 ms.sitesec: library
 ms.pagetype: security
-author: brianlic-msft
+audience: ITPro
+author: danihalfin
+ms.author: daniha
+manager: dansimp
+ms.collection: M365-identity-device-management
+ms.topic: article
+ms.localizationpriority: medium
 ms.date: 02/05/2018
 ---
 
 # Identity and access management
 
-Learn more about identity annd access management technologies in Windows 10 and Windows 10 Mobile.
+Learn more about identity and access management technologies in Windows 10 and Windows 10 Mobile.
 
 | Section | Description |
 |-|-|

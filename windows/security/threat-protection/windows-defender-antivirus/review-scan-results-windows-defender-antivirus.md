@@ -1,6 +1,6 @@
 ---
 title: Review the results of Windows Defender AV scans 
-description: Review the results of scans using System Center Configuration Manager, Microsoft Intune, or the Windows Defender Security Center app
+description: Review the results of scans using System Center Configuration Manager, Microsoft Intune, or the Windows Security app
 keywords: scan results, remediation, full scan, quick scan
 search.product: eADQiWindows 10XVcnh
 ms.pagetype: security
@@ -9,16 +9,18 @@ ms.mktglfcycl: manage
 ms.sitesec: library
 ms.pagetype: security
 ms.localizationpriority: medium
-author: andreabichsel
-ms.author: v-anbic
+author: dansimp
+ms.author: dansimp
 ms.date: 09/03/2018
+ms.reviewer: 
+manager: dansimp
 ---
 
 # Review Windows Defender Antivirus scan results
 
 **Applies to:**
 
-- Windows Defender Advanced Threat Protection (Windows Defender ATP)
+- [Microsoft Defender Advanced Threat Protection (Microsoft Defender ATP)](https://go.microsoft.com/fwlink/p/?linkid=2069559)
 
 After an Windows Defender Antivirus scan completes, whether it is an [on-demand](run-scan-windows-defender-antivirus.md) or [scheduled scan](scheduled-catch-up-scans-windows-defender-antivirus.md), the results are recorded and you can view the results. 
 
@@ -31,12 +33,12 @@ After an Windows Defender Antivirus scan completes, whether it is an [on-demand]
 
 **Use Configuration Manager to review scan results:**
 
-See [How to monitor Endpoint Protection status](https://docs.microsoft.com/en-us/sccm/protect/deploy-use/monitor-endpoint-protection).
+See [How to monitor Endpoint Protection status](https://docs.microsoft.com/sccm/protect/deploy-use/monitor-endpoint-protection).
 
 
-**Use the Windows Defender Security Center app to review scan results:**
+**Use the Windows Security app to review scan results:**
 
-1. Open the Windows Defender Security Center by clicking the shield icon in the task bar or searching the start menu for **Defender**.
+1. Open the Windows Security app by clicking the shield icon in the task bar or searching the start menu for **Defender**.
 
 2. Click the **Virus & threat protection** tile (or the shield icon on the left menu bar) and then the **Scan history** label.
 
@@ -70,7 +72,7 @@ See [Use PowerShell cmdlets to configure and run Windows Defender Antivirus](use
 
 **Use Windows Management Instruction (WMI) to review scan results:**
 
-Use the [**Get** method of the **MSFT_MpThreat** and **MSFT_MpThreatDetection**](https://msdn.microsoft.com/en-us/library/dn439477(v=vs.85).aspx) classes.
+Use the [**Get** method of the **MSFT_MpThreat** and **MSFT_MpThreatDetection**](https://msdn.microsoft.com/library/dn439477(v=vs.85).aspx) classes.
 
 
 

@@ -1,12 +1,14 @@
 ---
 title: WiredNetwork CSP
 description: The WiredNetwork configuration service provider (CSP) is used by the enterprise to configure wired Internet on devices that do not have GP to enable them to access corporate Internet over ethernet.
-ms.author: maricia
+ms.author: dansimp
 ms.topic: article
 ms.prod: w10
 ms.technology: windows
-author: MariciaAlforque
+author: manikadhiman
 ms.date: 06/27/2018
+ms.reviewer: 
+manager: dansimp
 ---
 
 # WiredNetwork CSP 
@@ -24,7 +26,7 @@ The following diagram shows the WiredNetwork configuration service provider in t
 Root node.
 
 <a href="" id="lanxml"></a>**LanXML**  
-Optional. XML describing the wired network configuration and follows the LAN_profile schemas https://msdn.microsoft.com/en-us/library/windows/desktop/aa816366(v=vs.85).aspx.
+Optional. XML describing the wired network configuration and follows the LAN_profile schemas https://msdn.microsoft.com/library/windows/desktop/aa816366(v=vs.85).aspx.
 
 Supported operations are Add, Get, Replace, and Delete. Value type is string.
 

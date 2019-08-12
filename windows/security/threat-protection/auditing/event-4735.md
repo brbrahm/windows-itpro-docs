@@ -5,9 +5,12 @@ ms.pagetype: security
 ms.prod: w10
 ms.mktglfcycl: deploy
 ms.sitesec: library
-ms.localizationpriority: medium
-author: Mir0sh
+ms.localizationpriority: none
+author: dansimp
 ms.date: 04/19/2017
+ms.reviewer: 
+manager: dansimp
+ms.author: dansimp
 ---
 
 # 4735(S): A security-enabled local group was changed.
@@ -71,7 +74,6 @@ From 4735 event you can get information about changes of **sAMAccountName** and 
  <Data Name="SidHistory">-</Data> 
  </EventData>
  </Event>
-
 ```
 
 ***Required Server Roles:*** None.
@@ -98,7 +100,7 @@ From 4735 event you can get information about changes of **sAMAccountName** and 
 
     -   Uppercase full domain name: CONTOSO.LOCAL
 
-    -   For some [well-known security principals](https://support.microsoft.com/en-us/kb/243330), such as LOCAL SERVICE or ANONYMOUS LOGON, the value of this field is “NT AUTHORITY”.
+    -   For some [well-known security principals](https://support.microsoft.com/kb/243330), such as LOCAL SERVICE or ANONYMOUS LOGON, the value of this field is “NT AUTHORITY”.
 
     -   For local user accounts, this field will contain the name of the computer or device that this account belongs to, for example: “Win81”.
 
@@ -109,7 +111,7 @@ From 4735 event you can get information about changes of **sAMAccountName** and 
 -   **Security ID** \[Type = SID\]**:** SID of changed group. Event Viewer automatically tries to resolve SIDs and show the group name. If the SID cannot be resolved, you will see the source data in the event.
 
 > **Note**&nbsp;&nbsp;Sometimes you can see the **Group\\Security ID** field contains an old group name in Event Viewer (as you can see in the event example). That happens because Event Viewer caches names for SIDs that it has already resolved for the current session.
-
+> 
 > **Note**&nbsp;&nbsp;**Security ID** field has the same value as new group name (**Changed Attributes&gt;SAM Account Name**). That is happens because event is generated after name was changed and SID resolves to the new name. It is always better to use SID instead of group names for queries or filtering of events, because you will know for sure that this the right object you are looking for or want to monitor.
 
 -   **Group Name** \[Type = UnicodeString\]**:** the name of the group that was changed. For example: ServiceDesk
@@ -124,13 +126,13 @@ From 4735 event you can get information about changes of **sAMAccountName** and 
 
     -   For a local group, this field will contain the name of the computer to which this new group belongs, for example: “Win81”.
 
-    -   [Built-in groups](https://technet.microsoft.com/en-us/library/dn169025(v=ws.10).aspx): Builtin
+    -   [Built-in groups](https://technet.microsoft.com/library/dn169025(v=ws.10).aspx): Builtin
 
 **Changed Attributes:**
 
 > **Note**&nbsp;&nbsp;If attribute was not changed it will have “-“ value.
 
-You might see a 4735 event without any changes inside, that is, where all Changed Attributes apear as “-“. This usually happens when a change is made to an attribute that is not listed in the event. In this case there is no way to determine which attribute was changed. For example, this would happen if you change the Description of a group object using the Active Directory Users and Computers administrative console. Also, if the [discretionary access control list](https://msdn.microsoft.com/en-us/library/windows/desktop/aa374872(v=vs.85).aspx) (DACL) is changed, a 4735 event will generate, but all attributes will be “-“.
+You might see a 4735 event without any changes inside, that is, where all Changed Attributes apear as “-“. This usually happens when a change is made to an attribute that is not listed in the event. In this case there is no way to determine which attribute was changed. For example, this would happen if you change the Description of a group object using the Active Directory Users and Computers administrative console. Also, if the [discretionary access control list](https://msdn.microsoft.com/library/windows/desktop/aa374872(v=vs.85).aspx) (DACL) is changed, a 4735 event will generate, but all attributes will be “-“.
 
 -   **SAM Account Name** \[Type = UnicodeString\]: This is a new name of changed group used to support clients and servers from previous versions of Windows (pre-Windows 2000 logon name). If the value of **sAMAccountName** attribute of group object was changed, you will see the new value here. For example: ServiceDesk. For local groups it is simply a new name of the group, if it was changed.
 

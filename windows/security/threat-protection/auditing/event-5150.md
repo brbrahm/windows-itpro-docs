@@ -5,9 +5,12 @@ ms.pagetype: security
 ms.prod: w10
 ms.mktglfcycl: deploy
 ms.sitesec: library
-ms.localizationpriority: medium
-author: Mir0sh
+ms.localizationpriority: none
+author: dansimp
 ms.date: 04/19/2017
+ms.reviewer: 
+manager: dansimp
+ms.author: dansimp
 ---
 
 # 5150(-): The Windows Filtering Platform blocked a packet.
@@ -17,7 +20,7 @@ ms.date: 04/19/2017
 -   Windows Server 2016
 
 
-This event is logged if the Windows Filtering Platform [MAC filter](https://msdn.microsoft.com/en-us/library/windows/hardware/hh440262(v=vs.85).aspx) blocked a packet.
+This event is logged if the Windows Filtering Platform [MAC filter](https://msdn.microsoft.com/library/windows/hardware/hh440262(v=vs.85).aspx) blocked a packet.
 
 There is no example of this event in this document.
 
@@ -49,7 +52,7 @@ There is no example of this event in this document.
 >
 > *Layer Name:%9*
 >
-> *Layer Run-Time ID:%10 *
+> *Layer Run-Time ID:%10*
 
 ***Required Server Roles:*** None.
 

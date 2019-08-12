@@ -2,19 +2,25 @@
 title: Increase scheduling priority (Windows 10)
 description: Describes the best practices, location, values, policy management, and security considerations for the Increase scheduling priority security policy setting.
 ms.assetid: fbec5973-d35e-4797-9626-d0d56061527f
+ms.reviewer: 
+ms.author: dansimp
 ms.prod: w10
 ms.mktglfcycl: deploy
 ms.sitesec: library
 ms.pagetype: security
 ms.localizationpriority: medium
-author: brianlic-msft
+author: dansimp
+manager: dansimp
+audience: ITPro
+ms.collection: M365-security-compliance
+ms.topic: conceptual
 ms.date: 07/13/2017
 ---
 
 # Increase scheduling priority
 
 **Applies to**
--   Windows 10
+-   Windows 10
 
 Describes the best practices, location, values, policy management, and security considerations for the **Increase scheduling priority** security policy setting.
 
@@ -34,27 +40,12 @@ Constant: SeIncreaseBasePriorityPrivilege
 
 ### Best practices
 
--   Allow the default value, Administrators and Window Manager/Window Manager Group, as the only accounts responsible for controlling process scheduling priorities.
+-   Retain the default value as the only accounts responsible for controlling process scheduling priorities.
 
 ### Location
 
 Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\User Rights Assignment
-
-### Default values
-
-By default this setting is Administrators on domain controllers and on stand-alone servers.
-
-The following table lists the actual and effective default policy values. Default values are also listed on the policy’s property page.
-
-| Server type or GPO | Default value |
-| - | - |
-| Default Domain Policy| Not defined| 
-| Default Domain Controller Policy| Not defined| 
-| Stand-Alone Server Default Settings | Administrators and Window Manager/Window Manager Group| 
-| Domain Controller Effective Default Settings | Administrators and Window Manager/Window Manager Group| 
-| Member Server Effective Default Settings | Administrators and Window Manager/Window Manager Group|
-| Client Computer Effective Default Settings | Administrators and Window Manager/Window Manager Group| 
- 
+ 
 ## Policy management
 
 This section describes features, tools, and guidance to help you manage this policy.
@@ -84,12 +75,18 @@ A user who is assigned this user right could increase the scheduling priority of
 
 ### Countermeasure
 
-Verify that only Administrators and and Window Manager/Window Manager Group have the **Increase scheduling priority** user right assigned to them.
+Verify that only Administrators and Window Manager/Window Manager Group have the **Increase scheduling priority** user right assigned to them.
 
 ### Potential impact
 
-None. Restricting the **Increase scheduling priority** user right to members of the Administrators group and and Window Manager/Window Manager Group is the default configuration.
+None. Restricting the **Increase scheduling priority** user right to members of the Administrators group and Window Manager/Window Manager Group is the default configuration.
+
+> [!Warning]  
+> If you remove **Window Manager\Window Manager Group** from the **Increase scheduling priority** user right, certain applications and computers do not function correctly. In particular, the INK workspace does not function correctly on unified memory architecture (UMA) laptop and desktop computers that run Windows 10, version 1903 (or later) and that use the Intel GFX driver.  
+> 
+> On affected computers, the display blinks when users draw on INK workspaces such as those that are used by Microsoft Edge, Microsoft PowerPoint, or Microsoft OneNote. The blinking occurs because the inking-related processes repeatedly try to use the Real-Time priority, but are denied permission.
 
 ## Related topics
 
 - [User Rights Assignment](user-rights-assignment.md)
+- [Increase scheduling priority for Windows Server 2012 and earlier](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/dn221960(v%3dws.11))

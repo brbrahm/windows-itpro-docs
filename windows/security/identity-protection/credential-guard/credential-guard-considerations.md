@@ -1,4 +1,4 @@
-﻿---
+---
 title: Considerations when using Windows Defender Credential Guard (Windows 10)
 description: Considerations and recommendations for certain scenarios when using Windows Defender Credential Guard in Windows 10.
 ms.prod: w10
@@ -6,8 +6,14 @@ ms.mktglfcycl: explore
 ms.sitesec: library
 ms.pagetype: security
 ms.localizationpriority: medium
-author: brianlic-msft
+audience: ITPro
+author: dulcemontemayor
+ms.author: dolmont
+manager: dansimp
+ms.collection: M365-identity-device-management
+ms.topic: article
 ms.date: 08/31/2017
+ms.reviewer: 
 ---
 
 # Considerations when using Windows Defender Credential Guard
@@ -15,9 +21,6 @@ ms.date: 08/31/2017
 **Applies to**
 -   Windows 10
 -   Windows Server 2016
-
-Prefer video? See [Credentials Protected by Windows Defender Credential Guard](https://mva.microsoft.com/en-us/training-courses/deep-dive-into-credential-guard-16651?l=mD3geLJyC_8304300474)
-in the **Deep Dive into Windows Defender Credential Guard** video series.
 
 Passwords are still weak. We recommend that in addition to deploying Windows Defender Credential Guard, organizations move away from passwords to other authentication methods, such as physical smart cards, virtual smart cards, or Windows Hello for Business.
 
@@ -63,7 +66,7 @@ Beginning with Windows 10 and Windows Server 2016, domain-devices automatically 
 
 Since Credential Guard cannot decrypt the protected private key, Windows uses the domain-joined computer's password for authentication to the domain. Unless additional policies are deployed, there should not be a loss of functionality. If a device is configured to only use public key, then it cannot authenticate with password until that policy is disabled. For more information on Configuring devices to only use public key, see [Domain-joined Device Public Key Authentication](https://docs.microsoft.com/windows-server/security/kerberos/domain-joined-device-public-key-authentication).
 
-Also if any access control checks including authentication policies require devices to have either the KEY TRUST IDENTITY (S-1-18-4) or FRESH PUBLIC KEY IDENTITY (S-1-18-3) well-known SIDs, then those access checks fail. For more information about authentication policies, see [Authentication Policies and Authentication Policy Silos](https://docs.microsoft.com/en-us/windows-server/security/credentials-protection-and-management/authentication-policies-and-authentication-policy-silos). For more information about well-known SIDs, see [[MS-DTYP] Section 2.4.2.4 Well-known SID Structures](https://msdn.microsoft.com/en-us/library/cc980032.aspx).
+Also if any access control checks including authentication policies require devices to have either the KEY TRUST IDENTITY (S-1-18-4) or FRESH PUBLIC KEY IDENTITY (S-1-18-3) well-known SIDs, then those access checks fail. For more information about authentication policies, see [Authentication Policies and Authentication Policy Silos](https://docs.microsoft.com/windows-server/security/credentials-protection-and-management/authentication-policies-and-authentication-policy-silos). For more information about well-known SIDs, see [[MS-DTYP] Section 2.4.2.4 Well-known SID Structures](https://msdn.microsoft.com/library/cc980032.aspx).
 
 ### Breaking DPAPI on domain-joined devices
 On domain-joined devices, DPAPI can recover user keys using a domain controller from the user's domain. If a domain-joined device has no connectivity to a domain controller, then recovery is not possible.
@@ -88,11 +91,11 @@ Once the device has connectivity to the domain controllers, DPAPI recovers the u
 #### Impact of DPAPI failures on Windows Information Protection
 When data protected with user DPAPI is unusable, then the user loses access to all work data protected by Windows Information Protection.  The impact includes: Outlook 2016 is unable to start and work protected documents cannot be opened.  If DPAPI is working, then newly created work data is protected and can be accessed.
 
-**Workaround:** Users can resolve the problem by connecting their device to the domain and rebooting or using their Encrypting File System Data Recovery Agent certificate. For more information about Encrypting File System Data Recovery Agent certificate, see [Create and verify an Encrypting File System (EFS) Data Recovery Agent (DRA) certificate](https://docs.microsoft.com/en-us/windows/threat-protection/windows-information-protection/create-and-verify-an-efs-dra-certificate).
+**Workaround:** Users can resolve the problem by connecting their device to the domain and rebooting or using their Encrypting File System Data Recovery Agent certificate. For more information about Encrypting File System Data Recovery Agent certificate, see [Create and verify an Encrypting File System (EFS) Data Recovery Agent (DRA) certificate](https://docs.microsoft.com/windows/threat-protection/windows-information-protection/create-and-verify-an-efs-dra-certificate).
 
 
 ## See also
 
-**Deep Dive into Windows Defender Credential Guard: Related videos**
+**Related videos**
 
-[Virtualization-based security](https://mva.microsoft.com/en-us/training-courses/deep-dive-into-credential-guard-16651?l=1CoELLJyC_6704300474)
+[What is virtualization-based security?](https://www.linkedin.com/learning/microsoft-cybersecurity-stack-advanced-identity-and-endpoint-protection/what-is-virtualization-based-security)

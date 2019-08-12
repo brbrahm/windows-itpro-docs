@@ -1,12 +1,19 @@
-﻿---
+---
 title: Smart Cards Debugging Information (Windows 10)
 description: This topic explains tools and services that smart card developers can use to help identify certificate issues with the smart card deployment.
 ms.prod: w10
 ms.mktglfcycl: deploy
 ms.sitesec: library
 ms.pagetype: security
-author: Justinha
+audience: ITPro
+author: dulcemontemayor
+ms.author: dolmont
+manager: dansimp
+ms.collection: M365-identity-device-management
+ms.topic: article
+ms.localizationpriority: medium
 ms.date: 04/19/2017
+ms.reviewer: 
 ---
 
 # Smart Cards Debugging Information
@@ -31,7 +38,7 @@ Debugging and tracing smart card issues requires a variety of tools and approach
 
 ## Certutil
 
-For a complete description of Certutil including examples that show how to use it, see [Certutil \[W2012\]](https://technet.microsoft.com/en-us/library/cc732443(v=ws.11).aspx).
+For a complete description of Certutil including examples that show how to use it, see [Certutil \[W2012\]](https://technet.microsoft.com/library/cc732443(v=ws.11).aspx).
 
 ### List certificates available on the smart card
 
@@ -55,9 +62,9 @@ Windows software trace preprocessor (WPP) simplifies tracing the operation of th
 
 Using WPP, use one of the following commands to enable tracing:
 
--   **tracelog.exe -kd -rt -start** &lt;*FriendlyName*&gt; **-guid \#**&lt;*GUID*&gt; **-f .\\**&lt;*LogFileName*&gt;**.etl -flags** &lt;*flags*&gt; **-ft 1**
+- **tracelog.exe -kd -rt -start** &lt;*FriendlyName*&gt; **-guid \#**&lt;*GUID*&gt; **-f .\\**&lt;*LogFileName*&gt;**.etl -flags** &lt;*flags*&gt; **-ft 1**
 
--   **logman start** &lt;*FriendlyName*&gt; **-ets -p {**&lt;*GUID*&gt;**} -**&lt;*Flags*&gt; **-ft 1 -rt -o .\\**&lt;*LogFileName*&gt;***.etl -mode 0x00080000**
+- **logman start** &lt;*FriendlyName*&gt; **-ets -p {**&lt;*GUID*&gt;**} -**&lt;*Flags*&gt; **-ft 1 -rt -o .\\**&lt;*LogFileName*&gt;<em>**.etl -mode 0x00080000</em>*
 
 You can use the parameters in the following table.
 

@@ -3,11 +3,13 @@ ms.localizationpriority: medium
 ms.mktglfcycl: support
 ms.pagetype: security
 description:
-author: shortpatti
-ms.author: pashort
+author: lomayor
+ms.author: lomayor
 ms.manager: elizapo
 ms.prod: ie11
 ms.assetid:
+ms.reviewer: 
+audience: itpromanager: dansimp
 title: Internet Explorer 11 delivery through automatic updates
 ms.sitesec: library
 ms.date: 05/22/2018
@@ -16,15 +18,15 @@ ms.date: 05/22/2018
 # Internet Explorer 11 delivery through automatic updates
 Internet Explorer 11 makes browsing the web faster, easier, safer, and more reliable than ever. To help customers become more secure and up-to-date, Microsoft will distribute Internet Explorer 11 through Automatic Updates and the Windows Update and Microsoft Update sites. Internet Explorer 11 will be available for users of the 32-bit and 64-bit versions of Windows 7 Service Pack 1 (SP1), and 64-bit version of Windows Server 2008 R2 SP1. This article provides an overview of the delivery process and options available for IT administrators to control how and when Internet Explorer 11 is deployed to their organization through Automatic Updates.
 
-- [Automatic updates delivery process](https://docs.microsoft.com/en-us/internet-explorer/ie11-deploy-guide/ie11-delivery-through-automatic-updates#automatic-updates-delivery-process)
+- [Automatic updates delivery process](https://docs.microsoft.com/internet-explorer/ie11-deploy-guide/ie11-delivery-through-automatic-updates#automatic-updates-delivery-process)
 
-- [Internet Explorer 11 automatic upgrades](https://docs.microsoft.com/en-us/internet-explorer/ie11-deploy-guide/ie11-delivery-through-automatic-updates#internet-explorer-11-automatic-upgrades)
+- [Internet Explorer 11 automatic upgrades](https://docs.microsoft.com/internet-explorer/ie11-deploy-guide/ie11-delivery-through-automatic-updates#internet-explorer-11-automatic-upgrades)
 
-- [Options for blocking automatic delivery](https://docs.microsoft.com/en-us/internet-explorer/ie11-deploy-guide/ie11-delivery-through-automatic-updates#options-for-blocking-automatic-delivery)
+- [Options for blocking automatic delivery](https://docs.microsoft.com/internet-explorer/ie11-deploy-guide/ie11-delivery-through-automatic-updates#options-for-blocking-automatic-delivery)
 
-- [Availability of Internet Explorer 11](https://docs.microsoft.com/en-us/internet-explorer/ie11-deploy-guide/ie11-delivery-through-automatic-updates#availability-of-internet-explorer-11)
+- [Availability of Internet Explorer 11](https://docs.microsoft.com/internet-explorer/ie11-deploy-guide/ie11-delivery-through-automatic-updates#availability-of-internet-explorer-11)
 
-- [Prevent automatic installation of Internet Explorer 11 with WSUS](https://docs.microsoft.com/en-us/internet-explorer/ie11-deploy-guide/ie11-delivery-through-automatic-updates#prevent-automatic-installation-of-internet-explorer-11-with-wsus)
+- [Prevent automatic installation of Internet Explorer 11 with WSUS](https://docs.microsoft.com/internet-explorer/ie11-deploy-guide/ie11-delivery-through-automatic-updates#prevent-automatic-installation-of-internet-explorer-11-with-wsus)
 
 ## Automatic updates delivery process
 
@@ -68,39 +70,39 @@ Automatic Updates will start to distribute Internet Explorer 11 shortly after th
 
 Internet Explorer 11 will be released to WSUS as an Update Rollup package. Therefore, if you’ve configured WSUS to “auto-approve” Update Rollup packages, it’ll be automatically approved and installed. To stop Internet Explorer 11 from being automatically approved for installation, you need to:
 
-1.  Click **Start**, click **Administrative Tools**, and then click **Microsoft
-    Windows Server Update Services 3.0**.
+1. Click **Start**, click **Administrative Tools**, and then click **Microsoft
+   Windows Server Update Services 3.0**.
 
-2.  Expand *ComputerName*, and then click **Options**.
+2. Expand *ComputerName*, and then click **Options**.
 
-3.  Click **Automatic Approvals**.
+3. Click **Automatic Approvals**.
 
-4.  Click the rule that automatically approves an update that is classified as
-    Update Rollup, and then click **Edit.**
+4. Click the rule that automatically approves an update that is classified as
+   Update Rollup, and then click **Edit.**
 
-    >[!Note]
-    >If you don’t see a rule like this, you most likely haven’t configured WSUS to automatically approve Update Rollups for installation. In this situation, you don’t have to do anything else.
+   >[!Note]
+   >If you don’t see a rule like this, you most likely haven’t configured WSUS to automatically approve Update Rollups for installation. In this situation, you don’t have to do anything else.
 
-5.  Click the **Update Rollups** property under the **Step 2: Edit the properties (click an underlined value)** section.
+5. Click the **Update Rollups** property under the **Step 2: Edit the properties (click an underlined value)** section.
 
-    >[!Note]
-    >The properties for this rule will resemble the following:<ul><li>When an update is in Update Rollups</li><li>Approve the update for all computers</li></ul>
+   >[!Note]
+   >The properties for this rule will resemble the following:<ul><li>When an update is in Update Rollups</li><li>Approve the update for all computers</li></ul>
 
-6.  Clear the **Update Rollup** check box, and then click **OK**.
+6. Clear the **Update Rollup** check box, and then click **OK**.
 
-7.  Click **OK** to close the **Automatic Approvals** dialog box.<p>After the new Internet Explorer 11 package is available for download, you should manually synchronize the new package to your WSUS server, so that when you re-enable auto-approval it won’t be automatically installed.
+7. Click **OK** to close the **Automatic Approvals** dialog box.<p>After the new Internet Explorer 11 package is available for download, you should manually synchronize the new package to your WSUS server, so that when you re-enable auto-approval it won’t be automatically installed.
 
-8.  Click **Start**, click **Administrative Tools**, and then click **Microsoft Windows Server Update Services 3.0**.
+8. Click **Start**, click **Administrative Tools**, and then click **Microsoft Windows Server Update Services 3.0**.
 
-9.  Expand *ComputerName*, and then click **Synchronizations**.
+9. Expand *ComputerName*, and then click **Synchronizations**.
 
-10.  Click **Synchronize Now**.
+10. Click **Synchronize Now**.
 
-11.  Expand *ComputerName*, expand **Updates**, and then click **All Updates**.
+11. Expand *ComputerName*, expand **Updates**, and then click **All Updates**.
 
-12.  Choose **Unapproved** in the **Approval**drop down box.
+12. Choose **Unapproved** in the **Approval**drop down box.
 
-13.  Check to make sure that Microsoft Internet Explorer 11 is listed as an unapproved update.
+13. Check to make sure that Microsoft Internet Explorer 11 is listed as an unapproved update.
 
     >[!Note]
     >There may be multiple updates, depending on the imported language and operating system updates.

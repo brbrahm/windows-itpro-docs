@@ -5,9 +5,12 @@ ms.pagetype: security
 ms.prod: w10
 ms.mktglfcycl: deploy
 ms.sitesec: library
-ms.localizationpriority: medium
-author: Mir0sh
+ms.localizationpriority: none
+author: dansimp
 ms.date: 04/19/2017
+ms.reviewer: 
+manager: dansimp
+ms.author: dansimp
 ---
 
 # 4626(S): User/Device claims information.
@@ -72,7 +75,6 @@ This event generates on the computer to which the logon was performed (target co
  <Data Name="DeviceClaims">-</Data> 
  </EventData>
  </Event>
-
 ```
 
 ***Required Server Roles:*** None.
@@ -99,7 +101,7 @@ This event generates on the computer to which the logon was performed (target co
 
     -   Uppercase full domain name: CONTOSO.LOCAL
 
-    -   For some [well-known security principals](https://support.microsoft.com/en-us/kb/243330), such as LOCAL SERVICE or ANONYMOUS LOGON, the value of this field is “NT AUTHORITY”.
+    -   For some [well-known security principals](https://support.microsoft.com/kb/243330), such as LOCAL SERVICE or ANONYMOUS LOGON, the value of this field is “NT AUTHORITY”.
 
     -   For local user accounts, this field will contain the name of the computer or device that this account belongs to, for example: “Win81”.
 
@@ -135,7 +137,7 @@ This event generates on the computer to which the logon was performed (target co
 
     -   Uppercase full domain name: CONTOSO.LOCAL
 
-    -   For some [well-known security principals](https://support.microsoft.com/en-us/kb/243330), such as LOCAL SERVICE or ANONYMOUS LOGON, the value of this field is “NT AUTHORITY”.
+    -   For some [well-known security principals](https://support.microsoft.com/kb/243330), such as LOCAL SERVICE or ANONYMOUS LOGON, the value of this field is “NT AUTHORITY”.
 
     -   For local user accounts, this field will contain the name of the computer or device that this account belongs to, for example: “Win81”.
 
@@ -155,7 +157,7 @@ This event generates on the computer to which the logon was performed (target co
 
     -   “dadmin” – claim value.
 
-**Device Claims** \[Type = UnicodeString\]**:** list of device claims for new logon session. For user accounts this field typically has “**-**“ value**.** For computer accounts this field has device claims listed.
+**Device Claims** \[Type = UnicodeString\]**:** list of device claims for new logon session. For user accounts this field typically has “**-**“ value<strong>.</strong> For computer accounts this field has device claims listed.
 
 ## Security Monitoring Recommendations
 

@@ -6,10 +6,15 @@ ms.prod: w10
 ms.mktglfcycl: deploy
 ms.sitesec: library
 ms.pagetype: security, mobile
-ms.localizationpriority: medium
-author: mikestephens-MS
-ms.author: mstephen
+audience: ITPro
+author: mapalko
+ms.author: mapalko
+manager: dansimp
+ms.collection: M365-identity-device-management
+ms.topic: article
+localizationpriority: medium
 ms.date: 08/20/2018
+ms.reviewer: 
 ---
 # Configure Windows Hello for Business Policy settings
 
@@ -31,9 +36,9 @@ On-premises certificate-based deployments of Windows Hello for Business needs th
 
 ## Enable Windows Hello for Business Group Policy
 
-The Enable Windows Hello for Business Group Policy setting is the configuration needed for Windows to determine if a user should be attempt to enroll for Windows Hello for Business.  A user will only attempt enrollment if this policy setting is configured to enabled.  
+The Group Policy setting determines whether users are allowed, and prompted, to enroll for Windows Hello for Business. It can be configured for computers or users.
 
-You can configure the Enable Windows Hello for Business Group Policy setting for computer or users. Deploying this policy setting to computers results in ALL users that sign-in that computer to attempt a Windows Hello for Business enrollment. Deploying this policy setting to a user results in only that user attempting a Windows Hello for Business enrollment.  Additionally, you can deploy the policy setting to a group of users so only those users attempt a Windows Hello for Business enrollment. If both user and computer policy settings are deployed, the user policy setting has precedence.
+If you configure the Group Policy for computers, all users that sign-in to those computers will be allowed and prompted to enroll for Windows Hello for Business. If you configure the Group Policy for users, only those users will be allowed and prompted to enroll for Windows Hello for Business.
 
 ## Use certificate for on-premises authentication
 
@@ -71,7 +76,7 @@ The Group Policy object contains the policy settings needed to trigger Windows H
 7. Select **Enabled** from the **Configuration Model** list.
 8. Select the **Renew expired certificates**, **update pending certificates**, and **remove revoked certificates** check box.
 9. Select the **Update certificates that use certificate templates** check box.
-10.	Click **OK**. Close the **Group Policy Management Editor**.
+10. Click **OK**. Close the **Group Policy Management Editor**.
 
 ## Configure Security in the Windows Hello for Business Group Policy object
 
@@ -126,12 +131,12 @@ Windows 10 provides eight PIN Complexity Group Policy settings that give you gra
 * Require special characters
 * Require uppercase letters
 
-In the Windows 10, version 1703, the PIN complexity Group Policy settings have moved to remove misunderstanding that PIN complexity policy settings were exclusive to Windows Hello for Business. The new location of these Group Policy settings is under Administrative Templates\System\PIN Complexity under both the Computer and User Configuration nodes of the Group Policy editor.
+In the Windows 10, version 1703, the PIN complexity Group Policy settings have moved to remove misunderstanding that PIN complexity policy settings were exclusive to Windows Hello for Business. The new location of these Group Policy settings is under Computer Configuration\Administrative Templates\System\PIN Complexity in the Group Policy editor.
 
 ## Review
 
 Before you continue with the deployment, validate your deployment progress by reviewing the following items:
-* Confirm you authored Group Policy settings using the latest ADMX/ADML files (from the Widows 10 Creators Editions)
+* Confirm you authored Group Policy settings using the latest ADMX/ADML files (from the Windows 10 Creators Editions)
 * Confirm you configured the Enable Windows Hello for Business to the scope that matches your deployment (Computer vs. User)
 * Confirm you configure the Use Certificate enrollment for on-premises authentication policy setting.
 * Confirm you configure automatic certificate enrollment to the scope that matches your deployment (Computer vs. User)

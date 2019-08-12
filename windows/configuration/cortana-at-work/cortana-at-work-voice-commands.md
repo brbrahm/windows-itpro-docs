@@ -4,10 +4,12 @@ description: How to create voice commands that use Cortana to perform voice-enab
 ms.prod: w10
 ms.mktglfcycl: manage
 ms.sitesec: library
-author: eross-msft
+author: dansimp
 ms.localizationpriority: medium
-ms.author: lizross
+ms.author: dansimp
 ms.date: 10/05/2017
+ms.reviewer: 
+manager: dansimp
 ---
 
 # Set up and test custom voice commands in Cortana for your organization
@@ -30,9 +32,9 @@ To enable voice commands in Cortana
 
     Cortana can perform actions on apps in the foreground (taking focus from Cortana) or in the background (allowing Cortana to keep focus). We recommend that you decide where an action should happen, based on what your voice command is intended to do. For example, if your voice command requires employee input, it’s best for that to happen in the foreground. However, if the app only uses basic commands and doesn’t require interaction, it can happen in the background.
 
-    - **Start Cortana with focus on your app, using specific voice-enabled statements.** [Activate a foreground app with voice commands through Cortana](https://docs.microsoft.com/en-us/cortana/voice-commands/launch-a-foreground-app-with-voice-commands-in-cortana).
+    - **Start Cortana with focus on your app, using specific voice-enabled statements.** [Activate a foreground app with voice commands through Cortana](https://docs.microsoft.com/cortana/voice-commands/launch-a-foreground-app-with-voice-commands-in-cortana).
 
-    - **Start Cortana removing focus from your app, using specific voice-enabled statements.** [Activate a background app in Cortana using voice commands](https://docs.microsoft.com/en-us/cortana/voice-commands/launch-a-background-app-with-voice-commands-in-cortana).
+    - **Start Cortana removing focus from your app, using specific voice-enabled statements.** [Activate a background app in Cortana using voice commands](https://docs.microsoft.com/cortana/voice-commands/launch-a-background-app-with-voice-commands-in-cortana).
 
 2.	**Install the VCD file on employees' devices**. You can use System Center Configuration Manager or Microsoft Intune to deploy and install the VCD file on your employees' devices, the same way you deploy and install any other package in your organization.
 
@@ -40,23 +42,23 @@ To enable voice commands in Cortana
 While these aren't line-of-business apps, we've worked to make sure to implement a VCD file, allowing you to test how the functionality works with Cortana in your organization.
 
 **To get a Microsoft Store app**
-1.	Go to the Microsoft Store, scroll down to the **Collections** area, click **Show All**, and then click **Better with Cortana**.
+1. Go to the Microsoft Store, scroll down to the **Collections** area, click **Show All**, and then click **Better with Cortana**.
 
-2.	Click **Uber**, and then click **Install**.
+2. Click **Uber**, and then click **Install**.
 
-3.	Open Uber, create an account or sign in, and then close the app.
+3. Open Uber, create an account or sign in, and then close the app.
 
 **To set up the app with Cortana**
-1.	Click on the **Cortana** search box in the taskbar, and then click the **Notebook** icon.
+1. Click on the **Cortana** search box in the taskbar, and then click the **Notebook** icon.
 
-2.	Click on **Connected Services**, click **Uber**, and then click **Connect**.
+2. Click on **Connected Services**, click **Uber**, and then click **Connect**.
 
     ![Cortana at work, showing where to connect the Uber service to Cortana](../images/cortana-connect-uber.png)
 
 **To use the voice-enabled commands with Cortana**
-1.	Click on the **Cortana** icon in the taskbar, and then click the **Microphone** icon (to the right of the **Search** box).
+1. Click on the **Cortana** icon in the taskbar, and then click the **Microphone** icon (to the right of the **Search** box).
 
-2.	Say _Uber get me a taxi_.
+2. Say _Uber get me a taxi_.
 
     Cortana changes, letting you provide your trip details for Uber.
 

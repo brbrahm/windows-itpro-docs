@@ -2,13 +2,19 @@
 title: Reset account lockout counter after (Windows 10)
 description: Describes the best practices, location, values, and security considerations for the Reset account lockout counter after security policy setting.
 ms.assetid: d5ccf6dd-5ba7-44a9-8e0b-c478d8b1442c
+ms.reviewer: 
+ms.author: dansimp
 ms.prod: w10
 ms.mktglfcycl: deploy
 ms.sitesec: library
 ms.pagetype: security
 ms.localizationpriority: medium
-author: brianlic-msft
-ms.date: 04/19/2017
+author: dansimp
+manager: dansimp
+audience: ITPro
+ms.collection: M365-security-compliance
+ms.topic: conceptual
+ms.date: 11/02/2018
 ---
 
 # Reset account lockout counter after
@@ -31,7 +37,9 @@ A disadvantage to setting this too high is that users lock themselves out for an
 
 ### Best practices
 
--   You need to determine the threat level for your organization and balance that against the cost of your Help Desk support for password resets. Each organization will have specific requirements.
+You need to determine the threat level for your organization and balance that against the cost of your Help Desk support for password resets. Each organization will have specific requirements. 
+
+[Windows security baselines](https://docs.microsoft.com/windows/security/threat-protection/windows-security-baselines) recommend configuring the **Reset account lockout counter after** policy setting to 15, but as with other account lockeout settings, this value is more of a guideline than a rule or best practice because there is no "one size fits all." For more information, see [Configuring Account Lockout](https://blogs.technet.microsoft.com/secguide/2014/08/13/configuring-account-lockout/).
 
 ### Location
 
@@ -49,7 +57,7 @@ The following table lists the actual and effective default policy values. Defaul
 | Domain controller effective default settings | Not defined| 
 | Member server effective default settings | Not defined| 
 | Client computer effective default settings | Not applicable| 
- 
+ 
 ## Security considerations
 
 This section describes how an attacker might exploit a feature or its configuration, how to implement the countermeasure, and the possible negative consequences of countermeasure implementation.
@@ -60,7 +68,7 @@ Users can accidentally lock themselves out of their accounts if they mistype the
 
 ### Countermeasure
 
-Configure the **Reset account lockout counter after** policy setting to 30.
+[Windows security baselines](https://docs.microsoft.com/windows/security/threat-protection/windows-security-baselines) recommend configuring the **Reset account lockout counter after** policy setting to 15.
 
 ### Potential impact
 

@@ -5,9 +5,12 @@ ms.pagetype: security
 ms.prod: w10
 ms.mktglfcycl: deploy
 ms.sitesec: library
-ms.localizationpriority: medium
-author: Mir0sh
+ms.localizationpriority: none
+author: dansimp
 ms.date: 04/19/2017
+ms.reviewer: 
+manager: dansimp
+ms.author: dansimp
 ---
 
 # 4662(S, F): An operation was performed on an object.
@@ -25,7 +28,7 @@ ms.date: 04/19/2017
 
 This event generates every time when an operation was performed on an Active Directory object.
 
-This event generates only if appropriate [SACL](https://msdn.microsoft.com/en-us/library/windows/desktop/aa374872(v=vs.85).aspx) was set for Active Directory object and performed operation meets this SACL.
+This event generates only if appropriate [SACL](https://msdn.microsoft.com/library/windows/desktop/aa374872(v=vs.85).aspx) was set for Active Directory object and performed operation meets this SACL.
 
 If operation failed then Failure event will be generated.
 
@@ -71,7 +74,6 @@ You will get one 4662 for each operation type which was performed.
  <Data Name="AdditionalInfo2" /> 
  </EventData>
  </Event>
-
 ```
 
 ***Required Server Roles:*** Active Directory domain controller.
@@ -98,7 +100,7 @@ You will get one 4662 for each operation type which was performed.
 
     -   Uppercase full domain name: CONTOSO.LOCAL
 
-    -   For some [well-known security principals](https://support.microsoft.com/en-us/kb/243330), such as LOCAL SERVICE or ANONYMOUS LOGON, the value of this field is “NT AUTHORITY”.
+    -   For some [well-known security principals](https://support.microsoft.com/kb/243330), such as LOCAL SERVICE or ANONYMOUS LOGON, the value of this field is “NT AUTHORITY”.
 
     -   For local user accounts, this field will contain the name of the computer or device that this account belongs to, for example: “Win81”.
 
@@ -120,20 +122,20 @@ You will get one 4662 for each operation type which was performed.
 
     -   groupPolicyContainer – for group policy objects.
 
-        For all possible values of **Object Type** open Active Directory Schema snap-in (see how to enable this snap-in: <https://technet.microsoft.com/en-us/library/Cc755885(v=WS.10).aspx)> and navigate to **Active Directory Schema\\Classes**. Or use this document: <https://msdn.microsoft.com/en-us/library/cc221630.aspx>
+        For all possible values of **Object Type** open Active Directory Schema snap-in (see how to enable this snap-in: <https://technet.microsoft.com/library/Cc755885(v=WS.10).aspx)> and navigate to **Active Directory Schema\\Classes**. Or use this document: <https://msdn.microsoft.com/library/cc221630.aspx>
 
 -   **Object Name** \[Type = UnicodeString\]: distinguished name of the object that was accessed.
 
 > **Note**&nbsp;&nbsp;The LDAP API references an LDAP object by its **distinguished name (DN)**. A DN is a sequence of relative distinguished names (RDN) connected by commas.
-
+> 
 > An RDN is an attribute with an associated value in the form attribute=value; . These are examples of RDNs attributes:
-
+> 
 > • DC - domainComponent
-
+> 
 > • CN - commonName
-
+> 
 > • OU - organizationalUnitName
-
+> 
 > • O - organizationName
 
 -   **Handle ID** \[Type = Pointer\]: hexadecimal value of a handle to **Object Name**. This field can help you correlate this event with other events that might contain the same Handle ID, for example, “[4661](event-4661.md): A handle to an object was requested.” This parameter might not be captured in the event, and in that case appears as “0x0”.
@@ -206,7 +208,7 @@ To translate this GUID, use the following procedure:
 
 <img src="images/schema-search.png" alt="Schema search illustration" width="313" height="212" />
 
-Sometimes GUID refers to pre-defined Active Directory Property Sets, you can find GUID (**Rights-GUID** field), “property set name” and details here: <https://msdn.microsoft.com/en-us/library/ms683990(v=vs.85).aspx>.
+Sometimes GUID refers to pre-defined Active Directory Property Sets, you can find GUID (**Rights-GUID** field), “property set name” and details here: <https://msdn.microsoft.com/library/ms683990(v=vs.85).aspx>.
 
 Here is an example of decoding of **Properties** field:
 

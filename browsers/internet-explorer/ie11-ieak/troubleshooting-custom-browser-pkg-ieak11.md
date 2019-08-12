@@ -2,10 +2,12 @@
 ms.localizationpriority: medium
 ms.mktglfcycl: support
 description: Info about some of the known issues using the Internet Exporer Customization Wizard and a custom Internet Explorer install package.
-author: shortpatti
-ms.author: pashort
+author: lomayor
+ms.author: lomayor
 ms.prod: ie11
 ms.assetid: 9e22cc61-6c63-4cab-bfdf-6fe49db945e4
+ms.reviewer: 
+audience: itpromanager: dansimp
 title: Troubleshoot custom package and IEAK 11 problems (Internet Explorer Administration Kit 11 for IT Pros)
 ms.sitesec: library
 ms.date: 07/27/2017
@@ -57,7 +59,7 @@ Internet Explorer Setup can switch servers during the installation process to ma
 To address connection issues (for example, as a result of server problems) where Setup can’t locate another download site by default, we recommend you overwrite your first download server using this workaround:
 
 ``` syntax
-<path>\ie11setup.exe /C:"ie11wzd.exe /S:""<path>\ie11setup.exe"" /L:""http://your_Web_server/your_Web_site/ie11sites.dat"""
+<path>\ie11setup.exe /C:"ie11wzd.exe /S:""<path>\ie11setup.exe"" /L:""https://your_Web_server/your_Web_site/ie11sites.dat"""
 ```
 
 Where `<path>` represents the folder location where you stored IE11setup.exe.
@@ -73,8 +75,8 @@ If you cannot uninstall IE using **Uninstall or change a program** in the Contro
 ## The Internet Explorer Customization Wizard 11 does not work with user names that user double-byte character sets
 The customization wizard does not work with user names that use double-byte character sets, such as Chinese or Japanese. To fix this, set the **TEMP** and **TMP** environmental variables to a path that does not use these characters (for example, C:\temp).
 
-1.	Open **System Properties**, click the **Advanced** tab, and then click **Environmental Variables**.
-2.	Click Edit, and then modify the **TEMP** and **TMP** environmental variables to a non-user profile directory.
+1. Open **System Properties**, click the **Advanced** tab, and then click **Environmental Variables**.
+2. Click Edit, and then modify the **TEMP** and **TMP** environmental variables to a non-user profile directory.
 
  
 ## Unicode characters are not supported in IEAK 11 path names

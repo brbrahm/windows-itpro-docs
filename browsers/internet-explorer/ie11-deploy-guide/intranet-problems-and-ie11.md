@@ -2,9 +2,12 @@
 ms.localizationpriority: medium
 ms.mktglfcycl: deploy
 description: How to fix intranet search problems with Internet Explorer 11
-author: shortpatti
+author: lomayor
 ms.prod: ie11
 ms.assetid: 3ee71d93-d9d2-48e1-899e-07932c73faa6
+ms.reviewer: 
+audience: itpromanager: dansimp
+ms.author: lomayor
 title: Fix intranet search problems with Internet Explorer 11 (Internet Explorer 11 for IT Pros)
 ms.sitesec: library
 ms.date: 07/27/2017
@@ -21,7 +24,7 @@ IE11 works differently with search, based on whether your organization is domain
 
 -   **Non-domain-joined computers.** A single word entry is treated as an intranet site. However, if the term doesn't resolve to a site, IE11 then treats the entry as a search term and opens your default search provider.
 
-To explicitly go to an intranet site, regardless of the environment, users can type either a trailing slash like ` contoso/` or the `http://` prefix. Either of these will cause IE11 to treat the entry as an intranet search. You can also change the default behavior so that IE11 treats your single word entry in the address bar as an intranet site, regardless of your environment.
+To explicitly go to an intranet site, regardless of the environment, users can type either a trailing slash like `contoso/` or the `https://` prefix. Either of these will cause IE11 to treat the entry as an intranet search. You can also change the default behavior so that IE11 treats your single word entry in the address bar as an intranet site, regardless of your environment.
 
  **To enable single-word intranet search**
 
@@ -29,7 +32,7 @@ To explicitly go to an intranet site, regardless of the environment, users can t
 
 2.  Click **Advanced**, check the **Go to an intranet site for a single word entry in the Address bar** box, and then click **OK**.
 
-If you'd like your entire organization to have single word entries default to an intranet site, you can turn on the **Go to an intranet site for a single word entry in the Address bar** Group Policy. With this policy turned on, a search for `contoso` automatically resolves to `http://contoso`.
+If you'd like your entire organization to have single word entries default to an intranet site, you can turn on the **Go to an intranet site for a single word entry in the Address bar** Group Policy. With this policy turned on, a search for `contoso` automatically resolves to `https://contoso`.
 
  
 

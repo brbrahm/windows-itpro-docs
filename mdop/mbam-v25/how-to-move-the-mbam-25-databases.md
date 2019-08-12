@@ -1,8 +1,11 @@
 ---
 title: How to Move the MBAM 2.5 Databases
 description: How to Move the MBAM 2.5 Databases
-author: jamiejdt
+author: dansimp
 ms.assetid: 34b46f2d-0add-4377-8e4e-04b628fdfcf1
+ms.reviewer: 
+manager: dansimp
+ms.author: dansimp
 ms.pagetype: mdop, security
 ms.mktglfcycl: manage
 ms.sitesec: library
@@ -66,7 +69,6 @@ To automate this procedure, you can use Windows PowerShell to enter a command th
 
 ```powershell
 Stop-Website "Microsoft BitLocker Administration and Monitoring"
-
 ```
 
 >[!NOTE]
@@ -140,20 +142,19 @@ Stop-Website "Microsoft BitLocker Administration and Monitoring"
 
 ### Move the Recovery Database from Server A to Server B
 
-Use Windows Explorer to move the **MBAM Compliance Status Database Data.bak** file from Server A to Server B.
+Use Windows Explorer to move the **MBAM Recovery Database Data.bak** file from Server A to Server B.
 
 To automate this procedure, you can use Windows PowerShell to run a command that is similar to the following:
 
 ```powershell
-Copy-Item “Z:\MBAM Recovery Database Data.bak”
+Copy-Item "Z:\MBAM Recovery Database Data.bak"
 \\$SERVERNAME$\$DESTINATIONSHARE$
 
-Copy-Item “Z:\SQLServerInstanceCertificateFile”
+Copy-Item "Z:\SQLServerInstanceCertificateFile"
 \\$SERVERNAME$\$DESTINATIONSHARE$
 
-Copy-Item “Z:\SQLServerInstanceCertificateFilePrivateKey”
+Copy-Item "Z:\SQLServerInstanceCertificateFilePrivateKey"
 \\$SERVERNAME$\$DESTINATIONSHARE$
-
 ```
 Use the information in the following table to replace the values in the code example with values that match your environment.
 
@@ -228,48 +229,48 @@ Use the information in the following table to replace the values in the code exa
 
 ### Configure access to the Database on Server B and update connection data
 
-1.  Verify that the Microsoft SQL Server user login that enables Recovery Database access on the restored database is mapped to the access account that you provided during the configuration process.
+1. Verify that the Microsoft SQL Server user login that enables Recovery Database access on the restored database is mapped to the access account that you provided during the configuration process.
 
-    >[!NOTE]
-    >If the login is not the same, create a login by using SQL Server Management Studio, and map it to the existing database user.
+   >[!NOTE]
+   >If the login is not the same, create a login by using SQL Server Management Studio, and map it to the existing database user.
 
-2.  On the server that is running the Administration and Monitoring Website, use the Internet Information Services (IIS) Manager console to update the connection string information for the MBAM websites.
+2. On the server that is running the Administration and Monitoring Website, use the Internet Information Services (IIS) Manager console to update the connection string information for the MBAM websites.
 
-3.  Edit the following registry key:
+3. Edit the following registry key:
 
-    **HKLM\\Software\\Microsoft\\MBAM Server\\Web\\RecoveryDBConnectionString**
+   **HKLM\\Software\\Microsoft\\MBAM Server\\Web\\RecoveryDBConnectionString**
 
-4.  Update the **Data Source** value with the name of the server and instance (for example, \$SERVERNAME\$\\\$SQLINSTANCENAME) to which the Recovery Database was moved.
+4. Update the **Data Source** value with the name of the server and instance (for example, \$SERVERNAME\$\\\$SQLINSTANCENAME) to which the Recovery Database was moved.
 
-5.  Update the **Initial Catalog** value with the recovered database name.
+5. Update the **Initial Catalog** value with the recovered database name.
 
-6.  To automate this process, you can use the Windows PowerShell command prompt to enter a command line on the Administration and Monitoring Server that is similar to the following:
+6. To automate this process, you can use the Windows PowerShell command prompt to enter a command line on the Administration and Monitoring Server that is similar to the following:
 
-    ```powershell
-    reg add "HKEY_LOCAL_MACHINE\SOFTWARE\\Microsoft\MBAM Server\\Web" /v
-    RecoveryDBConnectionString /t REG_SZ /d "Integrated Security=SSPI;Initial
-    Catalog=$DATABASE$;Data Source=$SERVERNAME$\$SQLINSTANCENAME$" /f
+   ```powershell
+   reg add "HKEY_LOCAL_MACHINE\SOFTWARE\\Microsoft\MBAM Server\\Web" /v
+   RecoveryDBConnectionString /t REG_SZ /d "Integrated Security=SSPI;Initial
+   Catalog=$DATABASE$;Data Source=$SERVERNAME$\$SQLINSTANCENAME$" /f
 
-    Set-WebConfigurationProperty
-    'connectionStrings/add[@name="KeyRecoveryConnectionString"]' -PSPath
-    "IIS:\sites\Microsoft Bitlocker Administration and
-    Monitoring\MBAMAdministrationService" -Name "connectionString" -Value “Data
-    Source=$SERVERNAME$\$SQLINSTANCENAME$;Initial Catalog=MBAM Recovery and
-    Hardware;Integrated Security=SSPI;”
+   Set-WebConfigurationProperty
+   'connectionStrings/add[@name="KeyRecoveryConnectionString"]' -PSPath
+   "IIS:\sites\Microsoft Bitlocker Administration and
+   Monitoring\MBAMAdministrationService" -Name "connectionString" -Value "Data
+   Source=$SERVERNAME$\$SQLINSTANCENAME$;Initial Catalog=MBAM Recovery and
+   Hardware;Integrated Security=SSPI;"
 
-    Set-WebConfigurationProperty
-    'connectionStrings/add[\@name="Microsoft.Mbam.RecoveryAndHardwareDataStore.ConnectionString"]'
-    -PSPath "IIS:\sites\Microsoft Bitlocker Administration and
-    Monitoring\MBAMRecoveryAndHardwareService" -Name "connectionString" -Value
-    "Data Source=$SERVERNAME$\$SQLINSTANCENAME$;Initial Catalog=MBAM Recovery
-    and Hardware;Integrated Security=SSPI;”
-    ```
+   Set-WebConfigurationProperty
+   'connectionStrings/add[\@name="Microsoft.Mbam.RecoveryAndHardwareDataStore.ConnectionString"]'
+   -PSPath "IIS:\sites\Microsoft Bitlocker Administration and
+   Monitoring\MBAMRecoveryAndHardwareService" -Name "connectionString" -Value
+   "Data Source=$SERVERNAME$\$SQLINSTANCENAME$;Initial Catalog=MBAM Recovery
+   and Hardware;Integrated Security=SSPI;"
+   ```
 
-    >[!Note]
-    >This connection string is shared by all local MBAM web applications. Therefore, it needs to be updated only once per server.
+   >[!Note]
+   >This connection string is shared by all local MBAM web applications. Therefore, it needs to be updated only once per server.
 
 
-7.  Use the following table to replace the values in the code example with values that match your environment.
+7. Use the following table to replace the values in the code example with values that match your environment.
 
    |Parameter|Description|
    |---------|-----------|
@@ -279,9 +280,9 @@ Use the information in the following table to replace the values in the code exa
 
 ### Install MBAM Server software and run the MBAM Server Configuration wizard on Server B
 
-1.  Install the MBAM 2.5 Server software on Server B. For details, see [Installing the MBAM 2.5 Server Software](https://docs.microsoft.com/en-us/microsoft-desktop-optimization-pack/mbam-v25/installing-the-mbam-25-server-software).
+1.  Install the MBAM 2.5 Server software on Server B. For details, see [Installing the MBAM 2.5 Server Software](https://docs.microsoft.com/microsoft-desktop-optimization-pack/mbam-v25/installing-the-mbam-25-server-software).
 
-2.  On Server B, start the MBAM Server Configuration wizard, click **Add New Features**, and then select only the **Recovery Database** feature. For details on how to configure the databases, see [How to Configure the MBAM 2.5 Databases](https://docs.microsoft.com/en-us/microsoft-desktop-optimization-pack/mbam-v25/how-to-configure-the-mbam-25-databases).
+2.  On Server B, start the MBAM Server Configuration wizard, click **Add New Features**, and then select only the **Recovery Database** feature. For details on how to configure the databases, see [How to Configure the MBAM 2.5 Databases](https://docs.microsoft.com/microsoft-desktop-optimization-pack/mbam-v25/how-to-configure-the-mbam-25-databases).
 
     >[!TIP]
     >Alternatively, you can use the **Enable-MbamDatabase** Windows PowerShell cmdlet to configure the Recovery Database.
@@ -327,7 +328,6 @@ To automate this procedure, you can use Windows PowerShell to enter a command th
 
 ```powershell
 Stop-Website "Microsoft BitLocker Administration and Monitoring"
-
 ```
 
 >[!NOTE]
@@ -440,34 +440,33 @@ Stop-Website "Microsoft BitLocker Administration and Monitoring"
 
 ### Configure access to the Database on Server B and update connection data
 
-1.  Verify that the Microsoft SQL Server user login that enables Compliance and Audit Database access on the restored database is mapped to the access account that you provided during the configuration process.
+1. Verify that the Microsoft SQL Server user login that enables Compliance and Audit Database access on the restored database is mapped to the access account that you provided during the configuration process.
 
-    >[!NOTE]
-    >If the login is not the same, create a login by using SQL Server Management Studio, and map it to the existing database user.
+   >[!NOTE]
+   >If the login is not the same, create a login by using SQL Server Management Studio, and map it to the existing database user.
 
-2.  On the server that is running the Administration and Monitoring Website, use the Internet Information Services (IIS) Manager console to update the connection string information for the Website.
+2. On the server that is running the Administration and Monitoring Website, use the Internet Information Services (IIS) Manager console to update the connection string information for the Website.
 
-3.  Edit the following registry key:
+3. Edit the following registry key:
 
-    **HKLM\\Software\\Microsoft\\MBAM Server\\Web\\ComplianceDBConnectionString**
+   **HKLM\\Software\\Microsoft\\MBAM Server\\Web\\ComplianceDBConnectionString**
 
-4.  Update the **Data Source** value with the name of the server and instance (for example, \$SERVERNAME\$\\\$SQLINSTANCENAME) to which the Recovery Database was moved.
+4. Update the **Data Source** value with the name of the server and instance (for example, \$SERVERNAME\$\\\$SQLINSTANCENAME) to which the Recovery Database was moved.
 
-5.  Update the **Initial Catalog** value with the recovered database name.
+5. Update the **Initial Catalog** value with the recovered database name.
 
-6.  To automate this process, you can use the Windows PowerShell command prompt to enter a command line on the Administration and Monitoring Server that is similar to the following:
+6. To automate this process, you can use the Windows PowerShell command prompt to enter a command line on the Administration and Monitoring Server that is similar to the following:
 
-    ```powershell
-    reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MBAM Server\Web" /v
-    ComplianceDBConnectionString /t REG_SZ /d "Integrated Security=SSPI;Initial
-    Catalog=$DATABASE$;Data Source=$SERVERNAME$\$SQLINSTANCENAME$" /f
+   ```powershell
+   reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MBAM Server\Web" /v
+   ComplianceDBConnectionString /t REG_SZ /d "Integrated Security=SSPI;Initial
+   Catalog=$DATABASE$;Data Source=$SERVERNAME$\$SQLINSTANCENAME$" /f
+   ```
+   >[!NOTE]
+   >This connection string is shared by all local MBAM web applications. Therefore, it needs to be updated only once per server.
 
-    ```
-    >[!NOTE]
-    >This connection string is shared by all local MBAM web applications. Therefore, it needs to be updated only once per server.
 
-
-7.  Using the following table, replace the values in the code example with values that match your environment.
+7. Using the following table, replace the values in the code example with values that match your environment.
 
    |Parameter | Description |
    |---------|------------|
@@ -476,9 +475,9 @@ Stop-Website "Microsoft BitLocker Administration and Monitoring"
 
 ### Install MBAM Server software and run the MBAM Server Configuration wizard on Server B
 
-1.  Install the MBAM 2.5 Server software on Server B. For details, see [Installing the MBAM 2.5 Server Software](https://docs.microsoft.com/en-us/microsoft-desktop-optimization-pack/mbam-v25/installing-the-mbam-25-server-software).
+1.  Install the MBAM 2.5 Server software on Server B. For details, see [Installing the MBAM 2.5 Server Software](https://docs.microsoft.com/microsoft-desktop-optimization-pack/mbam-v25/installing-the-mbam-25-server-software).
 
-2.  On Server B, start the MBAM Server Configuration wizard, click **Add New Features**, and then select only the **Compliance and Audit Database** feature. For details on how to configure the databases, see [How to Configure the MBAM 2.5 Databases](https://docs.microsoft.com/en-us/microsoft-desktop-optimization-pack/mbam-v25/how-to-configure-the-mbam-25-databases).
+2.  On Server B, start the MBAM Server Configuration wizard, click **Add New Features**, and then select only the **Compliance and Audit Database** feature. For details on how to configure the databases, see [How to Configure the MBAM 2.5 Databases](https://docs.microsoft.com/microsoft-desktop-optimization-pack/mbam-v25/how-to-configure-the-mbam-25-databases).
 
     >[!TIP]
     >Alternatively, you can use the **Enable-MbamDatabase** Windows PowerShell cmdlet to configure the Compliance and Audit Database.
@@ -492,7 +491,6 @@ To automate this procedure, you can use Windows PowerShell to run a command that
 
 ```powershell
 Start-Website "Microsoft BitLocker Administration and Monitoring"
-
 ```
 
 >[!NOTE]

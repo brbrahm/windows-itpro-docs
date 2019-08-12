@@ -2,12 +2,18 @@
 title: Documenting the Zones (Windows 10)
 description: Documenting the Zones
 ms.assetid: ebd7a650-4d36-42d4-aac0-428617f5a32d
+ms.reviewer: 
+ms.author: dansimp
 ms.prod: w10
 ms.mktglfcycl: deploy
 ms.sitesec: library
 ms.pagetype: security
 ms.localizationpriority: medium
-author: brianlic-msft
+author: dansimp
+manager: dansimp
+audience: ITPro
+ms.collection: M365-security-compliance
+ms.topic: conceptual
 ms.date: 08/17/2017
 ---
 
@@ -26,4 +32,4 @@ Generally, the task of determining zone membership is not complex, but it can be
 | SENSITIVE001 | Yes| Yes| Not required.| Running Windows Server 2012. Ready for inclusion.| $0| Isolated server (in zone by itself)| 
 | PRINTSVR1 | Yes| Yes| Not required.| Running Windows Server 2008 R2. Ready for inclusion.| $0| Boundary| 
 
-**Next: **[Planning Group Policy Deployment for Your Isolation Zones](planning-group-policy-deployment-for-your-isolation-zones.md)
+**Next:** [Planning Group Policy Deployment for Your Isolation Zones](planning-group-policy-deployment-for-your-isolation-zones.md)

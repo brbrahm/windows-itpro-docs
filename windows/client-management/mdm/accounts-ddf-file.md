@@ -1,12 +1,14 @@
 ---
 title: Accounts DDF file
 description: XML file containing the device description framework
-ms.author: maricia
+ms.author: lomayor
 ms.topic: article
 ms.prod: w10
 ms.technology: windows
-author: MariciaAlforque
+author: lomayor
 ms.date: 04/17/2018
+ms.reviewer: 
+manager: dansimp
 ---
 
 # Accounts CSP 
@@ -16,7 +18,7 @@ This topic shows the OMA DM device description framework (DDF) for the **Account
 
 The XML below is for Windows 10, version 1803.
 
-``` syntax
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MgmtTree PUBLIC " -//OMA//DTD-DM-DDF 1.2//EN"
   "http://www.openmobilealliance.org/tech/DTD/DM_DDF-V1_2.dtd"
@@ -68,7 +70,7 @@ The XML below is for Windows 10, version 1803.
               <AccessType>
                 <Add />
               </AccessType>
-              <Description>This node specifies the name for a device.  This setting can be managed remotely. A couple of macros can be embedded within the value for dynamic substitution:  %RAND:&lt;# of digits&gt;% and %SERIAL%.  Examples: (a) "Test%RAND:6%" will generate a name "Test" followed by 6 random digits (e.g., "Test123456").  (b) "Foo%SERIAL%", will generate a name "Foo" followed by the serial number derived from device's ID. The server must explicitly reboot the device for this value to take effect.</Description>
+              <Description>This node specifies the name for a device.  This setting can be managed remotely. A couple of macros can be embedded within the value for dynamic substitution:  %RAND:&lt;# of digits>% and %SERIAL%.  Examples: (a) "Test%RAND:6%" will generate a name "Test" followed by 6 random digits (e.g., "Test123456").  (b) "Foo%SERIAL%", will generate a name "Foo" followed by the serial number derived from device's ID. The server must explicitly reboot the device for this value to take effect.</Description>
               <DFFormat>
                 <chr />
               </DFFormat>

@@ -1,18 +1,74 @@
 ---
 title: Change history for Surface documentation (Windows 10)
+ms.reviewer: 
+manager: dansimp
 description: This topic lists new and updated topics in the Surface documentation library.
 ms.prod: w10
 ms.mktglfcycl: manage
 ms.sitesec: library
-author: jdeckerms
-ms.author: jdecker
+author: dansimp
+ms.author: dansimp
 ms.topic: article
-ms.date: 05/15/2018
 ---
 
 # Change history for Surface documentation
 
 This topic lists new and updated topics in the Surface documentation library.
+
+## July 2019
+
+| **New or changed topic** | **Description** |
+| ------------------------ | --------------- |
+| [Deploy Surface Diagnostic Toolkit for Business](surface-diagnostic-toolkit-business.md)              | Renamed to reflect focus on deployment guidance for IT professionals. Covers minor changes in Version 2.41.139.0.   |
+
+
+
+## June 2019
+
+| **New or changed topic** | **Description** |
+| ------------------------ | --------------- |
+|[Fix common Surface problems using the Surface Diagnostic Toolkit for Business](surface-diagnostic-toolkit-for-business-intro.md)             | New introductory page for the Surface Diagnostic Toolkit for Business.  |
+| [Best practice power settings for Surface devices](maintain-optimal-power-settings-on-Surface-devices.md)               |Updated with summary of recommendations for managing power settings and optimizing battery life.   |
+
+
+## March 2019
+
+| **New or changed topic** | **Description** |
+| ------------------------ | --------------- |
+| [Surface System SKU reference](surface-system-sku-reference.md) | New    |
+
+
+## February 2019
+
+New or changed topic | Description
+--- | ---
+[Surface Asset Tag](assettag.md) | New
+
+
+## January 2019
+
+New or changed topic | Description
+--- | ---
+[Surface Brightness Control](microsoft-surface-brightness-control.md) | New
+[Maintain optimal power settings on Surface devices](maintain-optimal-power-settings-on-Surface-devices.md) | New
+|[Download the latest firmware and drivers for Surface devices](deploy-the-latest-firmware-and-drivers-for-surface-devices.md) | Added Surface Studio 2  |
+
+
+## November 2018
+
+New or changed topic | Description
+--- | ---
+|[Download the latest firmware and drivers for Surface devices](deploy-the-latest-firmware-and-drivers-for-surface-devices.md) | Added Surface Pro 6  |
+[Surface Diagnostic Toolkit for Business](surface-diagnostic-toolkit-business.md) | New
+[Use Surface Diagnostic Toolkit for Business in desktop mode](surface-diagnostic-toolkit-desktop-mode.md) | New
+[Run Surface Diagnostic Toolkit for Business using commands](surface-diagnostic-toolkit-command-line.md) | New
+
+## October 2018
+
+New or changed topic | Description
+--- | ---
+[Battery Limit setting](battery-limit.md) | New
+|[Download the latest firmware and drivers for Surface devices](deploy-the-latest-firmware-and-drivers-for-surface-devices.md) | Added Surface GO  |
 
 ## May 2018
 

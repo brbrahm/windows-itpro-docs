@@ -3,10 +3,12 @@ ms.localizationpriority: medium
 ms.mktglfcycl: deploy
 ms.pagetype: security
 description: Use out-of-date ActiveX control blocking to help you know when IE prevents a webpage from loading outdated ActiveX controls and to update the outdated control, so that it’s safer to use.
-author: shortpatti
-ms.author: pashort
+author: lomayor
+ms.author: lomayor
 ms.prod: ie11
 ms.assetid: e61866bb-1ff1-4a8d-96f2-61d3534e8199
+ms.reviewer: 
+audience: itpromanager: dansimp
 title: Out-of-date ActiveX control blocking (Internet Explorer 11 for IT Pros)
 ms.sitesec: library
 ms.date: 05/10/2018
@@ -115,7 +117,7 @@ Out-of-date ActiveX control blocking is turned off in the Local Intranet Zone an
 |--------|--------------|-------------|----------|
 |Turn on ActiveX control logging in IE |`Administrative Templates\Windows Components\Internet Explorer\Security Features\Add-on Management` |Internet Explorer 8 through IE11 |This setting determines whether IE saves log information for ActiveX controls.<p>If you enable this setting, IE logs ActiveX control information (including the source URI that loaded the control and whether it was blocked) to a local file.<p>If you disable or don't configure this setting, IE won't log ActiveX control information.<p>Note that you can turn this setting on or off regardless of the **Turn off blocking of outdated ActiveX controls for IE** or **Turn off blocking of outdated ActiveX controls for IE on specific domains** settings. |
 |Remove the **Run this time** button for outdated ActiveX controls in IE |`Administrative Templates\Windows Components\Internet Explorer\Security Features\Add-on Management`|Internet Explorer 8 through IE11 |This setting allows you stop users from seeing the **Run this time** button and from running specific outdated ActiveX controls in IE.<p>If you enable this setting, users won't see the **Run this time** button on the warning message that appears when IE blocks an outdated ActiveX control.<p>If you disable or don't configure this setting, users will see the **Run this time** button on the warning message that appears when IE blocks an outdated ActiveX control. Clicking this button lets the user run the outdated ActiveX control once. |
-|Turn off blocking of outdated ActiveX controls for IE on specific domains |`Administrative Templates\Windows Components\Internet Explorer\Security Features\Add-on Management` |Internet Explorer 8 through IE11 |This setting allows you to manage a list of domains on which IE will stop blocking outdated ActiveX controls. Outdated ActiveX controls are never blocked in the Intranet Zone.<p>If you enable this setting, you can enter a custom list of domains for which outdated ActiveX controls won't be blocked in IE. Each domain entry must be formatted like one of the following:<ul><li>**"domainname.TLD".** For example, if you want to include `*.contoso.com/*`, use "contoso.com".</li><li>**"hostname".** For example, if you want to include `http://example`, use "example".</li><li>**"file:///path/filename.htm"**. For example, use `file:///C:/Users/contoso/Desktop/index.htm`.</li></ul><p>If you disable or don't configure this setting, the list is deleted and IE continues to block specific outdated ActiveX controls on all domains in the Internet Zone. |
+|Turn off blocking of outdated ActiveX controls for IE on specific domains |`Administrative Templates\Windows Components\Internet Explorer\Security Features\Add-on Management` |Internet Explorer 8 through IE11 |This setting allows you to manage a list of domains on which IE will stop blocking outdated ActiveX controls. Outdated ActiveX controls are never blocked in the Intranet Zone.<p>If you enable this setting, you can enter a custom list of domains for which outdated ActiveX controls won't be blocked in IE. Each domain entry must be formatted like one of the following:<ul><li>**"domainname.TLD".** For example, if you want to include `*.contoso.com/*`, use "contoso.com".</li><li>**"hostname".** For example, if you want to include `https://example`, use "example".</li><li>**"file:///path/filename.htm"**. For example, use `file:///C:/Users/contoso/Desktop/index.htm`.</li></ul><p>If you disable or don't configure this setting, the list is deleted and IE continues to block specific outdated ActiveX controls on all domains in the Internet Zone. |
 |Turn off blocking of outdated ActiveX controls for IE |`Administrative Templates\Windows Components\Internet Explorer\Security Features\Add-on Management` |Internet Explorer 8 through IE11 |This setting determines whether IE blocks specific outdated ActiveX controls. Outdated ActiveX controls are never blocked in the Intranet Zone.<p>If you enable this setting, IE stops blocking outdated ActiveX controls.<p>If you disable or don't configure this setting, IE continues to block specific outdated ActiveX controls. |
 |Remove the **Update** button in the out-of-date ActiveX control blocking notification for IE |This functionality is only available through the registry |Internet Explorer 8 through IE11 |This setting determines whether the out-of-date ActiveX control blocking notification shows the **Update** button. This button points users to update specific out-of-date ActiveX controls in IE. |
 
@@ -145,8 +147,8 @@ Here’s a detailed example and description of what’s included in the VersionA
 
 |Source URI |File path |Product version |File version |Allowed/Blocked |Reason |EPM-compatible |
 |-----------|----------|----------------|-------------|----------------|-------|---------------|
-|`http://contoso.com/test1.html` |C:\Windows\System32\Macromed\Flash\Flash.ocx |14.0.0.125 |14.0.0.125 |Allowed |Not in blocklist |EPM-compatible |
-|`http://contoso.com/test2.html` |C:\Program Files\Java\jre6\bin\jp2iexp.dll |6.0.410.2 |6.0.410.2 |Blocked |Out of date |Not EPM-compatible |
+|`https://contoso.com/test1.html` |C:\Windows\System32\Macromed\Flash\Flash.ocx |14.0.0.125 |14.0.0.125 |Allowed |Not in blocklist |EPM-compatible |
+|`https://contoso.com/test2.html` |C:\Program Files\Java\jre6\bin\jp2iexp.dll |6.0.410.2 |6.0.410.2 |Blocked |Out of date |Not EPM-compatible |
 
 **Where:**
 -   **Source URI.** The URL of the page that loaded the ActiveX control.
@@ -189,15 +191,15 @@ Before running the PowerShell script, you must copy both the .ps1 and .mof file 
 
  **To configure IE to use WMI logging**
 
-1.  Open your Group Policy editor and turn on the `Administrative Templates\Windows Components\Internet Explorer\Turn on ActiveX control logging in IE` setting.
+1. Open your Group Policy editor and turn on the `Administrative Templates\Windows Components\Internet Explorer\Turn on ActiveX control logging in IE` setting.
 
-2.  On the client device, start PowerShell in elevated mode (using admin privileges) and run `ConfigureWMILogging.ps1` by by-passing the PowerShell execution policy, using this command:
-```
-powershell –ExecutionPolicy Bypass .\ConfigureWMILogging.ps1
-``` 
-For more info, see [about_Execution_Policies](https://go.microsoft.com/fwlink/p/?linkid=517460).
+2. On the client device, start PowerShell in elevated mode (using admin privileges) and run `ConfigureWMILogging.ps1` by by-passing the PowerShell execution policy, using this command:
+   ```
+   powershell –ExecutionPolicy Bypass .\ConfigureWMILogging.ps1
+   ``` 
+   For more info, see [about_Execution_Policies](https://go.microsoft.com/fwlink/p/?linkid=517460).
 
-3.  **Optional:** Set up your domain firewall for WMI data. For more info, see [Collect data using Enterprise Site Discovery](collect-data-using-enterprise-site-discovery.md).
+3. **Optional:** Set up your domain firewall for WMI data. For more info, see [Collect data using Enterprise Site Discovery](collect-data-using-enterprise-site-discovery.md).
 
 The inventory info appears in the WMI class, `IEAXControlBlockingAuditInfo`, located in the WMI namespace, *root\\cimv2\\IETelemetry*. To collect the inventory info from your client computers, we recommend using System Center 2012 R2 Configuration Manager or any agent that can access the WMI data. For more info, see [Collect data using Enterprise Site Discovery](collect-data-using-enterprise-site-discovery.md).
 

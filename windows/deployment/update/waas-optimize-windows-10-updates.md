@@ -4,10 +4,12 @@ description: Two methods of peer-to-peer content distribution are available in W
 ms.prod: w10
 ms.mktglfcycl: manage
 ms.sitesec: library
-author: DaniHalfin
+author: greg-lindsay
 ms.localizationpriority: medium
-ms.author: daniha
-ms.date: 07/27/2017
+ms.author: greg-lindsay
+ms.reviewer: 
+manager: laurawi
+ms.topic: article
 ---
 
 # Optimize Windows 10 update delivery
@@ -38,7 +40,7 @@ Two methods of peer-to-peer content distribution are available in Windows 10.
 
 | Method | Windows Update | Windows Update for Business | WSUS | Configuration Manager |
 | --- | --- | --- | --- | --- |
-| Delivery Optimization | ![yes](images/checkmark.png) | ![yes](images/checkmark.png) | ![yes](images/checkmark.png) | ![no](images/crossmark.png) |
+| Delivery Optimization | ![yes](images/checkmark.png) | ![yes](images/checkmark.png) | ![yes](images/checkmark.png) | ![yes](images/checkmark.png) |
 | BranchCache | ![no](images/crossmark.png) | ![no](images/crossmark.png) |![yes](images/checkmark.png) | ![yes](images/checkmark.png) |
 
 >[!NOTE]
@@ -54,7 +56,7 @@ Windows 10 quality update downloads can be large because every package contains 
 >Express update delivery applies to quality update downloads. Starting with Windows 10, version 1709, Express update delivery also applies to feature update downloads for clients connected to Windows Update and Windows Update for Business.
 
 ### How Microsoft supports Express
-- **Express on System Center Configuration Manager** starting with version 1702 of Configuration Manager and Windows 10, version 1703 or 1607 with the April 2017 cumulative update.
+- **Express on System Center Configuration Manager** starting with version 1702 of Configuration Manager and Windows 10, version 1703 or later, or Windows 10, version 1607 with the April 2017 cumulative update.
 - **Express on WSUS Standalone**
 
   Express update delivery is available on [all support versions of WSUS](https://technet.microsoft.com/library/cc708456(v=ws.10).aspx).
@@ -105,5 +107,5 @@ At this point, the download is complete and the update is ready to be installed.
 - [Configure Windows Update for Business](waas-configure-wufb.md)
 - [Integrate Windows Update for Business with management solutions](waas-integrate-wufb.md)
 - [Walkthrough: use Group Policy to configure Windows Update for Business](waas-wufb-group-policy.md)
-- [Walkthrough: use Intune to configure Windows Update for Business](waas-wufb-intune.md)
+- [Walkthrough: use Intune to configure Windows Update for Business](https://docs.microsoft.com/intune/windows-update-for-business-configure)
 - [Manage device restarts after updates](waas-restart.md)

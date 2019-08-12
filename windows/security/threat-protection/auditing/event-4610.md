@@ -5,9 +5,12 @@ ms.pagetype: security
 ms.prod: w10
 ms.mktglfcycl: deploy
 ms.sitesec: library
-ms.localizationpriority: medium
-author: Mir0sh
+ms.localizationpriority: none
+author: dansimp
 ms.date: 04/19/2017
+ms.reviewer: 
+manager: dansimp
+ms.author: dansimp
 ---
 
 # 4610(S): An authentication package has been loaded by the Local Security Authority.
@@ -23,7 +26,7 @@ ms.date: 04/19/2017
 
 ***Event Description:***
 
-This event generates every time [Authentication Package](https://msdn.microsoft.com/en-us/library/windows/desktop/aa374733(v=vs.85).aspx) has been loaded by the Local Security Authority ([LSA](https://msdn.microsoft.com/en-us/library/windows/desktop/aa378326(v=vs.85).aspx)).
+This event generates every time [Authentication Package](https://msdn.microsoft.com/library/windows/desktop/aa374733(v=vs.85).aspx) has been loaded by the Local Security Authority ([LSA](https://msdn.microsoft.com/library/windows/desktop/aa378326(v=vs.85).aspx)).
 
 Each time the system starts, the LSA loads the Authentication Package DLLs from **HKEY\_LOCAL\_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\Authentication Packages** registry value and performs the initialization sequence for every package located in these DLLs.
 
@@ -65,9 +68,9 @@ Each time the system starts, the LSA loads the Authentication Package DLLs from 
 
 ***Field Descriptions:***
 
-**Authentication Package Name** \[Type = UnicodeString\]**:** the name of loaded [Authentication Package](https://msdn.microsoft.com/en-us/library/windows/desktop/aa374733(v=vs.85).aspx). The format is: DLL\_PATH\_AND\_NAME: AUTHENTICATION\_PACKAGE\_NAME.
+**Authentication Package Name** \[Type = UnicodeString\]**:** the name of loaded [Authentication Package](https://msdn.microsoft.com/library/windows/desktop/aa374733(v=vs.85).aspx). The format is: DLL\_PATH\_AND\_NAME: AUTHENTICATION\_PACKAGE\_NAME.
 
-By default the only one Authentication Package loaded by Windows 10 is “[MICROSOFT\_AUTHENTICATION\_PACKAGE\_V1\_0](https://msdn.microsoft.com/en-us/library/windows/desktop/aa378753(v=vs.85).aspx)”.
+By default the only one Authentication Package loaded by Windows 10 is “[MICROSOFT\_AUTHENTICATION\_PACKAGE\_V1\_0](https://msdn.microsoft.com/library/windows/desktop/aa378753(v=vs.85).aspx)”.
 
 ## Security Monitoring Recommendations
 

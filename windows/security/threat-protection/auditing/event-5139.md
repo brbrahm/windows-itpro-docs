@@ -5,9 +5,12 @@ ms.pagetype: security
 ms.prod: w10
 ms.mktglfcycl: deploy
 ms.sitesec: library
-ms.localizationpriority: medium
-author: Mir0sh
+ms.localizationpriority: none
+author: dansimp
 ms.date: 04/19/2017
+ms.reviewer: 
+manager: dansimp
+ms.author: dansimp
 ---
 
 # 5139(S): A directory service object was moved.
@@ -25,7 +28,7 @@ ms.date: 04/19/2017
 
 This event generates every time an Active Directory object is moved.
 
-This event only generates if the destination object has a particular entry in its [SACL](https://msdn.microsoft.com/en-us/library/windows/desktop/aa374872(v=vs.85).aspx): the “**Create**” action, auditing for specific classes or objects. An example is the “**Create Computer objects**” action, auditing for the organizational unit.
+This event only generates if the destination object has a particular entry in its [SACL](https://msdn.microsoft.com/library/windows/desktop/aa374872(v=vs.85).aspx): the “**Create**” action, auditing for specific classes or objects. An example is the “**Create Computer objects**” action, auditing for the organizational unit.
 
 > **Note**&nbsp;&nbsp;For recommendations, see [Security Monitoring Recommendations](#security-monitoring-recommendations) for this event.
 
@@ -65,7 +68,6 @@ This event only generates if the destination object has a particular entry in it
  <Data Name="ObjectClass">user</Data> 
  </EventData>
  </Event>
-
 ```
 
 ***Required Server Roles:*** Active Directory domain controller.
@@ -92,7 +94,7 @@ This event only generates if the destination object has a particular entry in it
 
     -   Uppercase full domain name: CONTOSO.LOCAL
 
-    -   For some [well-known security principals](https://support.microsoft.com/en-us/kb/243330), such as LOCAL SERVICE or ANONYMOUS LOGON, the value of this field is “NT AUTHORITY”.
+    -   For some [well-known security principals](https://support.microsoft.com/kb/243330), such as LOCAL SERVICE or ANONYMOUS LOGON, the value of this field is “NT AUTHORITY”.
 
     -   For local user accounts, this field will contain the name of the computer or device that this account belongs to, for example: “Win81”.
 
@@ -109,15 +111,15 @@ This event only generates if the destination object has a particular entry in it
 -   **Old DN** \[Type = UnicodeString\]: Old distinguished name of moved object.
 
 > **Note**&nbsp;&nbsp;The LDAP API references an LDAP object by its **distinguished name (DN)**. A DN is a sequence of relative distinguished names (RDN) connected by commas.
-
+> 
 > An RDN is an attribute with an associated value in the form attribute=value; . These are examples of RDNs attributes:
-
+> 
 > • DC - domainComponent
-
+> 
 > • CN - commonName
-
+> 
 > • OU - organizationalUnitName
-
+> 
 > • O - organizationName
 
 -   **New DN** \[Type = UnicodeString\]: New distinguished name of moved object. The Active Directory container to which the object was moved.
@@ -168,7 +170,7 @@ This event only generates if the destination object has a particular entry in it
 
     -   groupPolicyContainer – for group policy objects.
 
-        For all possible values of this field open Active Directory Schema snap-in (see how to enable this snap-in: <https://technet.microsoft.com/en-us/library/Cc755885(v=WS.10).aspx)> and navigate to **Active Directory Schema\\Classes**. Or use this document: <https://msdn.microsoft.com/en-us/library/cc221630.aspx>
+        For all possible values of this field open Active Directory Schema snap-in (see how to enable this snap-in: <https://technet.microsoft.com/library/Cc755885(v=WS.10).aspx)> and navigate to **Active Directory Schema\\Classes**. Or use this document: <https://msdn.microsoft.com/library/cc221630.aspx>
 
 **Operation:**
 

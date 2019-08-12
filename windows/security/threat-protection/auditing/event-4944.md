@@ -5,9 +5,12 @@ ms.pagetype: security
 ms.prod: w10
 ms.mktglfcycl: deploy
 ms.sitesec: library
-ms.localizationpriority: medium
-author: Mir0sh
+ms.localizationpriority: none
+author: dansimp
 ms.date: 04/19/2017
+ms.reviewer: 
+manager: dansimp
+ms.author: dansimp
 ---
 
 # 4944(S): The following policy was active when the Windows Firewall started.
@@ -83,7 +86,7 @@ This event shows Windows Firewall settings that were in effect when the Windows 
 
 <img src="images/windows-firewall-state-off.png" alt="Windows Firewall set to Off illustration" width="382" height="395" />
 
-**Allow Remote Administration** \[Type = UnicodeString\]: looks like this setting is connected to ”[Windows Firewall: Allow remote administration exception](https://technet.microsoft.com/en-us/library/cc738900(v=ws.10).aspx)” Group Policy setting, but it is always Disabled, no matter which option is set for “[Windows Firewall: Allow remote administration exception](https://technet.microsoft.com/en-us/library/cc738900(v=ws.10).aspx)” Group Policy.
+**Allow Remote Administration** \[Type = UnicodeString\]: looks like this setting is connected to ”[Windows Firewall: Allow remote administration exception](https://technet.microsoft.com/library/cc738900(v=ws.10).aspx)” Group Policy setting, but it is always Disabled, no matter which option is set for “[Windows Firewall: Allow remote administration exception](https://technet.microsoft.com/library/cc738900(v=ws.10).aspx)” Group Policy.
 
 **Allow Unicast Responses to Multicast/Broadcast Traffic** \[Type = UnicodeString\]:
 

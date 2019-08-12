@@ -1,4 +1,4 @@
-﻿---
+---
 title: Mitigate threats by using Windows 10 security features (Windows 10)
 description: This topic provides an overview of software and firmware threats faced in the current security landscape, and the mitigations that Windows 10 offers in response to these threats. 
 ms.prod: w10
@@ -6,8 +6,11 @@ ms.mktglfcycl: deploy
 ms.sitesec: library
 ms.pagetype: security
 ms.localizationpriority: medium
-author: justinha
+author: dulcemontemayor
 ms.date: 10/13/2017
+ms.reviewer: 
+manager: dansimp
+ms.author: dolmont
 ---
 
 # Mitigate threats by using Windows 10 security features
@@ -103,7 +106,7 @@ Windows Defender Antivirus in Windows 10 uses a multi-pronged approach to improv
 
 For more information, see [Windows Defender in Windows 10](windows-defender-antivirus/windows-defender-antivirus-in-windows-10.md) and [Windows Defender Overview for Windows Server](https://technet.microsoft.com/windows-server-docs/security/windows-defender/windows-defender-overview-windows-server).
 
-For information about Windows Defender Advanced Threat Protection, a service that helps enterprises to detect, investigate, and respond to advanced and targeted attacks on their networks, see [Windows Defender Advanced Threat Protection (ATP)](https://www.microsoft.com/en-us/WindowsForBusiness/windows-atp) (resources) and [Windows Defender Advanced Threat Protection (ATP)](https://technet.microsoft.com/itpro/windows/keep-secure/windows-defender-advanced-threat-protection) (documentation).
+For information about Microsoft Defender Advanced Threat Protection, a service that helps enterprises to detect, investigate, and respond to advanced and targeted attacks on their networks, see [Microsoft Defender Advanced Threat Protection (ATP)](https://www.microsoft.com/en-us/WindowsForBusiness/windows-atp) (resources) and [Microsoft Defender Advanced Threat Protection (ATP)](https://docs.microsoft.com/windows/security/threat-protection/microsoft-defender-atp/microsoft-defender-advanced-threat-protection) (documentation).
 
 ### Data Execution Prevention
 
@@ -189,14 +192,14 @@ Control Flow Guard (CFG) is a mitigation that does not need configuration within
 | **Heap protections**<br>help prevent<br>exploitation of the heap | Windows 10 includes protections for the heap, such as the use of internal data structures which help protect against corruption of memory used by the heap.<br><br>**More information**: [Windows heap protections](#windows-heap-protections), later in this topic. |
 | **Kernel pool protections**<br>help prevent<br>exploitation of pool memory<br>used by the kernel | Windows 10 includes protections for the pool of memory used by the kernel. For example, safe unlinking protects against pool overruns that are combined with unlinking operations that can be used to create an attack.<br><br>**More information**: [Kernel pool protections](#kernel-pool-protections), later in this topic. |
 | **Control Flow Guard**<br>helps mitigate exploits<br>that are based on<br>flow between code locations<br>in memory | Control Flow Guard (CFG) is a mitigation that requires no configuration within the operating system, but instead is built into software when it’s compiled. It is built into Microsoft Edge, IE11, and other areas in Windows 10. CFG can be built into applications written in C or C++, or applications compiled using Visual Studio 2015.<br>For such an application, CFG can detect an attacker’s attempt to change the intended flow of code. If this occurs, CFG terminates the application. You can request software vendors to deliver Windows applications compiled with CFG enabled.<br><br>**More information**: [Control Flow Guard](#control-flow-guard), later in this topic. |
-| **Protections built into Microsoft Edge** (the browser)<br>helps mitigate multiple<br>threats | Windows 10 includes an entirely new browser, Microsoft Edge, designed with multiple security improvements.<br><br>**More information**: [Microsoft Edge and Internet Explorer 11](#microsoft-edge-and-internet-explorer-11), later in this topic. |
+| **Protections built into Microsoft Edge** (the browser)<br>helps mitigate multiple<br>threats | Windows 10 includes an entirely new browser, Microsoft Edge, designed with multiple security improvements.<br><br>**More information**: [Microsoft Edge and Internet Explorer 11](#microsoft-edge-and-internet-explorer11), later in this topic. |
 
 ### SMB hardening improvements for SYSVOL and NETLOGON shares
 
 In Windows 10 and Windows Server 2016, client connections to the Active Directory Domain Services default SYSVOL and NETLOGON shares on domain controllers require Server Message Block (SMB) signing and mutual authentication (such as Kerberos). This reduces the likelihood of man-in-the-middle attacks. If SMB signing and mutual authentication are unavailable, a computer running Windows 10 or Windows Server 2016 won’t process domain-based Group Policy and scripts.
 
 > [!NOTE]
-> The registry values for these settings aren’t present by default, but the hardening rules still apply until overridden by Group Policy or other registry values. For more information on these security improvements, (also referred to as UNC hardening), see  [Microsoft Knowledge Base article 3000483](https://support.microsoft.com/en-us/help/3000483/ms15-011-vulnerability-in-group-policy-could-allow-remote-code-execution-february-10,-2015) and [MS15-011 & MS15-014: Hardening Group Policy](https://blogs.technet.microsoft.com/srd/2015/02/10/ms15-011-ms15-014-hardening-group-policy/).
+> The registry values for these settings aren’t present by default, but the hardening rules still apply until overridden by Group Policy or other registry values. For more information on these security improvements, (also referred to as UNC hardening), see  [Microsoft Knowledge Base article 3000483](https://support.microsoft.com/help/3000483/ms15-011-vulnerability-in-group-policy-could-allow-remote-code-execution-february-10,-2015) and [MS15-011 & MS15-014: Hardening Group Policy](https://blogs.technet.microsoft.com/srd/2015/02/10/ms15-011-ms15-014-hardening-group-policy/).
 
 ### Protected Processes
 
@@ -285,15 +288,15 @@ Some of the protections available in Windows 10 are provided through functions t
 
 | Mitigation  | Function  |
 |-------------|-----------|
-| LoadLib image loading restrictions  | [UpdateProcThreadAttribute function](https://msdn.microsoft.com/en-us/library/windows/desktop/ms686880(v=vs.85).aspx)<br>\[PROCESS\_CREATION\_MITIGATION\_POLICY\_IMAGE\_LOAD\_NO\_REMOTE\_ALWAYS\_ON\] |
-| MemProt dynamic code restriction    | [UpdateProcThreadAttribute function](https://msdn.microsoft.com/en-us/library/windows/desktop/ms686880(v=vs.85).aspx)<br>\[PROCESS\_CREATION\_MITIGATION\_POLICY\_PROHIBIT\_DYNAMIC\_CODE\_ALWAYS\_ON\] |
-| Child Process Restriction to restrict the ability to create child processes      | [UpdateProcThreadAttribute function](https://msdn.microsoft.com/en-us/library/windows/desktop/ms686880(v=vs.85).aspx)<br>\[PROC\_THREAD\_ATTRIBUTE\_CHILD\_PROCESS\_POLICY\] |
-| Code Integrity Restriction to restrict image loading                             | [SetProcessMitigationPolicy function](https://msdn.microsoft.com/en-us/library/windows/desktop/hh769088(v=vs.85).aspx)<br>\[ProcessSignaturePolicy\] |
-| Win32k System Call Disable Restriction to restrict ability to use NTUser and GDI | [SetProcessMitigationPolicy function](https://msdn.microsoft.com/en-us/library/windows/desktop/hh769088(v=vs.85).aspx)<br>\[ProcessSystemCallDisablePolicy\] |
-| High Entropy ASLR for up to 1TB of variance in memory allocations                | [UpdateProcThreadAttribute function](https://msdn.microsoft.com/en-us/library/windows/desktop/ms686880(v=vs.85).aspx)<br>\[PROCESS\_CREATION\_MITIGATION\_POLICY\_HIGH\_ENTROPY\_ASLR\_ALWAYS\_ON\] |
-| Strict handle checks to raise immediate exception upon bad handle reference      | [UpdateProcThreadAttribute function](https://msdn.microsoft.com/en-us/library/windows/desktop/ms686880(v=vs.85).aspx)<br>\[PROCESS\_CREATION\_MITIGATION\_POLICY\_STRICT\_HANDLE\_CHECKS\_ALWAYS\_ON\]    |
-| Extension point disable to block the use of certain third-party extension points | [UpdateProcThreadAttribute function](https://msdn.microsoft.com/en-us/library/windows/desktop/ms686880(v=vs.85).aspx)<br>\[PROCESS\_CREATION\_MITIGATION\_POLICY\_EXTENSION\_POINT\_DISABLE\_ALWAYS\_ON\] |
-| Heap terminate on corruption to protect the system against a corrupted heap      | [UpdateProcThreadAttribute function](https://msdn.microsoft.com/en-us/library/windows/desktop/ms686880(v=vs.85).aspx)<br>\[PROCESS\_CREATION\_MITIGATION\_POLICY\_HEAP\_TERMINATE\_ALWAYS\_ON\]  |
+| LoadLib image loading restrictions  | [UpdateProcThreadAttribute function](https://msdn.microsoft.com/library/windows/desktop/ms686880(v=vs.85).aspx)<br>\[PROCESS\_CREATION\_MITIGATION\_POLICY\_IMAGE\_LOAD\_NO\_REMOTE\_ALWAYS\_ON\] |
+| MemProt dynamic code restriction    | [UpdateProcThreadAttribute function](https://msdn.microsoft.com/library/windows/desktop/ms686880(v=vs.85).aspx)<br>\[PROCESS\_CREATION\_MITIGATION\_POLICY\_PROHIBIT\_DYNAMIC\_CODE\_ALWAYS\_ON\] |
+| Child Process Restriction to restrict the ability to create child processes      | [UpdateProcThreadAttribute function](https://msdn.microsoft.com/library/windows/desktop/ms686880(v=vs.85).aspx)<br>\[PROC\_THREAD\_ATTRIBUTE\_CHILD\_PROCESS\_POLICY\] |
+| Code Integrity Restriction to restrict image loading                             | [SetProcessMitigationPolicy function](https://msdn.microsoft.com/library/windows/desktop/hh769088(v=vs.85).aspx)<br>\[ProcessSignaturePolicy\] |
+| Win32k System Call Disable Restriction to restrict ability to use NTUser and GDI | [SetProcessMitigationPolicy function](https://msdn.microsoft.com/library/windows/desktop/hh769088(v=vs.85).aspx)<br>\[ProcessSystemCallDisablePolicy\] |
+| High Entropy ASLR for up to 1TB of variance in memory allocations                | [UpdateProcThreadAttribute function](https://msdn.microsoft.com/library/windows/desktop/ms686880(v=vs.85).aspx)<br>\[PROCESS\_CREATION\_MITIGATION\_POLICY\_HIGH\_ENTROPY\_ASLR\_ALWAYS\_ON\] |
+| Strict handle checks to raise immediate exception upon bad handle reference      | [UpdateProcThreadAttribute function](https://msdn.microsoft.com/library/windows/desktop/ms686880(v=vs.85).aspx)<br>\[PROCESS\_CREATION\_MITIGATION\_POLICY\_STRICT\_HANDLE\_CHECKS\_ALWAYS\_ON\]    |
+| Extension point disable to block the use of certain third-party extension points | [UpdateProcThreadAttribute function](https://msdn.microsoft.com/library/windows/desktop/ms686880(v=vs.85).aspx)<br>\[PROCESS\_CREATION\_MITIGATION\_POLICY\_EXTENSION\_POINT\_DISABLE\_ALWAYS\_ON\] |
+| Heap terminate on corruption to protect the system against a corrupted heap      | [UpdateProcThreadAttribute function](https://msdn.microsoft.com/library/windows/desktop/ms686880(v=vs.85).aspx)<br>\[PROCESS\_CREATION\_MITIGATION\_POLICY\_HEAP\_TERMINATE\_ALWAYS\_ON\]  |
 
 ## Understanding Windows 10 in relation to the Enhanced Mitigation Experience Toolkit 
 
@@ -442,13 +445,13 @@ Examples:
 
 #### EMET-related products
 
-Microsoft Consulting Services (MCS) and Microsoft Support/Premier Field Engineering (PFE) offer a range of options for EMET, support for EMET, and EMET-related reporting and auditing products such as the EMET Enterprise Reporting Service (ERS). For any enterprise customers who use such products today or who are interested in similar capabilities, we recommend evaluating [Windows Defender Advanced Threat Protection](windows-defender-atp/windows-defender-advanced-threat-protection.md) (ATP).
+Microsoft Consulting Services (MCS) and Microsoft Support/Premier Field Engineering (PFE) offer a range of options for EMET, support for EMET, and EMET-related reporting and auditing products such as the EMET Enterprise Reporting Service (ERS). For any enterprise customers who use such products today or who are interested in similar capabilities, we recommend evaluating [Microsoft Defender Advanced Threat Protection](microsoft-defender-atp/microsoft-defender-advanced-threat-protection.md) (ATP).
 
 ## Related topics
 
 - [Security and Assurance in Windows Server 2016](https://technet.microsoft.com/windows-server-docs/security/security-and-assurance)
-- [Windows Defender Advanced Threat Protection (ATP) - resources](https://www.microsoft.com/en-us/WindowsForBusiness/windows-atp)
-- [Windows Defender Advanced Threat Protection (ATP) - documentation](windows-defender-atp/windows-defender-advanced-threat-protection.md)
+- [Microsoft Defender Advanced Threat Protection (ATP) - resources](https://www.microsoft.com/en-us/WindowsForBusiness/windows-atp)
+- [Microsoft Defender Advanced Threat Protection (ATP) - documentation](https://docs.microsoft.com/windows/security/threat-protection/microsoft-defender-atp/microsoft-defender-advanced-threat-protection)
 - [Exchange Online Advanced Threat Protection Service Description](https://technet.microsoft.com/library/exchange-online-advanced-threat-protection-service-description.aspx)
 - [Office 365 Advanced Threat Protection](https://products.office.com/en-us/exchange/online-email-threat-protection)
 - [Microsoft Malware Protection Center](https://www.microsoft.com/en-us/security/portal/mmpc/default.aspx)

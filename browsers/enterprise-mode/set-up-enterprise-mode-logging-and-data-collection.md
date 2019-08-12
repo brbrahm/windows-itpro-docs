@@ -3,9 +3,12 @@ ms.localizationpriority: low
 ms.mktglfcycl: deploy
 ms.pagetype: appcompat
 description: Set up and turn on Enterprise Mode logging and data collection in your organization.
-author: eross-msft
+author: eavena
 ms.prod: ie11
 ms.assetid: 2e98a280-f677-422f-ba2e-f670362afcde
+ms.reviewer: 
+manager: dansimp
+ms.author: eravena
 title: Set up Enterprise Mode logging and data collection (Internet Explorer 11 for IT Pros)
 ms.sitesec: library
 ms.date: 07/27/2017
@@ -111,7 +114,7 @@ The required packages are automatically downloaded and included in the solution.
 
 1.  Open a registry editor on the computer where you deployed the app, go to the `HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Internet Explorer\Main\EnterpriseMode` key, and change the **Enable** string to:
 
-    ``` "Enable"="http://<deploy_URL>/api/records/"
+    ``` "Enable"="https://<deploy_URL>/api/records/"
     ```
  Where `<deploy_URL>` points to your deployment URL.
 
@@ -125,7 +128,7 @@ The required packages are automatically downloaded and included in the solution.
 
  **To view the report results**
 
--   Go to `http://<deploy_URL>/List` to see the report results.<p>
+-   Go to `https://<deploy_URL>/List` to see the report results.<p>
 If you’re already on the webpage, you’ll need to refresh the page to see the results.
 
     ![Enterprise Mode Result report with details](images/ie-emie-reportwdetails.png)

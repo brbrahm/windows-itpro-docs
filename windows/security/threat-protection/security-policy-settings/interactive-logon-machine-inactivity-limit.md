@@ -2,13 +2,19 @@
 title: Interactive logon Machine inactivity limit (Windows 10)
 description: Describes the best practices, location, values, management, and security considerations for the Interactive logon Machine inactivity limit security policy setting.
 ms.assetid: 7065b4a9-0d52-41d5-afc4-5aedfc4162b5
+ms.reviewer: 
+ms.author: dansimp
 ms.prod: w10
 ms.mktglfcycl: deploy
 ms.sitesec: library
 ms.pagetype: security
 ms.localizationpriority: medium
-author: brianlic-msft
-ms.date: 04/19/2017
+author: dansimp
+manager: dansimp
+audience: ITPro
+ms.collection: M365-security-compliance
+ms.topic: conceptual
+ms.date: 09/18/2018
 ---
 
 # Interactive logon: Machine inactivity limit
@@ -20,13 +26,13 @@ Describes the best practices, location, values, management, and security conside
 
 ## Reference
 
-Beginning with Windows Server 2012 and Windows 8, Windows detects user-input inactivity of a sign-in (logon) session by using the security policy setting **Interactive logon: Machine inactivity limit**. If the amount of inactive time exceeds the inactivity limit set by this policy, then the user’s session locks by invoking the screen saver. This policy setting allows you to control the locking time by using Group Policy.
+Beginning with Windows Server 2012 and Windows 8, Windows detects user-input inactivity of a sign-in (logon) session by using the security policy setting **Interactive logon: Machine inactivity limit**. If the amount of inactive time exceeds the inactivity limit set by this policy, then the user’s session locks by invoking the screen saver (screen saver should be active on the destination machine). This policy setting allows you to control the locking time by using Group Policy.
 
 ### Possible values
 
 The automatic lock of the device is set in elapsed seconds of inactivity, which can range from zero (0) to 599,940 seconds (166.65 hours).
 
-If no value (blank) or zero (0) is present in the **Machine will be locked after** input field, then the policy setting is disabled and no action is taken on user-input inactivity for the session.
+If **Machine will be locked after** is set to zero (0) or has no value (blank), the policy setting is disabled and a user sign-in session is never locked after any inactivity.
 
 ### Best practices
 
@@ -35,6 +41,8 @@ Set the time for elapsed user-input inactivity based on the device’s usage and
 ### Location
 
 Computer Configuration\\Windows Settings\\Security Settings\\Local Policies\\Security Options
+
+Computer Configuration\\Policies\\Windows Settings\\Security Settings\\Local Policies\\Security Options (While creating and linking group policy on server)
 
 ### Default values
 
@@ -48,7 +56,7 @@ The following table lists the actual and effective default values for this polic
 | DC Effective Default Settings | Disabled| 
 | Member Server Effective Default Settings | Disabled| 
 | Client Computer Effective Default Settings | Disabled| 
- 
+ 
 ## Policy management
 
 This section describes features and tools that are available to help you manage this policy.

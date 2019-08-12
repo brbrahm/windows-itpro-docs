@@ -9,9 +9,11 @@ ms.mktglfcycl: manage
 ms.sitesec: library
 ms.pagetype: security
 ms.localizationpriority: medium
-author: andreabichsel
-ms.author: v-anbic
+author: dansimp
+ms.author: dansimp
 ms.date: 09/03/2018
+ms.reviewer: 
+manager: dansimp
 ---
 
 
@@ -20,7 +22,7 @@ ms.date: 09/03/2018
 
 **Applies to:**
 
-- Windows Defender Advanced Threat Protection (Windows Defender ATP)
+- [Microsoft Defender Advanced Threat Protection (Microsoft Defender ATP)](https://go.microsoft.com/fwlink/p/?linkid=2069559)
 
 Limited periodic scanning is a special type of threat detection and remediation that can be enabled when you have installed another antivirus product on a Windows 10 device.
 
@@ -34,11 +36,11 @@ By default, Windows Defender Antivirus will enable itself on a Windows 10 device
 
 If Windows Defender Antivirus is enabled, the usual options will appear to configure it on that device:
 
-![Windows Defender Security Center app showing Windows Defender AV options, including scan options, settings, and update options](images/vtp-wdav.png)
+![Windows Security app showing Windows Defender AV options, including scan options, settings, and update options](images/vtp-wdav.png)
 
-If another antivirus product is installed and working correctly, Windows Defender Antivirus will disable itself. The Windows Defender Security Center app will change the **Virus & threat protection** section to show status about the AV product, and provide a link to the product's configuration options:
+If another antivirus product is installed and working correctly, Windows Defender Antivirus will disable itself. The Windows Security app will change the **Virus & threat protection** section to show status about the AV product, and provide a link to the product's configuration options:
 
-![Windows Defender Security Center app showing ContosoAV as the installed and running antivirus provider. There is a single link to open ContosoAV settings.](images/vtp-3ps.png)
+![Windows Security app showing ContosoAV as the installed and running antivirus provider. There is a single link to open ContosoAV settings.](images/vtp-3ps.png)
 
 Underneath any 3rd party AV products, a new link will appear as **Windows Defender Antivirus options**. Clicking this link will expand to show the toggle that enables limited periodic scanning. 
 

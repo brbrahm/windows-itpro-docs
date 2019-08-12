@@ -5,9 +5,12 @@ ms.pagetype: security
 ms.prod: w10
 ms.mktglfcycl: deploy
 ms.sitesec: library
-ms.localizationpriority: medium
-author: Mir0sh
+ms.localizationpriority: none
+author: dansimp
 ms.date: 04/19/2017
+ms.reviewer: 
+manager: dansimp
+ms.author: dansimp
 ---
 
 # 5145(S, F): A network share object was checked to see whether client can be granted desired access.
@@ -66,7 +69,6 @@ This event generates every time network share object (file or folder) was access
  <Data Name="AccessReason">%%1541: %%1801 D:(A;;FA;;;WD) %%4416: %%1801 D:(A;;FA;;;WD) %%4423: %%1801 D:(A;;FA;;;WD)</Data> 
  </EventData>
  </Event>
-
 ```
 
 ***Required Server Roles:*** None.
@@ -93,7 +95,7 @@ This event generates every time network share object (file or folder) was access
 
     -   Uppercase full domain name: CONTOSO.LOCAL
 
-    -   For some [well-known security principals](https://support.microsoft.com/en-us/kb/243330), such as LOCAL SERVICE or ANONYMOUS LOGON, the value of this field is “NT AUTHORITY”.
+    -   For some [well-known security principals](https://support.microsoft.com/kb/243330), such as LOCAL SERVICE or ANONYMOUS LOGON, the value of this field is “NT AUTHORITY”.
 
     -   For local user accounts, this field will contain the name of the computer or device that this account belongs to, for example: “Win81”.
 
@@ -148,7 +150,7 @@ This event generates every time network share object (file or folder) was access
 | AppendData (or AddSubdirectory or CreatePipeInstance)     | 0x4,<br>%%4418             | **AppendData -** For a file object, the right to append data to the file. (For local files, write operations will not overwrite existing data if this flag is specified without **FILE\_WRITE\_DATA**.) For a directory object, the right to create a subdirectory (**FILE\_ADD\_SUBDIRECTORY**). <br>**AddSubdirectory -** For a directory, the right to create a subdirectory.<br>**CreatePipeInstance -** For a named pipe, the right to create a pipe.                                                                                                                       |
 | ReadEA                                                    | 0x8,<br>%%4419             | The right to read extended file attributes.                                                                                                                             |
 | WriteEA                                                   | 0x10,<br>%%4420            | The right to write extended file attributes.                                                                                                                            |
-| Execute/Traverse                                          | 0x20,<br>%%4421            | **Execute** - For a native code file, the right to execute the file. This access right given to scripts may cause the script to be executable, depending on the script interpreter.<br>**Traverse -** For a directory, the right to traverse the directory. By default, users are assigned the **BYPASS\_TRAVERSE\_CHECKING**&thinsp; [privilege](https://msdn.microsoft.com/en-us/library/windows/desktop/aa379306(v=vs.85).aspx), which ignores the **FILE\_TRAVERSE**&thinsp; [access right](https://msdn.microsoft.com/en-us/library/windows/desktop/aa374902(v=vs.85).aspx). See the remarks in [File Security and Access Rights](https://msdn.microsoft.com/en-us/library/windows/desktop/aa364399(v=vs.85).aspx) for more information.                                            |
+| Execute/Traverse                                          | 0x20,<br>%%4421            | **Execute** - For a native code file, the right to execute the file. This access right given to scripts may cause the script to be executable, depending on the script interpreter.<br>**Traverse -** For a directory, the right to traverse the directory. By default, users are assigned the **BYPASS\_TRAVERSE\_CHECKING**&thinsp; [privilege](https://msdn.microsoft.com/library/windows/desktop/aa379306(v=vs.85).aspx), which ignores the **FILE\_TRAVERSE**&thinsp; [access right](https://msdn.microsoft.com/library/windows/desktop/aa374902(v=vs.85).aspx). See the remarks in [File Security and Access Rights](https://msdn.microsoft.com/library/windows/desktop/aa364399(v=vs.85).aspx) for more information.                                            |
 | DeleteChild                                               | 0x40,<br>%%4422            | For a directory, the right to delete a directory and all the files it contains, including read-only files.                                                                                                                                                                                                     |
 | ReadAttributes                                            | 0x80,<br>%%4423            | The right to read file attributes.                                                                                                                                                                                                                                                                             |
 | WriteAttributes                                           | 0x100,<br>%%4424           | The right to write file attributes.                                                                                                                                     |
@@ -175,12 +177,12 @@ REQUESTED\_ACCESS: RESULT ACE\_WHICH\_ ALLOWED\_OR\_DENIED\_ACCESS.
 
 -   ACE\_WHICH\_ ALLOWED\_OR\_DENIED\_ACCESS: the Security Descriptor Definition Language (SDDL) value for Access Control Entry (ACE), which granted or denied access.
 
-> **Note**&nbsp;&nbsp;The ** <span id="SDDL" class="anchor"></span>Security Descriptor Definition Language (SDDL)** defines string elements for enumerating information contained in the security descriptor.
-
+> **Note**&nbsp;&nbsp;The **<a id="SDDL" class="anchor"></a>Security Descriptor Definition Language (SDDL)** defines string elements for enumerating information contained in the security descriptor.
+> 
 > Example:
-
+> 
 > *O*:BA*G*:SY*D*:(D;;0xf0007;;;AN)(D;;0xf0007;;;BG)(A;;0xf0007;;;SY)(A;;0×7;;;BA)*S*:ARAI(AU;SAFA;DCLCRPCRSDWDWO;;;WD)
-
+> 
 > - *O*: = Owner. SID of specific security principal, or reserved (pre-defined) value, for example: BA (BUILTIN\_ADMINISTRATORS), WD (Everyone), SY (LOCAL\_SYSTEM), etc. 
 > See the list of possible values in the table below.
 
@@ -287,7 +289,7 @@ Example: D:(A;;FA;;;WD)
 - inherit\_object\_guid: N/A
 - account\_sid: SID of specific security principal, or reserved value, for example: AN (Anonymous), WD (Everyone), SY (LOCAL\_SYSTEM), etc. See the table above for more details.
 
-For more information about SDDL syntax, see these articles: <https://msdn.microsoft.com/en-us/library/cc230374.aspx>, <https://msdn.microsoft.com/en-us/library/windows/hardware/aa374892(v=vs.85).aspx>.
+For more information about SDDL syntax, see these articles: <https://msdn.microsoft.com/library/cc230374.aspx>, <https://msdn.microsoft.com/library/windows/hardware/aa374892(v=vs.85).aspx>.
 
 ## Security Monitoring Recommendations
 

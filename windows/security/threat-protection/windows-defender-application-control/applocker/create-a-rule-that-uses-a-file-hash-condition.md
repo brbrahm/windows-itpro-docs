@@ -2,20 +2,26 @@
 title: Create a rule that uses a file hash condition (Windows 10)
 description: This topic for IT professionals shows how to create an AppLocker rule with a file hash condition.
 ms.assetid: eb3b3524-1b3b-4979-ba5a-0a0b1280c5c7
+ms.reviewer: 
+ms.author: dansimp
 ms.prod: w10
 ms.mktglfcycl: deploy
 ms.sitesec: library
 ms.pagetype: security
 ms.localizationpriority: medium
-author: brianlic-msft
+author: dansimp
+manager: dansimp
+audience: ITPro
+ms.collection: M365-security-compliance
+ms.topic: conceptual
 ms.date: 09/21/2017
 ---
 
 # Create a rule that uses a file hash condition
 
 **Applies to**
- -   Windows 10 
- -   Windows Server
+- Windows 10
+- Windows Server
 
 This topic for IT professionals shows how to create an AppLocker rule with a file hash condition.
 

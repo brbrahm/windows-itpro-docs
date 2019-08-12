@@ -2,11 +2,14 @@
 title: Audit DPAPI Activity (Windows 10)
 description: This topic for the IT professional describes the Advanced Security Audit policy setting, Audit DPAPI Activity, which determines whether the operating system generates audit events when encryption or decryption calls are made into the data protection application interface (DPAPI).
 ms.assetid: be4d4c83-c857-4e3d-a84e-8bcc3f2c99cd
+ms.reviewer: 
+manager: dansimp
+ms.author: dolmont
 ms.pagetype: security
 ms.prod: w10
 ms.mktglfcycl: deploy
 ms.sitesec: library
-ms.localizationpriority: medium
+ms.localizationpriority: none
 author: Mir0sh
 ms.date: 04/19/2017
 ---
@@ -18,7 +21,7 @@ ms.date: 04/19/2017
 -   Windows Server 2016
 
 
-Audit [DPAPI](https://msdn.microsoft.com/en-us/library/ms995355.aspx) Activity determines whether the operating system generates audit events when encryption or decryption calls are made into the data protection application interface ([DPAPI](https://msdn.microsoft.com/en-us/library/ms995355.aspx)).
+Audit [DPAPI](https://msdn.microsoft.com/library/ms995355.aspx) Activity determines whether the operating system generates audit events when encryption or decryption calls are made into the data protection application interface ([DPAPI](https://msdn.microsoft.com/library/ms995355.aspx)).
 
 **Event volume**: Low.
 

@@ -7,8 +7,12 @@ ms.mktglfcycl: deploy
 ms.localizationpriority: medium
 ms.sitesec: library
 ms.pagetype: deploy
-author: greg-lindsay
-ms.date: 07/27/2017
+audience: itproauthor: greg-lindsay
+ms.reviewer: 
+manager: laurawi
+audience: itproauthor: greg-lindsay
+ms.author: greglin
+ms.topic: article
 ---
 
 # Configure a PXE server to load Windows PE
@@ -171,7 +175,7 @@ ramdisksdipath          \boot\boot.sdi
 
 The following summarizes the PXE client boot process.
 
->The following assumes that you have configured DHCP option 67 (Bootfile Name) to "boot\PXEboot.n12" which enables direct boot to PXE with no user interaction. For more information about DHCP options for network boot, see [Managing Network Boot Programs](https://technet.microsoft.com/en-us/library/cc732351.aspx).
+>The following assumes that you have configured DHCP option 67 (Bootfile Name) to "boot\PXEboot.n12" which enables direct boot to PXE with no user interaction. For more information about DHCP options for network boot, see [Managing Network Boot Programs](https://technet.microsoft.com/library/cc732351.aspx).
 
 1.  A client is directed by DHCP options 066 and 067 to download boot\\PXEboot.n12 from the TFTP server.
 2.  PXEboot.n12 immediately begins a network boot.
@@ -186,4 +190,4 @@ See Also
 
 #### Concepts
 
-[Windows PE Walkthroughs](https://technet.microsoft.com/en-us/library/cc748899.aspx)
+[Windows PE Walkthroughs](https://technet.microsoft.com/library/cc748899.aspx)

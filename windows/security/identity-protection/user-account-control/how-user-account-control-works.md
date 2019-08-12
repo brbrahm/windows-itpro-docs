@@ -2,12 +2,19 @@
 title: How User Account Control works (Windows 10)
 description: User Account Control (UAC) is a fundamental component of Microsoft's overall security vision. UAC helps mitigate the impact of malware.
 ms.assetid: 9f921779-0fd3-4206-b0e4-05a19883ee59
+ms.reviewer: 
 ms.prod: w10
 ms.mktglfcycl: operate
 ms.sitesec: library
 ms.pagetype: security
-author: brianlic-msft
-ms.date: 04/19/2017
+audience: ITPro
+author: dulcemontemayor
+ms.author: dolmont
+manager: dansimp
+ms.collection: M365-identity-device-management
+ms.topic: article
+ms.localizationpriority: medium
+ms.date: 11/16/2018
 ---
 
 # How User Account Control works
@@ -140,7 +147,7 @@ To better understand each component, review the table below:
 <p>Application Information service</p>
 </td>
 <td>
-<p>A system service that helps start apps that require one or more elevated privileges or user rights to run, such as local administrative tasks, and apps that require higher integrity levels. The Application Information service helps start such apps by creating a new process for the application with an administrative user's full access token when elevation is required and (depending on Group Policy) consent is given by the user to do so.</p>
+<p>A system service that helps start apps that require one or more elevated privileges or user rights to run, such as local administrative tasks, and apps that require higher integrity levels. The Application Information service helps start such apps by creating a new process for the application with an administrative user&#39;s full access token when elevation is required and (depending on Group Policy) consent is given by the user to do so.</p>
 </td>
 </tr>
 <tr>
@@ -156,36 +163,40 @@ To better understand each component, review the table below:
 <p>Check UAC slider level</p>
 </td>
 <td>
-<p>UAC has four levels of notification to choose from and a slider to use to select the notification level:</p>
+<p>UAC has a slider to select from four levels of notification.</p>
 <ul>
-<li>
-<p>High</p>
-<p>If the slider is set to <b>Always notify</b>, the system checks whether the secure desktop is enabled.</p>
-</li>
-<li>
-<p>Medium</p>
-<p>If the slider is set to <b>Notify me only when programs try to make changes to my computer</b>, the <b>User Account Control: Only elevate executable files that are signed and validated</b> policy setting is checked:</p>
+<li><p><b>Always notify</b> will:</p>
 <ul>
-<li>
-<p>If the policy setting is enabled, the public key infrastructure (PKI) certification path validation is enforced for a given file before it is permitted to run.</p>
-</li>
-<li>
-<p>If the policy setting is not enabled (default), the PKI certification path validation is not enforced before a given file is permitted to run. The <b>User Account Control: Switch to the secure desktop when prompting for elevation</b> Group Policy setting is checked.</p>
-</li>
+<li>Notify you when programs try to install software or make changes to your computer.</li>
+<li>Notify you when you make changes to Windows settings.</li>
+<li>Freeze other tasks until you respond.</li>
 </ul>
+<p>Recommended if you often install new software or visit unfamiliar websites.</p><br>
 </li>
-<li>
-<p>Low</p>
-<p>If the slider is set to <b>Notify me only when apps try to make changes to my computer (do not dim by desktop)</b>, the CreateProcess is called.</p>
-</li>
-<li>
-<p>Never Notify</p>
-<p>If the slider is set to <b>Never notify me when</b>, UAC prompt will never notify when an app is trying to install or trying to make any change on the computer.</p>
-<div class="alert"><b>Important</b>  <p class="note">This setting is not recommended. This setting is the same as setting the <b>User Account Control: Behavior of the elevation prompt for administrators in Admin Approval Mode</b> policy setting to <b>Elevate without prompting</b>.</p>
-</div>
-<div> </div>
-</li>
+<li><p><b>Notify me only when programs try to make changes to my computer</b> will:</p>
+<ul>
+<li>Notify you when programs try to install software or make changes to your computer.</li>
+<li>Not notify you when you make changes to Windows settings.</li>
+<li>Freeze other tasks until you respond.</li>
 </ul>
+<p>Recommended if you do not often install apps or visit unfamiliar websites.</p><br>
+</li>
+<li><p><b>Notify me only when programs try to make changes to my computer (do not dim my desktop)</b> will:</p>
+<ul>
+<li>Notify you when programs try to install software or make changes to your computer.</li>
+<li>Not notify you when you make changes to Windows settings.</li>
+<li>Not freeze other tasks until you respond.</li>
+</ul>
+<p>Not recommended. Choose this only if it takes a long time to dim the desktop on your computer.</p><br>
+</li>
+<li><p><b>Never notify (Disable UAC prompts)</b> will:</p>
+<ul>
+<li>Not notify you when programs try to install software or make changes to your computer.</li>
+<li>Not notify you when you make changes to Windows settings.</li>
+<li>Not freeze other tasks until you respond.</li>
+</ul>
+<p>Not recommended due to security concerns.</p>
+</li></ul>
 </td>
 </tr>
 <tr>
@@ -199,7 +210,7 @@ To better understand each component, review the table below:
 <p>If the secure desktop is enabled, all elevation requests go to the secure desktop regardless of prompt behavior policy settings for administrators and standard users.</p>
 </li>
 <li>
-<p>If the secure desktop is not enabled, all elevation requests go to the interactive user's desktop, and the per-user settings for administrators and standard users are used.</p>
+<p>If the secure desktop is not enabled, all elevation requests go to the interactive user&#39;s desktop, and the per-user settings for administrators and standard users are used.</p>
 </li>
 </ul>
 </td>
@@ -233,7 +244,7 @@ To better understand each component, review the table below:
 <p>Installer detection</p>
 </td>
 <td>
-<p>Installer detection detects setup files, which helps prevent installations from being run without the user's knowledge and consent.</p>
+<p>Installer detection detects setup files, which helps prevent installations from being run without the user&#39;s knowledge and consent.</p>
 </td>
 </tr>
 <tr>
@@ -258,17 +269,17 @@ To better understand each component, review the table below:
 </td>
 </tr>
 </table>
- 
-The slider will never turn UAC completely off. If you set it to **Never notify**, it will:
+ 
+The slider will never turn UAC completely off. If you set it to <strong>Never notify</strong>, it will:
 
 -   Keep the UAC service running.
 -   Cause all elevation request initiated by administrators to be auto-approved without showing a UAC prompt.
 -   Automatically deny all elevation requests for standard users.
 
->**Important:**  In order to fully disable UAC you must disable the policy **User Account Control: Run all administrators in Admin Approval Mode**.
- 
->**Warning:**  Universal Windows apps will not work when UAC is disabled.
- 
+> **Important:**  In order to fully disable UAC you must disable the policy **User Account Control: Run all administrators in Admin Approval Mode**.
+> 
+> **Warning:**  Universal Windows apps will not work when UAC is disabled.
+ 
 ### Virtualization
 
 Because system administrators in enterprise environments attempt to secure systems, many line-of-business (LOB) applications are designed to use only a standard user access token. As a result, you do not need to replace the majority of apps when UAC is turned on.
@@ -308,6 +319,6 @@ Before a 32-bit process is created, the following attributes are checked to dete
 -   Key attributes in the resource script data are linked in the executable file.
 -   There are targeted sequences of bytes within the executable file.
 
->**Note:**  The keywords and sequences of bytes were derived from common characteristics observed from various installer technologies.
- 
->**Note:**  The User Account Control: Detect application installations and prompt for elevation policy setting must be enabled for installer detection to detect installation programs. For more info, see [User Account Control security policy settings](user-account-control-security-policy-settings.md).
+> **Note:**  The keywords and sequences of bytes were derived from common characteristics observed from various installer technologies.
+> 
+> **Note:**  The User Account Control: Detect application installations and prompt for elevation policy setting must be enabled for installer detection to detect installation programs. For more info, see [User Account Control security policy settings](user-account-control-security-policy-settings.md).

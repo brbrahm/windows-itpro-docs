@@ -3,14 +3,15 @@ title: Shared PC mode for school devices
 description: Describes how shared PC mode is set for devices set up with the Set up School PCs app.  
 keywords: shared cart, shared PC, school, set up school pcs  
 ms.prod: w10  
-ms.technology: Windows  
 ms.mktglfcycl: plan  
 ms.sitesec: library  
 ms.pagetype: edu  
 ms.localizationpriority: medium  
-author: lenewsad  
-ms.author: lanewsad  
+author: mjcaparas
+ms.author: macapara
 ms.date: 07/13/2018  
+ms.reviewer: 
+manager: dansimp
 ---  
 
 # Shared PC mode for school devices
@@ -23,7 +24,7 @@ Shared PC mode can be applied on devices running:
 * Windows 10 Education
 * Windows 10 Enterprise  
 
-To learn more about how to set up a device in shared PC mode, see [Set up a shared or guest PC with Windows 10](https://docs.microsoft.com/en-us/windows/configuration/set-up-shared-or-guest-pc).  
+To learn more about how to set up a device in shared PC mode, see [Set up a shared or guest PC with Windows 10](https://docs.microsoft.com/windows/configuration/set-up-shared-or-guest-pc).  
 
 ## Windows Updates
 Shared PC mode configures power and Windows Update settings so that computers update regularly. Computers that are set up through the Set up School PCs app are configured to:  

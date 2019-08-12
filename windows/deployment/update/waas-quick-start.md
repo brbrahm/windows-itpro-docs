@@ -5,10 +5,12 @@ keywords: updates, servicing, current, deployment, semi-annual channel, feature,
 ms.prod: w10
 ms.mktglfcycl: manage
 ms.sitesec: library
-author: Jaimeo
+author: jaimeo
 ms.localizationpriority: medium
 ms.author: jaimeo
-ms.date: 05/29/2018
+ms.reviewer: 
+manager: laurawi
+ms.topic: article
 ---
 
 # Quick guide to Windows as a service
@@ -17,7 +19,6 @@ ms.date: 05/29/2018
 **Applies to**
 
 - Windows 10
-- Windows 10 Mobile
 - Windows 10 IoT Mobile
 
 Windows as a service is a new concept, introduced with the release of Windows 10. While [an extensive set of documentation](index.md) is available explaining all the specifics and nuances, here is a quick guide to the most important concepts.
@@ -34,6 +35,8 @@ Some new terms have been introduced as part of Windows as a service, so you shou
 - **Deployment rings** are groups of devices used to initially pilot, and then to broadly deploy, each feature update in an organization. 
 
 See [Overview of Windows as a service](waas-overview.md) for more information.
+
+For some interesting in-depth information about how cumulative updates work, see [Windows Updates using forward and reverse differentials](PSFxWhitepaper.md).
 
 ## Key Concepts
 
@@ -57,17 +60,12 @@ Additional technologies such as BranchCache and Delivery Optimization, both peer
 
 See [Build deployment rings for Windows 10 updates](waas-deployment-rings-windows-10-updates.md) and [Optimize update delivery for Windows 10 updates](waas-optimize-windows-10-updates.md) for more information.
 
-## Video: An overview of Windows as a service
 
-Click the following Microsoft Mechanics video for an overview of the updated release model, particularly the Semi-Annual Channel.
-
-
-[![YouTube video of Michael Niehouse explaining how the Semi-Annual Channel works](images/SAC_vid_crop.jpg)](https://youtu.be/qSAsiM01GOU) 
  
 ## Learn more
 
-[Adopting Windows as a service at Microsoft](https://www.microsoft.com/itshowcase/Article/Content/851/Adopting-Windows-as-a-service-at-Microsoft)
-
+- [Adopting Windows as a service at Microsoft](https://www.microsoft.com/itshowcase/Article/Content/851/Adopting-Windows-as-a-service-at-Microsoft)
+- [Windows lifecycle fact sheet](https://support.microsoft.com/help/13853/windows-lifecycle-fact-sheet)
 
 ## Related topics
 
@@ -78,7 +76,7 @@ Click the following Microsoft Mechanics video for an overview of the updated rel
 - [Configure Windows Update for Business](waas-configure-wufb.md)
 - [Integrate Windows Update for Business with management solutions](waas-integrate-wufb.md)
 - [Walkthrough: use Group Policy to configure Windows Update for Business](waas-wufb-group-policy.md)
-- [Walkthrough: use Intune to configure Windows Update for Business](waas-wufb-intune.md)
+- [Walkthrough: use Intune to configure Windows Update for Business](https://docs.microsoft.com/intune/windows-update-for-business-configure)
 - [Manage device restarts after updates](waas-restart.md)
 
 

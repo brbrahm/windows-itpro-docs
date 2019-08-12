@@ -5,9 +5,12 @@ ms.pagetype: security
 ms.prod: w10
 ms.mktglfcycl: deploy
 ms.sitesec: library
-ms.localizationpriority: medium
-author: Mir0sh
+ms.localizationpriority: none
+author: dansimp
 ms.date: 04/19/2017
+ms.reviewer: 
+manager: dansimp
+ms.author: dansimp
 ---
 
 # 4742(S): A computer account was changed.
@@ -33,7 +36,7 @@ For each change, a separate 4742 event will be generated.
 
 Some changes do not invoke a 4742 event, for example, changes made using Active Directory Users and Computers management console in **Managed By** tab in computer account properties.
 
-You might see this event without any changes inside, that is, where all **Changed Attributes** apear as “-“. This usually happens when a change is made to an attribute that is not listed in the event. In this case there is no way to determine which attribute was changed. For example, this would happen if you change the **Description** of a group object using the Active Directory Users and Computers administrative console. Also, if the [discretionary access control list](https://msdn.microsoft.com/en-us/library/windows/desktop/aa374872(v=vs.85).aspx) (DACL) is changed, a 4742 event will generate, but all attributes will be “-“.
+You might see this event without any changes inside, that is, where all **Changed Attributes** apear as “-“. This usually happens when a change is made to an attribute that is not listed in the event. In this case there is no way to determine which attribute was changed. For example, this would happen if you change the **Description** of a group object using the Active Directory Users and Computers administrative console. Also, if the [discretionary access control list](https://msdn.microsoft.com/library/windows/desktop/aa374872(v=vs.85).aspx) (DACL) is changed, a 4742 event will generate, but all attributes will be “-“.
 
 ***Important*:** If you manually change any user-related setting or attribute, for example if you set the SMARTCARD\_REQUIRED flag in **userAccountControl** for the computer account, then the **sAMAccountType** of the computer account will be changed to NORMAL\_USER\_ACCOUNT and you will get “[4738](event-4738.md): A user account was changed” instead of 4742 for this computer account. Essentially, the computer account will “become” a user account. For NORMAL\_USER\_ACCOUNT you will always get events from [Audit User Account Management](audit-user-account-management.md) subcategory. We strongly recommend that you avoid changing any user-related settings manually for computer objects.
 
@@ -92,7 +95,6 @@ You might see this event without any changes inside, that is, where all **Change
  <Data Name="ServicePrincipalNames">-</Data> 
  </EventData>
  </Event>
-
 ```
 
 ***Required Server Roles:*** Active Directory domain controller.
@@ -119,7 +121,7 @@ You might see this event without any changes inside, that is, where all **Change
 
     -   Uppercase full domain name: CONTOSO.LOCAL
 
-    -   For some [well-known security principals](https://support.microsoft.com/en-us/kb/243330), such as LOCAL SERVICE or ANONYMOUS LOGON, the value of this field is “NT AUTHORITY”.
+    -   For some [well-known security principals](https://support.microsoft.com/kb/243330), such as LOCAL SERVICE or ANONYMOUS LOGON, the value of this field is “NT AUTHORITY”.
 
 -   **Logon ID** \[Type = HexInt64\]**:** hexadecimal value that can help you correlate this event with recent events that might contain the same Logon ID, for example, “[4624](event-4624.md): An account was successfully logged on.”
 
@@ -175,7 +177,7 @@ Typical **Primary Group** values for computer accounts:
 
 -   515 (Domain Computers) – servers and workstations.
 
-    See this article <https://support.microsoft.com/en-us/kb/243330> for more information. If the value of **primaryGroupID** attribute of computer object was changed, you will see the new value here.
+    See this article <https://support.microsoft.com/kb/243330> for more information. If the value of **primaryGroupID** attribute of computer object was changed, you will see the new value here.
 
 <!-- -->
 
@@ -239,17 +241,17 @@ So this UAC flags value decodes to: LOCKOUT and SCRIPT
 
 <!-- -->
 
--   **Service Principal Names** \[Type = UnicodeString\]**:** The list of SPNs, registered for computer account. If the SPN list of a computer account changed, you will see the new SPN list in **Service Principal Names** field (note that you will see the new list instead of changes). If the value of **servicePrincipalName** attribute of computer object was changed, you will see the new value here.
+- **Service Principal Names** \[Type = UnicodeString\]**:** The list of SPNs, registered for computer account. If the SPN list of a computer account changed, you will see the new SPN list in **Service Principal Names** field (note that you will see the new list instead of changes). If the value of **servicePrincipalName** attribute of computer object was changed, you will see the new value here.
 
-    Here is an example of **Service Principal Names** field for new domain joined workstation in event 4742 on domain controller, after workstation reboots**:**
+  Here is an example of **Service Principal Names** field for new domain joined workstation in event 4742 on domain controller, after workstation reboots<strong>:</strong>
 
-    HOST/Win81.contoso.local
+  HOST/Win81.contoso.local
 
-    RestrictedKrbHost/Win81.contoso.local
+  RestrictedKrbHost/Win81.contoso.local
 
-    HOST/WIN81
+  HOST/WIN81
 
-    RestrictedKrbHost/WIN81
+  RestrictedKrbHost/WIN81
 
 TERMSRV/Win81.contoso.local
 
@@ -274,7 +276,7 @@ For 4742(S): A computer account was changed.
 | **Display Name** is not -<br>**User Principal Name** is not -<br>**Home Directory** is not -<br>**Home Drive** is not -<br>**Script Path** is not -<br>**Profile Path** is not -<br>**User Workstations** is not -<br>**Account Expires** is not -<br>**Logon Hours** is not **-** | Typically these fields are **-** for computer accounts. Other values might indicate an anomaly and should be monitored.                                                                                                                                                          |
 | **Password Last Set** changes occur more often than usual                                                                                                                                                                                                                                                                          | Changes that are more frequent than the default (typically once a month) might indicate an anomaly or attack.                                                                                                                                                                    |
 | **Primary Group ID** is not 516, 521, or 515                                                                                                                                                                                                                                                                                       | Typically, the **Primary Group ID** value is one of the following:<br>**516** for domain controllers<br>**521** for read only domain controllers (RODCs)<br>**515** for servers and workstations (domain computers)<br>Other values should be monitored. |
-| For computer accounts for which the services list (on the **Delegation** tab) should not be empty: **AllowedToDelegateTo** is marked **&lt;value not set&gt; **                                                                                                                                                                    | If **AllowedToDelegateTo** is marked **&lt;value not set&gt;** on computers that previously had a services list (on the **Delegation** tab), it means the list was cleared.                                                                                                      |
+| For computer accounts for which the services list (on the **Delegation** tab) should not be empty: **AllowedToDelegateTo** is marked **&lt;value not set&gt;**                                                                                                                                                                    | If **AllowedToDelegateTo** is marked **&lt;value not set&gt;** on computers that previously had a services list (on the **Delegation** tab), it means the list was cleared.                                                                                                      |
 | **SID History** is not -                                                                                                                                                                                                                                                                                                           | This field will always be set to - unless the account was migrated from another domain.                                                                                                                                                                                          |
 
 -   Consider whether to track the following account control flags:

@@ -2,11 +2,13 @@
 title: Monitor your Microsoft Surface Hub
 description: Monitoring for Microsoft Surface Hub devices is enabled through Microsoft Operations Management Suite (OMS).
 ms.assetid: 1D2ED317-DFD9-423D-B525-B16C2B9D6942
+ms.reviewer: 
+manager: dansimp
 keywords: monitor Surface Hub, Microsoft Operations Management Suite, OMS
 ms.prod: surface-hub
 ms.sitesec: library
-author: jdeckerms
-ms.author: jdecker
+author: levinec
+ms.author: ellevin
 ms.topic: article
 ms.date: 07/27/2017
 ms.localizationpriority: medium
@@ -85,7 +87,7 @@ This table describes the sample queries in the Surface Hub solution:
 
 | Alert type | Impact | Recommended remediation | Details |
 | ---------- | ------ | ----------------------- | ------- |
-| Software   | Error  | **Reboot the device**. <br> Reboot manually, or using the [Reboot configuration service provider](https://msdn.microsoft.com/en-us/library/windows/hardware/mt720802(v=vs.85).aspx). <br> Suggest doing this between meetings to minimize impact to your people in your organization. | Trigger conditions: <br> - A critical process in the Surface Hub operating system, such as the shell, projection, or Skype, crashes or becomes non-responsive. <br> - The device hasn't reported a heartbeat in the past 24 hours. This may be due to network connectivity issue or network-related hardware failure, or an error with the diagnostic data reporting system. |
+| Software   | Error  | **Reboot the device**. <br> Reboot manually, or using the [Reboot configuration service provider](https://msdn.microsoft.com/library/windows/hardware/mt720802(v=vs.85).aspx). <br> Suggest doing this between meetings to minimize impact to your people in your organization. | Trigger conditions: <br> - A critical process in the Surface Hub operating system, such as the shell, projection, or Skype, crashes or becomes non-responsive. <br> - The device hasn't reported a heartbeat in the past 24 hours. This may be due to network connectivity issue or network-related hardware failure, or an error with the diagnostic data reporting system. |
 | Software   | Error  | **Check your Exchange service**. <br> Verify: <br> - The service is available. <br> - The device account password is up to date – see [Password management](password-management-for-surface-hub-device-accounts.md) for details.| Triggers when there's an error syncing the device calendar with Exchange. |
 | Software   | Error  | **Check your Skype for Business service**. <br> Verify: <br> - The service is available. <br> - The device account password is up to date – see [Password management](password-management-for-surface-hub-device-accounts.md) for details. <br> - The domain name for Skype for Business is properly configured - see [Configure a domain name](use-fully-qualified-domain-name-surface-hub.md). | Triggers when Skype fails to sign in. |
 | Software   | Error  | **Reset the device**. <br> This takes some time, so you should take the device offline. <br> For more information, see [Device reset](device-reset-surface-hub.md).| Triggers when there is an error cleaning up user and app data at the end of a session. When this operation repeatedly fails, the device is locked to protect user data. You must reset the device to continue. |
@@ -93,10 +95,10 @@ This table describes the sample queries in the Surface Hub solution:
 | Hardware   | Error | **Contact Microsoft support**. <br> Indicates impact to core functionality (such as Skype, projection, touch, and internet connectivity). <br> **Note** Some events, including heartbeat, include the device’s serial number that you can use when contacting support.| Triggers when there is an error with any of the following hardware components. <br> **Components that affect Skype**: <br> - Speaker driver <br> - Microphone driver <br> - Camera driver <br> **Components that affect wired and wireless projection**: <br> - Wired touchback driver <br> - Wired ingest driver <br> - Wireless adapter driver <br> - Wi-Fi Direct error <br> **Other components**: <br> - Touch digitizer driver <br> - Network adapter error (not reported to OMS)|
 
 **To set up an alert**
-1.	From the Surface Hub solution, select one of the sample queries.
-2.	Modify the query as desired. See Log Analytics search reference to learn more.
-3.	Click **Alert** at the top of the page to open the **Add Alert Rule** screen. See [Alerts in Log Analytics](https://azure.microsoft.com/en-us/documentation/articles/log-analytics-alerts/) for details on the options to configure the alert.
-4.	Click **Save** to complete the alert rule. It will start running immediately.
+1. From the Surface Hub solution, select one of the sample queries.
+2. Modify the query as desired. See Log Analytics search reference to learn more.
+3. Click **Alert** at the top of the page to open the **Add Alert Rule** screen. See [Alerts in Log Analytics](https://azure.microsoft.com/documentation/articles/log-analytics-alerts/) for details on the options to configure the alert.
+4. Click **Save** to complete the alert rule. It will start running immediately.
 
 ## Enroll your Surface Hub
 
@@ -136,7 +138,7 @@ You'll need the workspace ID and primary key of your OMS workspace. You can get 
 A confirmation dialog will appear telling you whether or not the OMS configuration was successfully applied to the device. If it was, the device will start sending data to OMS.
 
 ### Enroll using a provisioning package
-You can use a provisioning package to enroll your Surface Hub. For more infomation, see [Create provisioning packages](provisioning-packages-for-certificates-surface-hub.md).
+You can use a provisioning package to enroll your Surface Hub. For more information, see [Create provisioning packages](provisioning-packages-for-certificates-surface-hub.md).
  
 ### Enroll using a MDM provider
 You can enroll Surface Hub into OMS using the SurfaceHub CSP. Intune and Configuration Manager provide built-in experiences to help create policy templates for Surface Hub. For more information, see [Manage Surface Hub settings with an MDM provider](manage-settings-with-mdm-for-surface-hub.md).

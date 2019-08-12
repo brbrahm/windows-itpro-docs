@@ -5,9 +5,12 @@ ms.pagetype: security
 ms.prod: w10
 ms.mktglfcycl: deploy
 ms.sitesec: library
-ms.localizationpriority: medium
-author: Mir0sh
+ms.localizationpriority: none
+author: dansimp
 ms.date: 04/19/2017
+ms.reviewer: 
+manager: dansimp
+ms.author: dansimp
 ---
 
 # 4933(S, F): Synchronization of a replica of an Active Directory naming context has ended.
@@ -60,7 +63,6 @@ Failure event occurs when synchronization of a replica of an Active Directory na
  <Data Name="StatusCode">1722</Data> 
  </EventData>
  </Event>
-
 ```
 
 ***Required Server Roles:*** Active Directory domain controller.
@@ -78,22 +80,22 @@ Failure event occurs when synchronization of a replica of an Active Directory na
 -   **Source DRA** \[Type = UnicodeString\]: source directory replication agent distinguished name.
 
 > **Note**&nbsp;&nbsp;The LDAP API references an LDAP object by its **distinguished name (DN)**. A DN is a sequence of relative distinguished names (RDN) connected by commas.
-
+> 
 > An RDN is an attribute with an associated value in the form attribute=value; . These are examples of RDNs attributes:
-
+> 
 > • DC - domainComponent
-
+> 
 > • CN - commonName
-
+> 
 > • OU - organizationalUnitName
-
+> 
 > • O - organizationName
 
 -   **Naming Context** \[Type = UnicodeString\]**:** naming context to replicate.
 
 > **Note**&nbsp;&nbsp;The Directory Tree of Active Directory tree is partitioned to allow sections to be distributed (replicated) to domain controllers in different domains within the forest. Each domain controller stores a copy of a specific part of the directory tree, called a **Naming Context** also known as Directory Partition. **Naming Context** is replicated as a unit to other domain controllers in the forest that contain a replica of the same sub tree. A **Naming Context** is also called a Directory Partition.
 
--   **Options** \[Type = UInt32\]: decimal value of [DRS Options](https://msdn.microsoft.com/en-us/library/cc228477.aspx).
+-   **Options** \[Type = UInt32\]: decimal value of [DRS Options](https://msdn.microsoft.com/library/cc228477.aspx).
 
 -   **Session ID** \[Type = UInt32\]**:** unique identifier of replication session. Using this field you can find “[4932](event-4932.md): Synchronization of a replica of an Active Directory naming context has begun.” and “[4933](event-4933.md): Synchronization of a replica of an Active Directory naming context has ended.” events for the same session.
 
@@ -101,7 +103,7 @@ Failure event occurs when synchronization of a replica of an Active Directory na
 
 > **Note**&nbsp;&nbsp;Active Directory replication does not depend on time to determine what changes need to be propagated. It relies instead on the use of **update sequence numbers (USNs)** that are assigned by a counter that is local to each domain controller. Because these USN counters are local, it is easy to ensure that they are reliable and never "run backward" (that is, decrease in value). The trade-off is that it is meaningless to compare a USN assigned on one domain controller to a USN assigned on a different domain controller. The replication system is designed with this restriction in mind.
 
--   **Status Code** \[Type = UInt32\]**:** if there are no issues or errors, the status code will be “**0**”. If an error happened, you will receive Failure event and Status Code will not be equal to “**0**”. You can check error code meaning here: <https://msdn.microsoft.com/en-us/library/windows/desktop/ms681381(v=vs.85).aspx>
+-   **Status Code** \[Type = UInt32\]**:** if there are no issues or errors, the status code will be “**0**”. If an error happened, you will receive Failure event and Status Code will not be equal to “**0**”. You can check error code meaning here: <https://msdn.microsoft.com/library/windows/desktop/ms681381(v=vs.85).aspx>
 
 ## Security Monitoring Recommendations
 

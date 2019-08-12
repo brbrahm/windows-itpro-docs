@@ -1,12 +1,14 @@
 ---
 title: WiredNetwork DDF file
 description: This topic shows the OMA DM device description framework (DDF) for the WiredNetwork configuration service provider. 
-ms.author: maricia
+ms.author: dansimp
 ms.topic: article
 ms.prod: w10
 ms.technology: windows
-author: MariciaAlforque
+author: manikadhiman
 ms.date: 06/28/2018
+ms.reviewer: 
+manager: dansimp
 ---
 
 # WiredNetwork DDF file
@@ -18,7 +20,7 @@ Looking for the DDF XML files? See [CSP DDF files download](configuration-servic
 
 The XML below is the current version for this CSP.
 
-``` syntax
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MgmtTree PUBLIC " -//OMA//DTD-DM-DDF 1.2//EN"
   "http://www.openmobilealliance.org/tech/DTD/DM_DDF-V1_2.dtd"
@@ -54,7 +56,7 @@ The XML below is the current version for this CSP.
               <Delete />
               <Replace />
             </AccessType>
-            <Description>XML describing the wired network configuration and follows the LAN_profile schemas https://msdn.microsoft.com/en-us/library/windows/desktop/aa816366(v=vs.85).aspx</Description>
+            <Description>XML describing the wired network configuration and follows the LAN_profile schemas https://msdn.microsoft.com/library/windows/desktop/aa816366(v=vs.85).aspx</Description>
             <DFFormat>
               <chr />
             </DFFormat>
@@ -123,7 +125,7 @@ The XML below is the current version for this CSP.
               <Delete />
               <Replace />
             </AccessType>
-            <Description>XML describing the wired network configuration and follows the LAN_profile schemas https://msdn.microsoft.com/en-us/library/windows/desktop/aa816366(v=vs.85).aspx</Description>
+            <Description>XML describing the wired network configuration and follows the LAN_profile schemas https://msdn.microsoft.com/library/windows/desktop/aa816366(v=vs.85).aspx</Description>
             <DFFormat>
               <chr />
             </DFFormat>

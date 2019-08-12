@@ -1,8 +1,11 @@
 ---
 title: Configuring UE-V 2.x with System Center Configuration Manager 2012
 description: Configuring UE-V 2.x with System Center Configuration Manager 2012
-author: jamiejdt
+author: levinec
 ms.assetid: 9a4e2a74-7646-4a77-b58f-2b4456487295
+ms.reviewer: 
+manager: dansimp
+ms.author: ellevin
 ms.pagetype: mdop, virtualization
 ms.mktglfcycl: deploy
 ms.sitesec: library
@@ -76,7 +79,7 @@ The UE-V Configuration Pack includes tools to perform the following tasks:
     </tbody>
     </table>
 
-     
+     
 
 -   Verify compliance by confirming that UE-V is running.
 
@@ -158,7 +161,7 @@ It might be necessary to change the PowerShell execution policy to allow these s
 3.  Run this command on a machine running the ConfigMgr Admin Console:
 
     ``` syntax
-    C:\Program Files (x86)\Microsoft User Experience Virtualization\ConfigPack\UevAgentPolicyGenerator.exe –Site ABC –CabFilePath “C:\MyCabFiles\UevPolicyItem.cab” –ConfigurationFile “c:\AgentConfiguration.xml”
+    C:\Program Files (x86)\Microsoft User Experience Virtualization\ConfigPack\UevAgentPolicyGenerator.exe –Site ABC –CabFilePath "C:\MyCabFiles\UevPolicyItem.cab" –ConfigurationFile "c:\AgentConfiguration.xml"
     ```
 
 4.  Import the CAB file using ConfigMgr console or PowerShell Import-CMConfigurationItem
@@ -201,7 +204,7 @@ The result is a baseline CAB file that is ready for import into Configuration Ma
 3.  Add the command and parameters to the .bat file that will generate the baseline. The following example creates a baseline that distributes Notepad and Calculator:
 
     ``` syntax
-    C:\Program Files (x86)\Microsoft User Experience Virtualization\ConfigPack\UevTemplateBaselineGenerator.exe –Site “ABC” –TemplateFolder “C:\ProductionUevTemplates” –Register “MicrosoftNotepad.xml, MicrosoftCalculator.xml” –CabFilePath “C:\MyCabFiles\UevTemplateBaseline.cab”
+    C:\Program Files (x86)\Microsoft User Experience Virtualization\ConfigPack\UevTemplateBaselineGenerator.exe –Site "ABC" –TemplateFolder "C:\ProductionUevTemplates" –Register "MicrosoftNotepad.xml, MicrosoftCalculator.xml" –CabFilePath "C:\MyCabFiles\UevTemplateBaseline.cab"
     ```
 
 4.  Run the .bat file to create UevTemplateBaseline.cab ready for import into Configuration Manager.
@@ -225,19 +228,19 @@ To distribute a new Notepad template, you would perform these steps:
 
 The UE-V Configuration Pack for Configuration Manager 2012 SP1 or later can be downloaded [here](https://go.microsoft.com/fwlink/?LinkId=317263).
 
-## Got a suggestion for UE-V?
 
 
-Add or vote on suggestions [here](http://uev.uservoice.com/forums/280428-microsoft-user-experience-virtualization). For UE-V issues, use the [UE-V TechNet Forum](https://social.technet.microsoft.com/Forums/home?forum=mdopuev).
+
+
 
 ## Related topics
 
 
 [Manage Configurations for UE-V 2.x](manage-configurations-for-ue-v-2x-new-uevv2.md)
 
- 
+ 
 
- 
+ 
 
 
 

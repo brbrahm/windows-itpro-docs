@@ -1,12 +1,16 @@
 ---
 title: How to make a connection group ignore the package version (Windows 10)
 description: How to make a connection group ignore the package version.
-author: MaggiePucciEvans
+author: dansimp
 ms.pagetype: mdop, appcompat, virtualization
 ms.mktglfcycl: deploy
 ms.sitesec: library
 ms.prod: w10
 ms.date: 06/18/2018
+ms.reviewer: 
+manager: dansimp
+ms.author: dansimp
+ms.topic: article
 ---
 # How to make a connection group ignore the package version
 
@@ -46,19 +50,19 @@ For more about adding or upgrading packages, see [How to add or upgrade packages
     Add-AppvClientConnectionGroup
     ```
 
-    For more information about how to use the **Add-AppvClientConnectionGroup** cmdlet, see [**Add-AppvClientConnectionGroup**](https://docs.microsoft.com/en-us/powershell/module/appvclient/add-appvclientconnectiongroup?view=win10-ps).
+    For more information about how to use the **Add-AppvClientConnectionGroup** cmdlet, see [**Add-AppvClientConnectionGroup**](https://docs.microsoft.com/powershell/module/appvclient/add-appvclientconnectiongroup?view=win10-ps).
 
 4. When you upgrade a package, use the following cmdlets to remove the old package, add the upgraded package, and publish the upgraded package:
 
-    - [**Remove-AppvClientPackage**](https://docs.microsoft.com/en-us/powershell/module/appvclient/remove-appvclientpackage?view=win10-ps)
-    - [**Add-AppvClientPackage**](https://docs.microsoft.com/en-us/powershell/module/appvclient/add-appvclientpackage?view=win10-ps)
-    - [**Publish-AppvClientPackage**](https://docs.microsoft.com/en-us/powershell/module/appvclient/publish-appvclientpackage?view=win10-ps)
+    - [**Remove-AppvClientPackage**](https://docs.microsoft.com/powershell/module/appvclient/remove-appvclientpackage?view=win10-ps)
+    - [**Add-AppvClientPackage**](https://docs.microsoft.com/powershell/module/appvclient/add-appvclientpackage?view=win10-ps)
+    - [**Publish-AppvClientPackage**](https://docs.microsoft.com/powershell/module/appvclient/publish-appvclientpackage?view=win10-ps)
 
 For more information, see [How to manage App-V packages running on a stand-alone computer by using Windows PowerShell](appv-manage-appv-packages-running-on-a-stand-alone-computer-with-powershell.md).
 
-## Have a suggestion for App-V?
 
-Add or vote on suggestions on the [Application Virtualization feedback site](https://appv.uservoice.com/forums/280448-microsoft-application-virtualization).
+
+
 
 ## Related topics
 

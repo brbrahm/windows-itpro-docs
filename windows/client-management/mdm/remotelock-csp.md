@@ -2,11 +2,13 @@
 title: RemoteLock CSP
 description: RemoteLock CSP
 ms.assetid: c7889331-5aa3-4efe-9a7e-20d3f433659b
-ms.author: maricia
+ms.reviewer: 
+manager: dansimp
+ms.author: dansimp
 ms.topic: article
 ms.prod: w10
 ms.technology: windows
-author: MariciaAlforque
+author: manikadhiman
 ms.date: 06/26/2017
 ---
 
@@ -98,7 +100,7 @@ This node will return the following status. All OMA DM errors are listed [here](
 <a href="" id="lockandrecoverpin"></a>**LockAndRecoverPIN**
 Added in Windows 10, version 1703. This setting performs a similar function to the LockAndResetPIN node. With LockAndResetPIN any Windows Hello keys associated with the PIN gets deleted, but with LockAndRecoverPIN those keys are saved. After the Exec operation is called successfully on this setting, the new PIN can be retrieved from the NewPINValue setting. The previous PIN will no longer work.
 
-Executing this node requires a ticket from the Microsoft credential reset service. Additionally, the execution of this setting is only supported when the [EnablePinRecovery](https://msdn.microsoft.com/en-us/windows/hardware/commercialize/customize/mdm/passportforwork-csp#tenantid-policies-enablepinrecovery) policy is set on the client.
+Executing this node requires a ticket from the Microsoft credential reset service. Additionally, the execution of this setting is only supported when the [EnablePinRecovery](https://msdn.microsoft.com/windows/hardware/commercialize/customize/mdm/passportforwork-csp#tenantid-policies-enablepinrecovery) policy is set on the client.
 
 
 <a href="" id="newpinvalue"></a>**NewPINValue**
@@ -115,7 +117,7 @@ A Get operation on this node must follow an Exec operation on the /RemoteLock/Lo
 
 Initiate a remote lock of the device.
 
-``` syntax
+```xml
 <Exec>
    <CmdID>1</CmdID>
    <Item>
@@ -128,7 +130,7 @@ Initiate a remote lock of the device.
 
 Initiate a remote lock and PIN reset of the device. To successfully retrieve the new device-generated PIN, the commands must be executed together and in the proper sequence as shown below.
 
-``` syntax
+```xml
 <Sequence>
     <CmdID>1</CmdID>
     <Exec>

@@ -1,8 +1,11 @@
 ---
 title: How to Modify Client Configuration by Using PowerShell
 description: How to Modify Client Configuration by Using PowerShell
-author: jamiejdt
+author: dansimp
 ms.assetid: 53ccb2cf-ef81-4310-a853-efcb395f006e
+ms.reviewer: 
+manager: dansimp
+ms.author: dansimp
 ms.pagetype: mdop, appcompat, virtualization
 ms.mktglfcycl: deploy
 ms.sitesec: library
@@ -24,11 +27,11 @@ Use the following procedure to configure the App-V 5.0 client configuration.
 
     `$config = Get-AppvClientConfiguration`
 
-    `Set-AppcClientConfiguration $config`
+    `Set-AppvClientConfiguration $config`
 
-    `Set-AppcClientConfiguration –Name1 MyConfig –Name2 “xyz”`
+    `Set-AppvClientConfiguration –AutoLoad 2`
 
-    **Got a suggestion for App-V**? Add or vote on suggestions [here](http://appv.uservoice.com/forums/280448-microsoft-application-virtualization). **Got an App-V issu**e? Use the [App-V TechNet Forum](https://social.technet.microsoft.com/Forums/home?forum=mdopappv).
+    **Got a suggestion for App-V**? Add or vote on suggestions [here](http://appv.uservoice.com/forums/280448-microsoft-application-virtualization). **Got an App-V issue?** Use the [App-V TechNet Forum](https://social.technet.microsoft.com/Forums/home?forum=mdopappv).
 
 ## Related topics
 

@@ -4,11 +4,13 @@ description: This section describes the ConnectivityProfile settings that you ca
 ms.prod: w10
 ms.mktglfcycl: deploy
 ms.sitesec: library
-author: jdeckerMS
+author: dansimp
 ms.localizationpriority: medium
-ms.author: jdecker
+ms.author: dansimp
 ms.topic: article
 ms.date: 04/30/2018
+ms.reviewer: 
+manager: dansimp
 ---
 
 # ConnectivityProfiles (Windows Configuration Designer reference)
@@ -19,12 +21,12 @@ Use to configure profiles that a user will connect with, such as an email accoun
 
 | Setting groups  | Desktop editions | Mobile editions | Surface Hub | HoloLens | IoT Core |
 | --- | :---: | :---: | :---: | :---: | :---: |
-| [Email](#email)  | X |  X  | X |  | X |
-| [Exchange](#exchange) | X |  X  | X |  | X |
-| [KnownAccounts](#knownaccounts) | X |  X  | X |  | X |
-| [VPN](#vpn) | X |  X  | X | X | X |
-| [WiFiSense](#wifisense) | X |  X  | X |  | X |
-| [WLAN](#wlan) | X |  X  | X | X | X |
+| [Email](#email)  | X |  X  | X |  |  |
+| [Exchange](#exchange) | X |  X  | X |  |  |
+| [KnownAccounts](#knownaccounts) | X |  X  | X |  |  |
+| [VPN](#vpn) | X |  X  | X | X |  |
+| [WiFiSense](#wifisense) | X |  X  | X |  |  |
+| [WLAN](#wlan) | X |  X  | X | X |  |
 
 ## Email
 

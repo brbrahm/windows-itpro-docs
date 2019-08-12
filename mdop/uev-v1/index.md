@@ -1,17 +1,20 @@
 ---
 title: Microsoft User Experience Virtualization (UE-V) 1.0
 description: Microsoft User Experience Virtualization (UE-V) 1.0
-author: jamiejdt
+author: dansimp
 ms.assetid: 7c2b59f6-bbe9-4373-8b08-c1738665a37b
 ms.pagetype: mdop, virtualization
 ms.mktglfcycl: deploy
 ms.sitesec: library
-ms.prod: w8
+ms.prod: w10
 ms.date: 04/19/2017
 ---
 
 
 # Microsoft User Experience Virtualization (UE-V) 1.0
+
+>[!NOTE]
+>This documentation is a for version of UE-V that was included in the Microsoft Desktop Optimization Pack (MDOP). For information about the latest version of UE-V which is included in Windows 10 Enterprise, see [Get Started with UE-V](https://docs.microsoft.com/windows/configuration/ue-v/uev-getting-started).
 
 
 Microsoft User Experience Virtualization (UE-V) captures and centralizes application settings and Windows operating system settings for the user. These settings are then applied to the different computers that are accessed by the user, including desktop computers, laptop computers, and virtual desktop infrastructure (VDI) sessions.

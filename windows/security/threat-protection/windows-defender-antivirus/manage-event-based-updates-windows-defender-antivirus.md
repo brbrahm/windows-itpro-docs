@@ -1,6 +1,6 @@
 ---
 title: Apply Windows Defender Antivirus updates after certain events
-description: Manage how Windows Defender Antivirus applies protection updates after startup or receiving cloud-delivered detection reports.
+description: Manage how Windows Defender Antivirus applies security intelligence updates after startup or receiving cloud-delivered detection reports.
 keywords: updates, protection, force updates, events, startup, check for latest, notifications
 search.product: eADQiWindows 10XVcnh
 ms.pagetype: security
@@ -9,16 +9,18 @@ ms.mktglfcycl: manage
 ms.sitesec: library
 ms.pagetype: security
 ms.localizationpriority: medium
-author: andreabichsel
-ms.author: v-anbic
+author: dansimp
+ms.author: dansimp
 ms.date: 09/03/2018
+ms.reviewer: 
+manager: dansimp
 ---
 
 # Manage event-based forced updates
 
 **Applies to:**
 
-- Windows Defender Advanced Threat Protection (Windows Defender ATP)
+- [Microsoft Defender Advanced Threat Protection (Microsoft Defender ATP)](https://go.microsoft.com/fwlink/p/?linkid=2069559)
 
 Windows Defender Antivirus allows you to determine if updates should (or should not) occur after certain events, such as at startup or after receiving specific reports from the cloud-delivered protection service.
 
@@ -30,11 +32,11 @@ You can use System Center Configuration Manager, Group Policy, PowerShell cmdlet
 
 1. On your System Center Configuration Manager console, open the antimalware policy you want to change (click **Assets and Compliance** in the navigation pane on the left, then expand the tree to **Overview** > **Endpoint Protection** > **Antimalware Policies**)
 
-2. Go to the **Scheduled scans** section and set **Check for the latest definition updates before running a scan** to **Yes**.
+2. Go to the **Scheduled scans** section and set **Check for the latest security intelligence updates before running a scan** to **Yes**.
 
 3. Click **OK**.
 
-4.[Deploy the updated policy as usual](https://docs.microsoft.com/en-us/sccm/protect/deploy-use/endpoint-antimalware-policies#deploy-an-antimalware-policy-to-client-computers).
+4.[Deploy the updated policy as usual](https://docs.microsoft.com/sccm/protect/deploy-use/endpoint-antimalware-policies#deploy-an-antimalware-policy-to-client-computers).
 
 **Use Group Policy to check for protection updates before running a scan:**
 
@@ -58,18 +60,18 @@ Use the following cmdlets:
 Set-MpPreference -CheckForSignaturesBeforeRunningScan
 ```
 
-See [Use PowerShell cmdlets to configure and run Windows Defender Antivirus](use-powershell-cmdlets-windows-defender-antivirus.md)  and [Defender cmdlets](https://technet.microsoft.com/en-us/library/dn433280.aspx) for more information on how to use PowerShell with Windows Defender Antivirus.
+See [Use PowerShell cmdlets to configure and run Windows Defender Antivirus](use-powershell-cmdlets-windows-defender-antivirus.md)  and [Defender cmdlets](https://technet.microsoft.com/library/dn433280.aspx) for more information on how to use PowerShell with Windows Defender Antivirus.
 
 **Use Windows Management Instruction (WMI) to check for protection updates before running a scan**
 
-Use the [**Set** method of the **MSFT_MpPreference**](https://msdn.microsoft.com/en-us/library/dn455323(v=vs.85).aspx) class for the following properties:
+Use the [**Set** method of the **MSFT_MpPreference**](https://msdn.microsoft.com/library/dn455323(v=vs.85).aspx) class for the following properties:
 
 ```WMI
 CheckForSignaturesBeforeRunningScan
 ```
 
 See the following for more information:
-- [Windows Defender WMIv2 APIs](https://msdn.microsoft.com/en-us/library/dn439477(v=vs.85).aspx)
+- [Windows Defender WMIv2 APIs](https://msdn.microsoft.com/library/dn439477(v=vs.85).aspx)
 
 ## Check for protection updates on startup
 
@@ -97,9 +99,9 @@ You can also use Group Policy, PowerShell, or WMI to configure Windows Defender 
 
 3. Click **Policies** then **Administrative templates**.
 
-4. Expand the tree to **Windows components > Windows Defender Antivirus > Signature Updates**.
+4. Expand the tree to **Windows components > Windows Defender Antivirus > Security Intelligence Updates**.
 
-5. Double-click **Initiate definition update on startup** and set the option to **Enabled**.
+5. Double-click **Initiate security intelligence update on startup** and set the option to **Enabled**.
 
 6. Click **OK**.
 
@@ -111,18 +113,18 @@ Use the following cmdlets:
 Set-MpPreference -SignatureDisableUpdateOnStartupWithoutEngine
 ```
 
-See [Use PowerShell cmdlets to manage Windows Defender Antivirus](use-powershell-cmdlets-windows-defender-antivirus.md)  and [Defender cmdlets](https://technet.microsoft.com/en-us/library/dn433280.aspx) for more information on how to use PowerShell with Windows Defender Antivirus.
+See [Use PowerShell cmdlets to manage Windows Defender Antivirus](use-powershell-cmdlets-windows-defender-antivirus.md)  and [Defender cmdlets](https://technet.microsoft.com/library/dn433280.aspx) for more information on how to use PowerShell with Windows Defender Antivirus.
 
 **Use Windows Management Instruction (WMI) to download updates when Windows Defender Antivirus is not present:**
 
-Use the [**Set** method of the **MSFT_MpPreference**](https://msdn.microsoft.com/en-us/library/dn455323(v=vs.85).aspx) class for the following properties:
+Use the [**Set** method of the **MSFT_MpPreference**](https://msdn.microsoft.com/library/dn455323(v=vs.85).aspx) class for the following properties:
 
 ```WMI
 SignatureDisableUpdateOnStartupWithoutEngine
 ```
 
 See the following for more information:
-- [Windows Defender WMIv2 APIs](https://msdn.microsoft.com/en-us/library/dn439477(v=vs.85).aspx)
+- [Windows Defender WMIv2 APIs](https://msdn.microsoft.com/library/dn439477(v=vs.85).aspx)
 
 <a id="cloud-report-updates"></a>
 
@@ -141,8 +143,11 @@ If you have enabled cloud-delivered protection, Windows Defender AV will send fi
 3. Click **Policies** then **Administrative templates**.
 
 4. Expand the tree to **Windows components > Windows Defender Antivirus > Signature Updates** and configure the following:
-    1. Double-click **Allow real-time definition updates based on reports to Microsoft MAPS** and set the option to **Enabled**. Click **OK**.
+    1. Double-click **Allow real-time security intelligence updates based on reports to Microsoft MAPS** and set the option to **Enabled**. Click **OK**.
     2. Double-click **Allow notifications to disable definitions based reports to Microsoft MAPS** and set the option to **Enabled**. Click **OK**.
+    
+> [!NOTE]
+> "Allow notifications to disable definitions based reports" enables Microsoft MAPS to disable those definitions known to cause false-positive reports. You must configure your computer to join Microsoft MAPS for this function to work.
 
 ## Related topics
 

@@ -1,8 +1,11 @@
 ---
 title: Upgrading to MBAM 2.5 or MBAM 2.5 SP1 from Previous Versions
 description: Upgrading to MBAM 2.5 or MBAM 2.5 SP1 from Previous Versions
-author: jamiejdt
+author: dansimp
 ms.assetid: a9edb4b8-5d5e-42ab-8db6-619db2878e50
+ms.reviewer: 
+manager: dansimp
+ms.author: dansimp
 ms.pagetype: mdop, security
 ms.mktglfcycl: manage
 ms.sitesec: library
@@ -19,7 +22,7 @@ This topic describes the process for upgrading the Microsoft BitLocker Administr
 **Note**  
 You can upgrade directly to MBAM 2.5 or MBAM 2.5 SP1 from any previous version of MBAM.
 
- 
+ 
 
 ## Before you start the upgrade
 
@@ -49,7 +52,7 @@ Review the following information before you start the upgrade.
 <td align="left"><p><strong>To resolve this issue:</strong></p>
 <p>Run <strong>aspnet_regiis –i</strong> from the following location:</p>
 <p>C:\windows\microsoft.net\Framework\v4.0.30319</p>
-<p>For more information, see: [ASP.NET IIS Registration Tool](https://go.microsoft.com/fwlink/?LinkId=393272).</p></td>
+<p>For more information, see: <a href="https://go.microsoft.com/fwlink/?LinkId=393272" data-raw-source="[ASP.NET IIS Registration Tool](https://go.microsoft.com/fwlink/?LinkId=393272)">ASP.NET IIS Registration Tool</a>.</p></td>
 </tr>
 <tr class="odd">
 <td align="left"><p>Register an SPN on the application pool account if all of the following are true:</p>
@@ -57,7 +60,7 @@ Review the following information before you start the upgrade.
 <li><p>You are upgrading from a previous version of MBAM.</p></li>
 <li><p>Currently, you are not running the MBAM websites in a load-balanced or distributed configuration, but you would like to do so when you upgrade to MBAM 2.5 or 2.5 SP1.</p></li>
 </ul></td>
-<td align="left"><p>For instructions, see [Planning How to Secure the MBAM Websites](planning-how-to-secure-the-mbam-websites.md#bkmk-registerspn).</p>
+<td align="left"><p>For instructions, see <a href="planning-how-to-secure-the-mbam-websites.md#bkmk-registerspn" data-raw-source="[Planning How to Secure the MBAM Websites](planning-how-to-secure-the-mbam-websites.md#bkmk-registerspn)">Planning How to Secure the MBAM Websites</a>.</p>
 <table>
 <colgroup>
 <col width="50%" />
@@ -83,7 +86,7 @@ Review the following information before you start the upgrade.
 </tbody>
 </table>
 
- 
+ 
 
 ## Steps to upgrade the MBAM Server infrastructure
 
@@ -101,7 +104,7 @@ Use the steps in the following sections to upgrade MBAM for the Stand-alone topo
     **Note**  
     The databases will not be removed, and all compliance and recovery data is maintained in the database.
 
-     
+     
 
 4.  Install and configure the MBAM 2.5 or 2.5 SP1 databases, reports, and web applications, in that order. The databases are upgraded in place.
 
@@ -124,13 +127,13 @@ Use the steps in the following sections to upgrade MBAM for the Stand-alone topo
     **Note**  
     The databases and the Configuration Manager objects (baseline, MBAM supported computers collection, and Reports) will not be removed, and all compliance and recovery data is maintained in the database.
 
-     
+     
 
 5.  Update the .mof files.
 
 6.  Install and configure the MBAM 2.5 or 2.5 SP1 databases, reports, web applications, and Configuration Manager integration, in that order. The databases and Configuration Manager objects are upgraded in place.
 
-7.  Optionally, update the Group Policy Objects (GPOs), and edit the settings if you want to implement new features in MBAM, such as enforced encryption. If you do not update the GPOs, MBAM will continue to report against your current GPOs. See [How to Get MDOP Group Policy (.admx) Templates](https://docs.microsoft.com/en-us/microsoft-desktop-optimization-pack/solutions/how-to-download-and-deploy-mdop-group-policy--admx--templates) to download the latest ADMX templates.
+7.  Optionally, update the Group Policy Objects (GPOs), and edit the settings if you want to implement new features in MBAM, such as enforced encryption. If you do not update the GPOs, MBAM will continue to report against your current GPOs. See [How to Get MDOP Group Policy (.admx) Templates](https://docs.microsoft.com/microsoft-desktop-optimization-pack/solutions/how-to-download-and-deploy-mdop-group-policy--admx--templates) to download the latest ADMX templates.
 
     After you upgrade the MBAM Server infrastructure, the existing client computers continue to successfully report to the MBAM 2.5 or 2.5 SP1 Server, and recovery data continues to be stored.
 
@@ -158,7 +161,7 @@ MBAM supports upgrades to the MBAM 2.5 Client from any earlier version of the M
 
 [Configuring the MBAM 2.5 Server Features](configuring-the-mbam-25-server-features.md)
 
- 
+ 
 
 ## Got a suggestion for MBAM?
 - Add or vote on suggestions [here](http://mbam.uservoice.com/forums/268571-microsoft-bitlocker-administration-and-monitoring).

@@ -1,12 +1,16 @@
 ---
 title: App-V Security Considerations (Windows 10)
 description: App-V Security Considerations
-author: MaggiePucciEvans
+author: lomayor
 ms.pagetype: mdop, appcompat, virtualization
 ms.mktglfcycl: deploy
 ms.sitesec: library
 ms.prod: w10
 ms.date: 04/16/2018
+ms.reviewer: 
+manager: dansimp
+ms.author: lomayor
+ms.topic: article
 ---
 # App-V security considerations
 
@@ -27,9 +31,9 @@ Effective as of June, 2014, the PackageStoreAccessControl (PSAC) feature introdu
 
 **Physically secure your computers**. A security strategy that doesn't consider physical security is incomplete. Anyone with physical access to an App-V server could potentially attack the entire client base, so potential physical attacks or thefts should be prevented at all cost. App-V servers should be stored in a physically secure server room with controlled access. Lock the computer with the operating system or a secured screen saver to keep computers secure when the administrators are away.
 
-**Apply the most recent security updates to all computers**. To stay informed about the latest updates for operating systems, Microsoft SQL Server, and App-V, see the [Microsoft Security TechCenter](https://technet.microsoft.com/en-us/security/bb291012). (THIS LINK NEEDS TO BE UPDATED)
+**Apply the most recent security updates to all computers**. To stay informed about the latest updates for operating systems, Microsoft SQL Server, and App-V, see the [Microsoft Security TechCenter](https://technet.microsoft.com/security/bb291012). (THIS LINK NEEDS TO BE UPDATED)
 
-**Use strong passwords or pass phrases**. Always use strong passwords with 15 or more characters for all App-V and App-V administrator accounts. Never use blank passwords. For more information about password concepts, see [Password Policy](https://docs.microsoft.com/en-us/sql/relational-databases/security/password-policy) and [Strong Passwords](https://docs.microsoft.com/en-us/sql/relational-databases/security/strong-passwords). (THIS LINK NEEDS TO BE UPDATED)
+**Use strong passwords or pass phrases**. Always use strong passwords with 15 or more characters for all App-V and App-V administrator accounts. Never use blank passwords. For more information about password concepts, see [Password Policy](https://docs.microsoft.com/sql/relational-databases/security/password-policy) and [Strong Passwords](https://docs.microsoft.com/sql/relational-databases/security/strong-passwords). (THIS LINK NEEDS TO BE UPDATED)
 
 ## Accounts and groups in App-V
 
@@ -52,7 +56,7 @@ No groups are created automatically during App-V setup. You should create the fo
 Consider the following additional information:
 
 * Access to the package shares: If a share exists on the same computer as the management Server, the **Network** service requires read access to the share. In addition, each App-V client computer must have read access to the package share.
-  >[!NOTE]
+ > [!NOTE]
   >In previous versions of App-V, package share was referred to as content share.
 * Registering publishing servers with Management Server: A publishing server must be registered with the Management server. For example, it must be added to the database, so that the Publishing server machine accounts are able to call into the Management service API.
 
@@ -60,7 +64,7 @@ Consider the following additional information:
 
 The following will help you plan how to ensure that virtualized packages are secure.
 
-* If an application installer applies an access control list (ACL) to a file or directory, then that ACL is not persisted in the package. If thje file or directory is modified by a user when the package is deployed, the modified file or directory will either inherit the ACL in the **%userprofile%** or inherit the ACL of the target computer’s directory. The former occurs if the file or directory does not exist in a virtual file system location; the latter occurs if the file or directory exists in a virtual file system location, such as **%windir%**.
+* If an application installer applies an access control list (ACL) to a file or directory, then that ACL is not persisted in the package. If the file or directory is modified by a user when the package is deployed, the modified file or directory will either inherit the ACL in the **%userprofile%** or inherit the ACL of the target computer’s directory. The former occurs if the file or directory does not exist in a virtual file system location; the latter occurs if the file or directory exists in a virtual file system location, such as **%windir%**.
 
 ## App-V log files
 

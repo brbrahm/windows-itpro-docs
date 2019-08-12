@@ -5,10 +5,12 @@ keywords: ["start screen"]
 ms.prod: w10
 ms.mktglfcycl: manage
 ms.sitesec: library
-author: jdeckerms
-ms.author: jdecker
+author: dansimp
+ms.author: dansimp
 ms.topic: article
-ms.date: 09/17/2018
+ms.date: 10/02/2018
+ms.reviewer: 
+manager: dansimp
 ms.localizationpriority: medium
 ---
 
@@ -51,19 +53,22 @@ The XML schema for `LayoutModification.xml` requires the following order for tag
 1. TopMFUApps
 1. CustomTaskbarLayoutCollection
 1. InkWorkspaceTopApps
+1. StartLayoutCollection
 
 Comments are not supported in the `LayoutModification.xml` file.
 
 
 ### Supported elements and attributes
 
->[!NOTE]  
+>[!NOTE]
 >To make sure the Start layout XML parser processes your file correctly, follow these guidelines when working with your LayoutModification.xml file:
 >- Do not leave spaces or white lines in between each element.
 >- Do not add comments inside the StartLayout node or any of its children elements.
 >- Do not add multiple rows of comments.
 
 The following table lists the supported elements and attributes for the LayoutModification.xml file.
+> [!NOTE]
+> RequiredStartGroupsCollection and AppendGroup syntax only apply when the Import-StartLayout method is used for building and deploying Windows images.
 
 | Element | Attributes | Description |
 | --- | --- | --- |
@@ -73,6 +78,7 @@ The following table lists the supported elements and attributes for the LayoutMo
 | [RequiredStartGroups](#requiredstartgroups)</br></br>Parent:</br>RequiredStartGroupsCollection | Region | Use to contain the AppendGroup tags, which represent groups that can be appended to the default Start layout |
 | [AppendGroup](#appendgroup)</br></br>Parent:</br>RequiredStartGroups | Name | Use to specify the tiles that need to be appended to the default Start layout |
 | [start:Tile](#specify-start-tiles)</br></br>Parent:</br>AppendGroup | AppUserModelID</br>Size</br>Row</br>Column | Use to specify any of the following:</br>- A Universal Windows app</br>- A Windows 8 or Windows 8.1 app</br></br>Note that AppUserModelID is case-sensitive. |
+start:Folder<br><br>Parent:<br>start:Group | Name (in Windows 10, version 1809 and later only)<br>Size<br>Row<br>Column<br>LocalizedNameResourcetag | Use to specify a folder of icons; can include [Tile](#start-tile), [SecondaryTile](#start-secondarytile), and [DesktopApplicationTile](#start-desktopapplicationtile).  
 | start:DesktopApplicationTile</br></br>Parent:</br>AppendGroup | DesktopApplicationID</br>DesktopApplicationLinkPath</br>Size</br>Row</br>Column | Use to specify any of the following:</br>- A Windows desktop application with a known AppUserModelID</br>- An application in a known folder with a link in a legacy Start Menu folder</br>- A Windows desktop application link in a legacy Start Menu folder</br>- A Web link tile with an associated .url file that is in a legacy Start Menu folder |
 | start:SecondaryTile</br></br>Parent:</br>AppendGroup | AppUserModelID</br>TileID</br>Arguments</br>DisplayName</br>Square150x150LogoUri</br>ShowNameOnSquare150x150Logo</br>ShowNameOnWide310x150Logo</br>Wide310x150LogoUri</br>BackgroundColor</br>ForegroundText</br>IsSuggestedApp</br>Size</br>Row</br>Column | Use to pin a Web link through a Microsoft Edge secondary tile. Note that AppUserModelID is case-sensitive. |
 | TopMFUApps</br></br>Parent:</br>LayoutModificationTemplate | n/a | Use to add up to 3 default apps to the frequently used apps section in the system area.</br></br>**Note**: Only applies to versions of Windows 10 earlier than version 1709. In Windows 10, version 1709, you can no longer pin apps to the Most Frequently Used apps list in Start. |
@@ -155,6 +161,7 @@ The following table describes the attributes that you must use to specify the si
 
 For example, a tile with Size="2x2", Row="2", and Column="2" results in a tile located at (2,2) where (0,0) is the top-left corner of a group.
 
+<span id="start-tile" />
 #### start:Tile
 
 You can use the **start:Tile** tag to pin any of the following apps to Start:
@@ -177,6 +184,7 @@ The following example shows how to pin the Microsoft Edge Universal Windows app:
           Column="0"/>
  ```
 
+<span id="start-desktopapplicationtile" />
 #### start:DesktopApplicationTile
 
 You can use the **start:DesktopApplicationTile** tag to pin a Windows desktop application to Start. There are two ways you can specify a Windows desktop application: 
@@ -237,6 +245,7 @@ The following example shows how to create a tile of the Web site's URL, which yo
 >[!NOTE]
 >In Windows 10, version 1703, **Export-StartLayout** will use **DesktopApplicationLinkPath** for the .url shortcut. You must change **DesktopApplicationLinkPath** to **DesktopApplicationID** and provide the URL.
 
+<span id="start-secondarytile" />
 #### start:SecondaryTile
 
 You can use the **start:SecondaryTile** tag to pin a Web link through a Microsoft Edge secondary tile. This method doesn't require any additional action compared to the method of using legacy .url shortcuts (through the start:DesktopApplicationTile tag).
@@ -537,9 +546,9 @@ Once you have created the LayoutModification.xml file and it is present in the d
 - [Changes to Start policies in Windows 10](changes-to-start-policies-in-windows-10.md)
 - [Start layout XML for mobile editions of Windows 10 (reference)](mobile-devices/start-layout-xml-mobile.md)
 
- 
+ 
 
- 
+ 
 
 
 

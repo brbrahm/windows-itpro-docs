@@ -2,16 +2,17 @@
 title: For teachers get Minecraft Education Edition
 description: Learn how teachers can get and distribute Minecraft.
 keywords: school, Minecraft, Education Edition, educators, teachers, acquire, distribute
-ms.prod: W10
-ms.technology: Windows
+ms.prod: w10
 ms.mktglfcycl: plan
 ms.sitesec: library
 ms.localizationpriority: medium
-author: trudyha
+author: mjcaparas
 searchScope:
   - Store
-ms.author: trudyha
-ms.date: 1/5/2018
+ms.author: macapara
+ms.date: 01/05/2018
+ms.reviewer: 
+manager: dansimp
 ms.topic: conceptual
 ---
 
@@ -24,13 +25,13 @@ ms.topic: conceptual
 The following article describes how teachers can get and distribute Minecraft: Education Edition. 
 Minecraft: Education Edition is available for anyone to trial, and subscriptions can be purchased by qualified educational institutions directly in the Microsoft Store for Education, via volume licensing agreements and through partner resellers.
 
-To get started, go to http://education.minecraft.net/ and select **GET STARTED**.
+To get started, go to https://education.minecraft.net/ and select **GET STARTED**.
 
 ## Try Minecraft: Education Edition for Free 
 
 Minecraft: Education Edition is available for anyone to try for free! The free trial is fully-functional but limited by the number of logins (25 for teachers and 10 for students) before a paid license will be required to continue playing.
 
-To learn more and get started, go to http://education.minecraft.net/ and select **GET STARTED**.
+To learn more and get started, go to https://education.minecraft.net/ and select **GET STARTED**.
 
 ## Purchase Minecraft: Education Edition for Teachers and Students
 
@@ -48,9 +49,9 @@ You can purchase individual Minecraft: Education Edition subscriptions for you a
 
 To purchase individual Minecraft: Education Edition subscriptions (i.e. direct purchase):
 
-1.	Sign in to [Microsoft Store for Education](https://educationstore.microsoft.com/) with your Office 365 account.
-2.	Click on [Minecraft: Education Edition](https://educationstore.microsoft.com/en-us/store/details/minecraft-education-edition/9nblggh4r2r6) (or use Search the Store to find it)
-3.	Click **Buy**
+1. Sign in to [Microsoft Store for Education](https://educationstore.microsoft.com/) with your Office 365 account.
+2. Click on [Minecraft: Education Edition](https://educationstore.microsoft.com/en-us/store/details/minecraft-education-edition/9nblggh4r2r6) (or use Search the Store to find it)
+3. Click **Buy**
 
 >[!Note]
 >Administrators can restrict the ability for teachers to purchase applications in the Microsoft Store for Education. If you do not have the ability to Buy, contact your school administration or IT administrator.

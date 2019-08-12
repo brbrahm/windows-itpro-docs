@@ -1,8 +1,11 @@
 ---
 title: About Client Configuration Settings
 description: About Client Configuration Settings
-author: jamiejdt
+author: manikadhiman
 ms.assetid: 18bb307a-7eda-4dd6-a83e-6afaefd99470
+ms.reviewer: 
+manager: dansimp
+ms.author: dansimp
 ms.pagetype: mdop, appcompat, virtualization
 ms.mktglfcycl: deploy
 ms.sitesec: library
@@ -46,7 +49,7 @@ The following table displays information about the App-V 5.1 client configuratio
 | CEIPOPTIN | CEIPOPTIN | Allows the computer running the App-V 5.1 Client to collect and return certain usage information to help allow us to further improve the application. | 0 for disabled; 1 for enabled | SOFTWARE/Microsoft/AppV/CEIP/CEIPEnable | 0 | 
 | EnablePackageScripts | ENABLEPACKAGESCRIPTS | Enables scripts defined in the package manifest of configuration files that should run. | True(enabled); False(Disabled state) | \Scripting\EnablePackageScripts | | 
 | RoamingFileExclusions | ROAMINGFILEEXCLUSIONS | Specifies the file paths relative to %userprofile% that do not roam with a user's profile. Example usage:  /ROAMINGFILEEXCLUSIONS='desktop;my pictures' | | | |
-| RoamingRegistryExclusions | ROAMINGREGISTRYEXCLUSIONS | Specifies the registry paths that do not roam with a user profile. Example usage: /ROAMINGREGISTRYEXCLUSIONS=software\\classes;software\\clients | String | Integration\RoamingReglstryExclusions | Policy value not written (same as Not Configured) |
+| RoamingRegistryExclusions | ROAMINGREGISTRYEXCLUSIONS | Specifies the registry paths that do not roam with a user profile. Example usage: /ROAMINGREGISTRYEXCLUSIONS=software\\classes;software\\clients | String | Integration\RoamingRegistryExclusions | Policy value not written (same as Not Configured) |
 | IntegrationRootUser | Not available. | Specifies the location to create symbolic links associated with the current version of a per-user published package. all virtual application extensions, for example shortcuts and file type associations, will point to this path. If you do not specify a path, symbolic links will not be used when you publish the package. For example: %localappdata%\Microsoft\AppV\Client\Integration.| String | Integration\IntegrationRootUser | Policy value not written (same as Not Configured) |
 |IntegrationRootGlobal | Not available.| Specifies the location to create symbolic links associated with the current version of a globally published package. all virtual application extensions, for example shortcuts and file type associations, will point to this path. If you do not specify a path, symbolic links will not be used when you publish the package. For example: %allusersprofile%\Microsoft\AppV\Client\Integration | String | Integration\IntegrationRootGlobal | Policy value not written (same as Not Configured) |
 | VirtualizableExtensions | Not available. | A comma -delineated list of file name extensions that can be used to determine if a locally installed application can be run in the virtual environment.<br>When shortcuts, FTAs, and other extension points are created during publishing, App-V will compare the file name extension to the list if the application that is associated with the extension point is locally installed. If the extension is located, the **RunVirtual** command line parameter will be added, and the application will run virtually.<br>For more information about the **RunVirtual** parameter, see [Running a Locally Installed Application Inside a Virtual Environment with Virtualized Applications](running-a-locally-installed-application-inside-a-virtual-environment-with-virtualized-applications51.md). | String | Integration\VirtualizableExtensions | Policy value not written |
@@ -62,10 +65,10 @@ The following table displays information about the App-V 5.1 client configuratio
 | HideUI<br>**Important**  This setting is available only with App-V 5.0 SP2.| Not available. | Hides the publishing refresh progress bar. | 1 (Enabled), 0 (Disabled) | | |
 | ProcessesUsingVirtualComponents | Not available. | Specifies a list of process paths (that may contain wildcards), which are candidates for using dynamic virtualization (supported shell extensions, browser helper objects, and ActiveX controls). Only processes whose full path matches one of these items can use dynamic virtualization. | String | Virtualization\ProcessesUsingVirtualComponents | Empty string. |
 
-## Got a suggestion for App-V?
 
 
-Add or vote on suggestions [here](http://appv.uservoice.com/forums/280448-microsoft-application-virtualization). For App-V issues, use the [App-V TechNet Forum](https://social.technet.microsoft.com/Forums/home?forum=mdopappv).
+
+
 
 ## Related topics
 

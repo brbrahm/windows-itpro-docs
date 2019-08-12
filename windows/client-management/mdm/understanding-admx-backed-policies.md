@@ -1,12 +1,14 @@
 ---
 title: Understanding ADMX-backed policies
 description: Starting in Windows 10, version 1703, you can use ADMX-backed policies for Windows 10 mobile device management (MDM) across Windows 10 devices.
-ms.author: maricia
+ms.author: dansimp
 ms.topic: article
 ms.prod: w10
 ms.technology: windows
-author: MariciaAlforque
+author: manikadhiman
 ms.date: 03/02/2018
+ms.reviewer: 
+manager: dansimp
 ---
 
 # Understanding ADMX-backed policies
@@ -17,28 +19,21 @@ Starting in Windows 10 version 1703, Mobile Device Management (MDM) policy confi
 
 ## <a href="" id="background"></a>Background
 
-In addition to standard policies, the Policy CSP can now also handle ADMX-backed policies. In an ADMX-backed policy, an administrative template contains the metadata of a Window Group Policy and can be edited in the Local Group Policy Editor on a PC. Each administrative template specifies the registry keys (and their values) that are associated with a Group Policy and defines the policy settings that can be managed. Administrative templates organize Group Policies in a hierarchy in which each segment in the hierarchical path is defined as a category. Each setting in a Group Policy administrative template corresponds to a specific registry value. These Group Policy settings are defined in a standards-based, XML file format known as an ADMX file. For more information, see [Group Policy ADMX Syntax Reference Guide](https://technet.microsoft.com/en-us/library/cc753471(v=ws.10).aspx). 
+In addition to standard policies, the Policy CSP can now also handle ADMX-backed policies. In an ADMX-backed policy, an administrative template contains the metadata of a Window Group Policy and can be edited in the Local Group Policy Editor on a PC. Each administrative template specifies the registry keys (and their values) that are associated with a Group Policy and defines the policy settings that can be managed. Administrative templates organize Group Policies in a hierarchy in which each segment in the hierarchical path is defined as a category. Each setting in a Group Policy administrative template corresponds to a specific registry value. These Group Policy settings are defined in a standards-based, XML file format known as an ADMX file. For more information, see [Group Policy ADMX Syntax Reference Guide](https://technet.microsoft.com/library/cc753471(v=ws.10).aspx). 
 
 ADMX files can either describe operating system (OS) Group Policies that are shipped with Windows or they can describe settings of applications, which are separate from the OS and can usually be downloaded and installed on a PC.
 Depending on the specific category of the settings that they control (OS or application), the administrative template settings are found in the following two locations in the Local Group Policy Editor:
--	OS settings: Computer Configuration/Administrative Templates
--	Application settings: User Configuration/Administrative Templates 
+- OS settings: Computer Configuration/Administrative Templates
+- Application settings: User Configuration/Administrative Templates 
 
 In a domain controller/Group Policy ecosystem, Group Policies are automatically added to the registry of the client computer or user profile by the Administrative Templates Client Side Extension (CSE) whenever the client computer processes a Group Policy. Conversely, in an MDM-managed client, ADMX files are leveraged to define policies independent of Group Policies. Therefore, in an MDM-managed client, a Group Policy infrastructure, including the Group Policy Service (gpsvc.exe), is not required.
 
 An ADMX file can either be shipped with Windows (located at `%SystemRoot%\policydefinitions`) or it can be ingested to a device through the Policy CSP URI (`./Vendor/MSFT/Policy/ConfigOperations/ADMXInstall`). Inbox ADMX files are processed into MDM policies at OS-build time. ADMX files that are ingested are processed into MDM policies post-OS shipment through the Policy CSP. Because the Policy CSP does not rely upon any aspect of the Group Policy client stack, including the PC’s Group Policy Service (GPSvc), the policy handlers that are ingested to the device are able to react to policies that are set by the MDM.
 
-Windows maps the name and category path of a Group Policy to a MDM policy area and policy name by parsing the associated ADMX file, finding the specified Group Policy, and storing the definition (metadata) in the MDM Policy CSP client store. When the MDM policy is referenced by a SyncML command and the Policy CSP URI, `.\[device|user]\vendor\msft\policy\[config|result]\<area>\<policy>`, this metadata is referenced and determines which registry keys are set or removed. For a list of ADMX-backed policies supported by MDM, see [Policy CSP - ADMX-backed policies](https://docs.microsoft.com/en-us/windows/client-management/mdm/policy-configuration-service-provider#admx-backed-policies).
+Windows maps the name and category path of a Group Policy to a MDM policy area and policy name by parsing the associated ADMX file, finding the specified Group Policy, and storing the definition (metadata) in the MDM Policy CSP client store. When the MDM policy is referenced by a SyncML command and the Policy CSP URI, `.\[device|user]\vendor\msft\policy\[config|result]\<area>\<policy>`, this metadata is referenced and determines which registry keys are set or removed. For a list of ADMX-backed policies supported by MDM, see [Policy CSP - ADMX-backed policies](https://docs.microsoft.com/windows/client-management/mdm/policy-configuration-service-provider#admx-backed-policies).
 
-## Video walkthrough
-
-Here is a video of how to create a custom xml to enable an ADMX-backed policy and deploy the XML in Intune.
-
-> [!VIDEO https://www.microsoft.com/showcase/video.aspx?uuid=bdc9b54b-11b0-4bdb-a022-c339d16e7121]
-
-Here is a video of how to import a custom ADMX file to a device using Intune.
-
-> [!VIDEO https://www.microsoft.com/showcase/video.aspx?uuid=a59888b1-429f-4a49-8570-c39a143d9a73]
+>[!TIP]
+>Intune has added a number of ADMX-backed administrative templates in public preview. Check if the policy settings you need are available in a template before using the SyncML method described below. [Learn more about Intune's administrative templates.](https://docs.microsoft.com/intune/administrative-templates-windows)
 
 ## <a href="" id="admx-files-and-the-group-policy-editor"></a>ADMX files and the Group Policy Editor
 
@@ -47,17 +42,17 @@ To capture the end-to-end MDM handling of ADMX Group Policies, an IT administrat
 The ADMX file that the MDM ISV uses to determine what UI to display to the IT administrator is the same ADMX file that the client uses for the policy definition. The ADMX file is processed either by the OS at build time or set by the client at OS runtime. In either case, the client and the MDM ISV must be synchronized with the ADMX policy definitions. Each ADMX file corresponds to a Group Policy category and typically contains several policy definitions, each of which represents a single Group Policy. For example, the policy definition for the “Publishing Server 2 Settings” is contained in the appv.admx file, which holds the policy definitions for the Microsoft Application Virtualization (App-V) Group Policy category. 
 
 Group Policy option button setting:
--	If **Enabled** is selected, the necessary data entry controls are displayed for the user in the UI. When IT administrator enters the data and clicks **Apply**, the following events occur:
-    -	 The MDM ISV server sets up a Replace SyncML command with a payload that contains the user-entered data.  
-    -	 The MDM client stack receives this data, which causes the Policy CSP to update the device’s registry per the ADMX-backed policy definition.
+- If **Enabled** is selected, the necessary data entry controls are displayed for the user in the UI. When IT administrator enters the data and clicks **Apply**, the following events occur:
+    - The MDM ISV server sets up a Replace SyncML command with a payload that contains the user-entered data.  
+    - The MDM client stack receives this data, which causes the Policy CSP to update the device’s registry per the ADMX-backed policy definition.
 
--	If **Disabled** is selected and you click **Apply**, the following events occur:
-    -	 The MDM ISV server sets up a Replace SyncML command with a payload set to `<disabled\>`. 
-    -	 The MDM client stack receives this command, which causes the Policy CSP to either delete the device’s registry settings, set the registry keys, or both, per the state change directed by the ADMX-backed policy definition.
+- If **Disabled** is selected and you click **Apply**, the following events occur:
+    - The MDM ISV server sets up a Replace SyncML command with a payload set to `<disabled\>`. 
+    - The MDM client stack receives this command, which causes the Policy CSP to either delete the device’s registry settings, set the registry keys, or both, per the state change directed by the ADMX-backed policy definition.
 
--	If **Not Configured** is selected and you click **Apply**, the following events occur:
-    -	 MDM ISV server sets up a Delete SyncML command. 
-    -	 The MDM client stack receives this command, which causes the Policy CSP to delete the device’s registry settings per the ADMX-backed policy definition.
+- If **Not Configured** is selected and you click **Apply**, the following events occur:
+    - MDM ISV server sets up a Delete SyncML command. 
+    - The MDM client stack receives this command, which causes the Policy CSP to delete the device’s registry settings per the ADMX-backed policy definition.
 
 The following diagram shows the main display for the Group Policy Editor.
 
@@ -72,7 +67,7 @@ Note that most Group Policies are a simple Boolean type. For a Boolean Group Pol
 > [!IMPORTANT]
 > Any data entry field that is displayed in the Group Policy page of the Group Policy Editor must be supplied in the encoded XML of the SyncML payload. The SyncML data payload is equivalent to the user-supplied Group Policy data through GPEdit.msc. 
 
-For more information about the Group Policy description format, see [Administrative Template File (ADMX) format](https://msdn.microsoft.com/en-us/library/aa373476(v=vs.85).aspx). Elements can be Text, MultiText, Boolean, Enum, Decimal, or List (for more information, see [policy elements](https://msdn.microsoft.com/en-us/library/dn606004(v=vs.85).aspx)). 
+For more information about the Group Policy description format, see [Administrative Template File (ADMX) format](https://msdn.microsoft.com/library/aa373476(v=vs.85).aspx). Elements can be Text, MultiText, Boolean, Enum, Decimal, or List (for more information, see [policy elements](https://msdn.microsoft.com/library/dn606004(v=vs.85).aspx)). 
 
 For example, if you search for the string, "Publishing_Server2_Name_Prompt" in both the *Enabling a policy* example and its corresponding ADMX policy definition in the appv.admx file, you will find the following occurrences:
 
@@ -176,7 +171,7 @@ The following SyncML examples describe how to set a MDM policy that is defined b
         <Target>
           <LocURI>./Device/Vendor/MSFT/Policy/Config/AppVirtualization/PublishingAllowServer2</LocURI>
         </Target>
-        <Data>&lt;disabled/&gt;</Data>
+        <Data><disabled/></Data>
       </Item>
     </Replace>
     <Final/>
@@ -202,7 +197,8 @@ The following SyncML examples describe how to set a MDM policy that is defined b
 (None)
 
 **Request SyncML**
-```
+
+```XML
 <?xml version="1.0" encoding="utf-8"?>
 <SyncML xmlns="SYNCML:SYNCML1.2">
   <SyncBody>
@@ -220,7 +216,8 @@ The following SyncML examples describe how to set a MDM policy that is defined b
 ```
 
 **Response SyncML**
-```
+
+```XML
 <Status>
   <CmdID>2</CmdID>
   <MsgRef>1</MsgRef>
@@ -340,7 +337,7 @@ The `multiText` element simply corresponds to a REG_MULTISZ registry string and 
         <Target>
           <LocURI>./Device/Vendor/MSFT/Policy/Config/AppVirtualization/VirtualComponentsAllowList</LocURI>
         </Target>
-        <Data>&lt;enabled/&gt;&lt;data id=&quot;Virtualization_JITVAllowList_Prompt&quot; value=&quot;C:\QuickPatch\TEST\snot.exe&#xF000;C:\QuickPatch\TEST\foo.exe&#xF000;C:\QuickPatch\TEST\bar.exe&quot;/&gt;</Data>
+        <Data><enabled/><data id="Virtualization_JITVAllowList_Prompt" value="C:\QuickPatch\TEST\snot.exe&#xF000;C:\QuickPatch\TEST\foo.exe&#xF000;C:\QuickPatch\TEST\bar.exe"/></Data>
       </Item>
     </Replace>
     <Final/>
@@ -384,7 +381,7 @@ Variations of the `list` element are dictated by attributes. These attributes ar
         <Target>
           <LocURI>./User/Vendor/MSFT/Policy/Config/InternetExplorer/DisableSecondaryHomePageChange</LocURI>
         </Target>
-        <Data>&lt;Enabled/&gt;&lt;Data id=&quot;SecondaryHomePagesList&quot; value=&quot;http://name1&#xF000;http://name1&#xF000;http://name2&#xF000;http://name2&quot;/&gt;</Data>
+        <Data><Enabled/><Data id="SecondaryHomePagesList" value="http://name1&#xF000;http://name1&#xF000;http://name2&#xF000;http://name2"/></Data>
       </Item>
     </Replace>
     <Final/>
@@ -416,7 +413,7 @@ Variations of the `list` element are dictated by attributes. These attributes ar
         <Target>
           <LocURI>./Device/Vendor/MSFT/Policy/Config/InternetExplorer/DisableUpdateCheck</LocURI>
         </Target>
-        <Data>&lt;Enabled/&gt;</Data>
+        <Data><Enabled/></Data>
       </Item>
     </Replace>
     <Final/>
@@ -470,8 +467,8 @@ Variations of the `list` element are dictated by attributes. These attributes ar
           <LocURI>./Device/Vendor/MSFT/Policy/Config/BitLocker/EncryptionMethodByDriveType</LocURI>
         </Target>
         <Data>
-          &lt;enabled/&gt;
-          &lt;data id=&quot;EncryptionMethodWithXtsOsDropDown_Name&quot; value=&quot;4&quot;/&gt;
+          <enabled/>
+          <data id="EncryptionMethodWithXtsOsDropDown_Name" value="4"/>
         </Data>
       </Item>
     </Replace>
@@ -507,8 +504,8 @@ Variations of the `list` element are dictated by attributes. These attributes ar
           <LocURI>./Device/Vendor/MSFT/Policy/Config/AppVirtualization/StreamingAllowReestablishmentInterval</LocURI>
         </Target>
         <Data>
-          &lt;enabled/&gt;
-          &lt;data id=&quot;Streaming_Reestablishment_Interval_Prompt&quot; value=&quot;4&quot;/&gt;
+          <enabled/>
+          <data id="Streaming_Reestablishment_Interval_Prompt" value="4"/>
         </Data>
       </Item>
     </Replace>
@@ -560,8 +557,8 @@ Variations of the `list` element are dictated by attributes. These attributes ar
           <LocURI>./Device/Vendor/MSFT/Policy/Config/DeviceInstallation/PreventInstallationOfMatchingDeviceSetupClasses</LocURI>
         </Target>
         <Data>
-          &lt;enabled/&gt;&lt;data id=&quot;DeviceInstall_Classes_Deny_Retroactive&quot; value=&quot;true&quot;/&gt;
-          &lt;Data id=&quot;DeviceInstall_Classes_Deny_List&quot; value=&quot;1&#xF000;deviceId1&#xF000;2&#xF000;deviceId2&quot;/&gt;
+          <enabled/><data id="DeviceInstall_Classes_Deny_Retroactive" value="true"/>
+          <Data id="DeviceInstall_Classes_Deny_List" value="1&#xF000;deviceId1&#xF000;2&#xF000;deviceId2"/>
         </Data>
       </Item>
     </Replace>

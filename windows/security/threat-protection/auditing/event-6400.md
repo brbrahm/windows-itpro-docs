@@ -5,9 +5,12 @@ ms.pagetype: security
 ms.prod: w10
 ms.mktglfcycl: deploy
 ms.sitesec: library
-ms.localizationpriority: medium
-author: Mir0sh
+ms.localizationpriority: none
+author: dansimp
 ms.date: 04/19/2017
+ms.reviewer: 
+manager: dansimp
+ms.author: dansimp
 ---
 
 # 6400(-): BranchCache: Received an incorrectly formatted response while discovering availability of content.
@@ -17,7 +20,7 @@ ms.date: 04/19/2017
 -   Windows Server 2016
 
 
-[BranchCache](https://technet.microsoft.com/en-us/library/dd425028.aspx) events are outside the scope of this document.
+[BranchCache](https://technet.microsoft.com/library/dd425028.aspx) events are outside the scope of this document.
 
 There is no example of this event in this document.
 
@@ -27,7 +30,7 @@ There is no example of this event in this document.
 
 *BranchCache: Received an incorrectly formatted response while discovering availability of content.*
 
-*IP address of the client that sent this response:%1 *
+*IP address of the client that sent this response:%1*
 
 ***Required Server Roles:*** None.
 

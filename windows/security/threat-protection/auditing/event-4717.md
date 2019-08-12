@@ -5,9 +5,12 @@ ms.pagetype: security
 ms.prod: w10
 ms.mktglfcycl: deploy
 ms.sitesec: library
-ms.localizationpriority: medium
-author: Mir0sh
+ms.localizationpriority: none
+author: dansimp
 ms.date: 04/19/2017
+ms.reviewer: 
+manager: dansimp
+ms.author: dansimp
 ---
 
 # 4717(S): System security access was granted to an account.
@@ -23,7 +26,7 @@ ms.date: 04/19/2017
 
 ***Event Description:***
 
-This event generates every time local [logon user right policy](https://technet.microsoft.com/en-us/library/cc728212(v=ws.10).aspx) is changed and logon right was granted to an account.
+This event generates every time local [logon user right policy](https://technet.microsoft.com/library/cc728212(v=ws.10).aspx) is changed and logon right was granted to an account.
 
 You will see unique event for every user if logon user rights were granted to multiple accounts.
 
@@ -86,7 +89,7 @@ You will see unique event for every user if logon user rights were granted to mu
 
     -   Uppercase full domain name: CONTOSO.LOCAL
 
-    -   For some [well-known security principals](https://support.microsoft.com/en-us/kb/243330), such as LOCAL SERVICE or ANONYMOUS LOGON, the value of this field is “NT AUTHORITY”.
+    -   For some [well-known security principals](https://support.microsoft.com/kb/243330), such as LOCAL SERVICE or ANONYMOUS LOGON, the value of this field is “NT AUTHORITY”.
 
     -   For local user accounts, this field will contain the name of the computer or device that this account belongs to, for example: “Win81”.
 
@@ -96,9 +99,9 @@ You will see unique event for every user if logon user rights were granted to mu
 
 -   **Account Name** \[Type = SID\]: the SID of the security principal for which logon right was granted. Event Viewer automatically tries to resolve SIDs and show the account name. If the SID cannot be resolved, you will see the source data in the event.
 
-**Access Granted: **
+**Access Granted:**
 
--   **Access Right** \[Type = UnicodeString\]: the name of granted logon right. This event generates only for [logon rights](https://technet.microsoft.com/en-us/library/cc728212(v=ws.10).aspx), which are as follows:
+-   **Access Right** \[Type = UnicodeString\]: the name of granted logon right. This event generates only for [logon rights](https://technet.microsoft.com/library/cc728212(v=ws.10).aspx), which are as follows:
 
 | Value                             | Group Policy Name                             |
 |-----------------------------------|-----------------------------------------------|

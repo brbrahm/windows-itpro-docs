@@ -3,9 +3,12 @@ ms.localizationpriority: low
 ms.mktglfcycl: deploy
 ms.pagetype: appcompat
 description: Enterprise Mode is a compatibility mode that runs on Internet Explorer 11, letting websites render using a modified browser configuration that's designed to emulate either Windows Internet Explorer 7 or Windows Internet Explorer 8, avoiding the common compatibility problems associated with web apps written and tested on older versions of Internet Explorer.
-author: eross-msft
+author: eavena
 ms.prod: ie11
 ms.assetid: 042e44e8-568d-4717-8fd3-69dd198bbf26
+ms.reviewer: 
+manager: dansimp
+ms.author: eravena
 title: Add sites to the Enterprise Mode site list using the Enterprise Mode Site List Manager (schema v.1) (Internet Explorer 11 for IT Pros)
 ms.sitesec: library
 ms.date: 07/27/2017
@@ -33,7 +36,7 @@ You can add individual sites to your compatibility list by using the Enterprise 
 1.  In the Enterprise Mode Site List Manager (schema v.1), click **Add**.
 
 2.  Type the URL for the website that’s experiencing compatibility problems, like *&lt;domain&gt;.com* or *&lt;domain&gt;.com*/*&lt;path&gt;* into the **URL** box.<p>
-Don't include the `http://` or `https://` designation. The tool automatically tries both versions during validation.
+Don't include the `https://` or `https://` designation. The tool automatically tries both versions during validation.
 
 3.  Type any comments about the website into the **Notes about URL** box.<p>
 Administrators can only see comments while they’re in this tool.

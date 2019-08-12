@@ -2,13 +2,14 @@
 title: Accessibility (Surface Hub)
 description: Accessibility settings for the Microsoft Surface Hub can be changed by using the Settings app. You'll find them under Ease of Access. Your Surface Hub has the same accessibility options as Windows 10.
 ms.assetid: 1D44723B-1162-4DF6-99A2-8A3F24443442
+ms.reviewer: 
+manager: dansimp
 keywords: Accessibility settings, Settings app, Ease of Access
 ms.prod: surface-hub
 ms.sitesec: library
-author: jdeckerms
-ms.author: jdecker
+author: dansimp
+ms.author: dansimp
 ms.topic: article
-ms.date: 08/16/2017
 ms.localizationpriority: medium
 ---
 
@@ -54,7 +55,7 @@ Additionally, these accessibility features and apps are returned to default sett
 ## Change accessibility settings during a meeting
 
 During a meeting, users can toggle accessibility features and apps in a couple ways:
-- [Keyboard shortcuts](https://support.microsoft.com/en-us/help/13813/windows-10-microsoft-surface-hub-keyboard-shortcuts)
+- [Keyboard shortcuts](https://support.microsoft.com/help/13813/windows-10-microsoft-surface-hub-keyboard-shortcuts)
 - **Quick Actions** > **Ease of Access** from the status bar
 
 > ![Image showing Quick Action center on Surface Hub](images/sh-quick-action.png)

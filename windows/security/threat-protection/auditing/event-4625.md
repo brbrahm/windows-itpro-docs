@@ -5,9 +5,12 @@ ms.pagetype: security
 ms.prod: w10
 ms.mktglfcycl: deploy
 ms.sitesec: library
-ms.localizationpriority: medium
-author: Mir0sh
+ms.localizationpriority: none
+author: dansimp
 ms.date: 04/19/2017
+ms.reviewer: 
+manager: dansimp
+ms.author: dansimp
 ---
 
 # 4625(F): An account failed to log on.
@@ -76,7 +79,6 @@ This event generates on domain controllers, member servers, and workstations.
  <Data Name="IpPort">0</Data> 
  </EventData>
  </Event>
-
 ```
 
 ***Required Server Roles:*** None.
@@ -103,7 +105,7 @@ This event generates on domain controllers, member servers, and workstations.
 
     -   Uppercase full domain name: CONTOSO.LOCAL
 
-    -   For some [well-known security principals](https://support.microsoft.com/en-us/kb/243330), such as LOCAL SERVICE or ANONYMOUS LOGON, the value of this field is “NT AUTHORITY”.
+    -   For some [well-known security principals](https://support.microsoft.com/kb/243330), such as LOCAL SERVICE or ANONYMOUS LOGON, the value of this field is “NT AUTHORITY”.
 
     -   For local user accounts, this field will contain the name of the computer or device that this account belongs to, for example: “Win81”.
 
@@ -139,7 +141,7 @@ This event generates on domain controllers, member servers, and workstations.
 
     -   Uppercase full domain name: CONTOSO.LOCAL
 
-    -   For some [well-known security principals](https://support.microsoft.com/en-us/kb/243330), such as LOCAL SERVICE or ANONYMOUS LOGON, the value of this field is “NT AUTHORITY”.
+    -   For some [well-known security principals](https://support.microsoft.com/kb/243330), such as LOCAL SERVICE or ANONYMOUS LOGON, the value of this field is “NT AUTHORITY”.
 
     -   For local user accounts, this field will contain the name of the computer or device that this account belongs to, for example: “Win81”.
 
@@ -164,7 +166,7 @@ This event generates on domain controllers, member servers, and workstations.
 | 0xC0000072              | User logon to account disabled by administrator                                                                                                                  |
 | 0XC00000DC              | Indicates the Sam Server was in the wrong state to perform the desired operation.                                                                                |
 | 0XC0000133              | Clocks between DC and other computer too far out of sync                                                                                                         |
-| 0XC000015B              | The user has not been granted the requested logon type (aka logon right) at this machine                                                                         |
+| 0XC000015B              | The user has not been granted the requested logon type (aka logon right) at this machine                                                                         |
 | 0XC000018C              | The logon request failed because the trust relationship between the primary domain and the trusted domain failed.                                                |
 | 0XC0000192              | An attempt was made to logon, but the N**etlogon** service was not started.                                                                                      |
 | 0xC0000193              | User logon with expired account                                                                                                                                  |
@@ -176,7 +178,7 @@ This event generates on domain controllers, member servers, and workstations.
 | 0x0                     | Status OK.                                                                                                                                                       |
 
 > <span id="_Ref433822658" class="anchor"></span>Table: Windows logon status codes.
-
+> 
 > **Note**&nbsp;&nbsp;To see the meaning of other status\\sub-status codes you may also check for status code in the Window header file ntstatus.h in Windows SDK.
 
 More information: <https://dev.windows.com/en-us/downloads>
@@ -221,9 +223,9 @@ More information: <https://dev.windows.com/en-us/downloads>
 
     -   **Negotiate** – the Negotiate security package selects between Kerberos and NTLM protocols. Negotiate selects Kerberos unless it cannot be used by one of the systems involved in the authentication or the calling application did not provide sufficient information to use Kerberos.
 
--   **Transited Services** \[Type = UnicodeString\] \[Kerberos-only\]**:** the list of transmitted services. Transmitted services are populated if the logon was a result of a S4U (Service For User) logon process. S4U is a Microsoft extension to the Kerberos Protocol to allow an application service to obtain a Kerberos service ticket on behalf of a user – most commonly done by a front-end website to access an internal resource on behalf of a user. For more information about S4U, see <https://msdn.microsoft.com/en-us/library/cc246072.aspx>
+-   **Transited Services** \[Type = UnicodeString\] \[Kerberos-only\]**:** the list of transmitted services. Transmitted services are populated if the logon was a result of a S4U (Service For User) logon process. S4U is a Microsoft extension to the Kerberos Protocol to allow an application service to obtain a Kerberos service ticket on behalf of a user – most commonly done by a front-end website to access an internal resource on behalf of a user. For more information about S4U, see <https://msdn.microsoft.com/library/cc246072.aspx>
 
--   **Package Name (NTLM only)** \[Type = UnicodeString\]**:** The name of the LAN Manager sub-package ([NTLM-family](https://msdn.microsoft.com/en-us/library/cc236627.aspx) protocol name) that was used during the logon attempt. Possible values are:
+-   **Package Name (NTLM only)** \[Type = UnicodeString\]**:** The name of the LAN Manager sub-package ([NTLM-family](https://msdn.microsoft.com/library/cc236627.aspx) protocol name) that was used during the logon attempt. Possible values are:
 
     -   “NTLM V1”
 
@@ -233,7 +235,7 @@ More information: <https://dev.windows.com/en-us/downloads>
 
         Only populated if “**Authentication Package” = “NTLM”**.
 
--   **Key Length** \[Type = UInt32\]**:** the length of [NTLM Session Security](https://msdn.microsoft.com/en-us/library/cc236650.aspx) key. Typically it has 128 bit or 56 bit length. This parameter is always 0 if “**Authentication Package” = “Kerberos”**, because it is not applicable for Kerberos protocol. This field will also have “0” value if Kerberos was negotiated using **Negotiate** authentication package.
+-   **Key Length** \[Type = UInt32\]**:** the length of [NTLM Session Security](https://msdn.microsoft.com/library/cc236650.aspx) key. Typically it has 128 bit or 56 bit length. This parameter is always 0 if “**Authentication Package” = “Kerberos”**, because it is not applicable for Kerberos protocol. This field will also have “0” value if Kerberos was negotiated using **Negotiate** authentication package.
 
 ## Security Monitoring Recommendations
 

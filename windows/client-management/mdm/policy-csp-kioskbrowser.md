@@ -1,19 +1,21 @@
 ---
 title: Policy CSP - KioskBrowser
 description: Policy CSP - KioskBrowser
-ms.author: maricia
+ms.author: dansimp
 ms.topic: article
 ms.prod: w10
 ms.technology: windows
-author: MariciaAlforque
+author: manikadhiman
 ms.date: 05/14/2018
+ms.reviewer: 
+manager: dansimp
 ---
 
 # Policy CSP - KioskBrowser
 
 
 
-These policies currently only apply to Kiosk Browser app. Kiosk Browser is a Microsoft Store app, added in Windows 10 version 1803, that provides IT a way to customize the end user’s browsing experience to fulfill kiosk, signage, and shared device scenarios. Application developers can also create their own kiosk browser and read these policies using [NamedPolicy.GetPolicyFromPath(String, String) Method](https://docs.microsoft.com/en-us/uwp/api/windows.management.policies.namedpolicy.getpolicyfrompath#Windows_Management_Policies_NamedPolicy_GetPolicyFromPath_System_String_System_String_). 
+These policies currently only apply to Kiosk Browser app. Kiosk Browser is a Microsoft Store app, added in Windows 10 version 1803, that provides IT a way to customize the end user’s browsing experience to fulfill kiosk, signage, and shared device scenarios. Application developers can also create their own kiosk browser and read these policies using [NamedPolicy.GetPolicyFromPath(String, String) Method](https://docs.microsoft.com/uwp/api/windows.management.policies.namedpolicy.getpolicyfrompath#Windows_Management_Policies_NamedPolicy_GetPolicyFromPath_System_String_System_String_). 
 
 
 <hr/>
@@ -86,7 +88,7 @@ These policies currently only apply to Kiosk Browser app. Kiosk Browser is a Mic
 <!--Description-->
 Added in Windows 10, version 1803. List of exceptions to the blocked website URLs (with wildcard support). This is used to configure URLs kiosk browsers are allowed to navigate to, which are a subset of the blocked URLs.
 
-> [!Note]  
+> [!NOTE]
 > This policy only applies to the Kiosk Browser app in Microsoft Store.
 
 <!--/Description-->
@@ -132,7 +134,7 @@ Added in Windows 10, version 1803. List of exceptions to the blocked website URL
 <!--Description-->
 Added in Windows 10, version 1803. List of blocked website URLs (with wildcard support). This is used to configure blocked URLs kiosk browsers cannot navigate to.
 
-> [!Note]  
+> [!NOTE]
 > This policy only applies to the Kiosk Browser app in Microsoft Store.
 
 <!--/Description-->
@@ -178,7 +180,7 @@ Added in Windows 10, version 1803. List of blocked website URLs (with wildcard s
 <!--Description-->
 Added in Windows 10, version 1803. Configures the default URL kiosk browsers to navigate on launch and restart.
 
-> [!Note]  
+> [!NOTE]
 > This policy only applies to the Kiosk Browser app in Microsoft Store.
 
 <!--/Description-->
@@ -267,7 +269,7 @@ Shows the Kiosk Browser's end session button. When the policy is enabled, the Ki
 <!--Description-->
 Added in Windows 10, version 1803. Enable/disable kiosk browser's home button.
 
-> [!Note]  
+> [!NOTE]
 > This policy only applies to the Kiosk Browser app in Microsoft Store.
 
 <!--/Description-->
@@ -313,7 +315,7 @@ Added in Windows 10, version 1803. Enable/disable kiosk browser's home button.
 <!--Description-->
 Added in Windows 10, version 1803. Enable/disable kiosk browser's navigation buttons (forward/back).
 
-> [!Note]  
+> [!NOTE]
 > This policy only applies to the Kiosk Browser app in Microsoft Store.
 
 <!--/Description-->
@@ -361,7 +363,7 @@ Added in Windows 10, version 1803. Amount of time in minutes the session is idle
 
 The value is an int 1-1440 that specifies the amount of minutes the session is idle until the kiosk browser restarts in a fresh state. The default value is empty which means there is no idle timeout within the kiosk browser.
 
-> [!Note]  
+> [!NOTE]
 > This policy only applies to the Kiosk Browser app in Microsoft Store.
 
 <!--/Description-->
