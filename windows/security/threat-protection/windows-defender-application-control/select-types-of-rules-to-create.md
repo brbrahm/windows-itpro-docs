@@ -84,7 +84,27 @@ Table 3. Windows Defender Application Control policy - file rule levels
 |----------- | ----------- |
 | **Hash** | Specifies individual hash values for each discovered binary. Although this level is specific, it can cause additional administrative overhead to maintain the current product versions’ hash values. Each time a binary is updated, the hash value changes, therefore requiring a policy update. |
 | **FileName** | Specifies individual binary file names. Although the hash values for an application are modified when updated, the file names are typically not. This offers less specific security than the hash level but does not typically require a policy update when any binary is modified. |
+| **FilePath** | Beginning with Windows 10 version 1903, this specifies rules that allow execution of binaries contained in paths that are admin-writeable only. By default, WDAC performs a user-writeability check at runtime which ensures that the current permissions on the specified filepath and its parent directories (recursively) do not allow standard users write access.
+Note that filepath rules do not provide the same security guarantees that explicit signer rules do, as they are based on mutable access permissions. Filepath rules are best suited for environments where most users are running as standard rather than admin. IT Pros should take care while crafting path rules to allow paths that they know are likely to remain to be admin-writeable only and deny execution from sub-directories where standard users can modify ACLs on the folder.
+TODO maybe move this? There is a defined list of SIDs which are recognized as admins (below). If a file has write permissions for a SID not in this list, the file will be flagged as user writeable. 
+- S-1-3-0
+- S-1-5-18
+- S-1-5-19
+- S-1-5-20
+- S-1-5-32-544
+- S-1-5-32-549
+- S-1-5-32-550
+- S-1-5-32-551
+- S-1-5-32-577
+- S-1-5-32-559
+- S-1-5-32-568
+- S-1-15-2-1430448594-2639229838-973813799-439329657-1197984847-4069167804-1277922394
+- S-1-15-2-95739096-486727260-2033287795-3853587803-1685597119-444378811-2746676523
+
+Wildcards can be used at the beginning or end of a path rule: only one wildcard is allowed per path rule. Wildcards placed at the end of a path authorize all files in that path and its subdirectories recursively (ex. C:\* would include C:\foo\*). Wildcards placed at the beginning of a path scan all directories for files with a specific name (ex. *\bar.exe would allow C:\bar.exe and C:\foo\bar.exe). Wildcards in the middle of a path are not supported (ex. C:\*\foo.exe). Without a wildcard, the rule will allow only a specific file (ex. C:\foo\bar.exe).
+Supported macros: %WINDIR%, %SYSTEM32%, %OSDRIVE%. |
 | **SignedVersion** | This combines the publisher rule with a version number. This option allows anything from the specified publisher, with a version at or above the specified version number, to run. |
+| **PFN** | Packaged Family Name. #TODO explain further
 | **Publisher** | This is a combination of the PcaCertificate level (typically one certificate below the root) and the common name (CN) of the leaf certificate. This rule level allows organizations to trust a certificate from a major CA (such as Symantec), but only if the leaf certificate is from a specific company (such as Intel, for device drivers). |
 | **FilePublisher** | This is a combination of the “FileName” attribute of the signed file, plus “Publisher” (PCA certificate with CN of leaf), plus a minimum version number. This option trusts specific files from the specified publisher, with a version at or above the specified version number. |
 | **LeafCertificate** | Adds trusted signers at the individual signing certificate level. The benefit of using this level versus the individual hash level is that new versions of the product will have different hash values but typically the same signing certificate. Using this level, no policy update would be needed to run the new version of the application. However, leaf certificates have much shorter validity periods than CA certificates, so additional administrative overhead is associated with updating the WDAC policy when these certificates expire. |
@@ -107,49 +127,5 @@ As part of normal operations, they will eventually install software updates, or 
 
 They could also choose to create a catalog that captures information about the unsigned internal application, then sign and distribute the catalog. Then the internal application could be handled by WDAC policies in the same way as any other signed application. An update to the internal application would only require that the catalog be regenerated, signed, and distributed (no restarts would be required).
 
-## Create path-based rules 
 
-Beginning with Windows 10 version 1903, Windows Defender Application Control (WDAC) policies can contain path-based rules.
-
-- New-CIPolicy parameter
-  - FilePath: create path rules under path \<path to scan> for anything not user-writeable (at the individual file level)
-
-    ```powershell
-    New-CIPolicy -FilePath .\mypolicy.xml -Level FileName -ScanPath <path to scan> -UserPEs
-    ```
-
-    Optionally, add -UserWriteablePaths to ignore user writeability
-    
-- New-CIPolicyRule parameter
-  - FilePathRule: create a rule where filepath string is directly set to value of \<any path string>
-
-    ```powershell
-    New-CIPolicyRule -FilePathRule <any path string>
-    ```
-
-    Useful for wildcards like C:\foo\\*
-
-- Usage follows the same flow as per-app rules:
-
-  ```powershell
-  $rules = New-CIPolicyRule …
-  $rules += New-CIPolicyRule …
-  …
-  New-CIPolicy -FilePath .\mypolicy.xml -Rules $rules -UserPEs
-  ```
-
-- Wildcards supported
-  - Suffix (ex. C:\foo\\*) OR Prefix (ex. *\foo\bar.exe)
-    - One or the other, not both at the same time
-    - Does not support wildcard in the middle (ex. C:\\*\foo.exe)
-  - Examples:
-    - %WINDIR%\\...
-    - %SYSTEM32%\\...
-    - %OSDRIVE%\\...
-
-- Disable default FilePath rule protection of enforcing user-writeability. For example, to add “Disabled:Runtime FilePath Rule Protection” to the policy:
-
-  ```powershell
-  Set-RuleOption -Option 18 .\policy.xml
-  ```
 
