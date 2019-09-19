@@ -36,6 +36,7 @@
 #### [Signing WDAC policies with SignTool.exe](signing-policies-with-signtool.md)
 ### [Disable WDAC policies](disable-windows-defender-application-control-policies.md)
 ### [Device Guard and AppLocker](windows-defender-device-guard-and-applocker.md)
+### [Enterprise Apps on S Mode](enterprise-apps-on-s.md)
 
 ## [AppLocker](applocker\applocker-overview.md) 
 ### [Administer AppLocker](applocker\administer-applocker.md)
