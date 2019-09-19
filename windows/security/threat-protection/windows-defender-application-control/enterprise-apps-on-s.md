@@ -33,8 +33,9 @@ The general steps for expanding the S mode base policy on your devices are to ge
 2. Sign policy
     To sign your policy, you can choose to use the Device Guard Signing Service or your organization's custom Public Key Infrastructure (PKI). Note that only signed policies are allowed on S mode. Refer to [Use the Device Guard Signing Portal in the Microsoft Store for Business](use-device-guard-signing-portal-in-microsoft-store-for-business.md) for guidance on using DGSS and [Create a code signing cert for WDAC](create-code-signing-cert-for-windows-defender-application-control.md) for guidance on signing using an internal CA.
 
-    Once your policy is signed, you must authorize one or more signers that can be used to update the policy in the future. Use Add-SignerRule to add the signing certificate to the WDAC policy, filling in the correct path and filenames for <policypath> and <certpath>: 
-        `Add-SignerRule -FilePath <policypath> -CertificatePath <certpath> -User -Update`
+    Once your policy is signed, you must authorize one or more signers that can be used to update the policy in the future. Use Add-SignerRule to add the signing certificate to the WDAC policy, filling in the correct path and filenames for `<policypath>` and `<certpath>`: 
+       
+    `Add-SignerRule -FilePath <policypath> -CertificatePath <certpath> -User -Update`
 3. Upload signed policy to Intune and assign it to user or device groups
     Intune will talk to the OneCore Device Unlock Service (OCDUS) on the backend to generate tenant- and device- specific authorization tokens. Intune then pushes down the corresponding authorization token and supplemental policy to each device in the assigned group. Together, these expand the S mode base policy on the device. 
     <!-- Intune link?-->
