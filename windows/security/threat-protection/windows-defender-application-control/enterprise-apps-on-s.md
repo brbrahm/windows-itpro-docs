@@ -40,6 +40,8 @@ The general steps for expanding the S mode base policy on your devices are to ge
     Intune will talk to the OneCore Device Unlock Service (OCDUS) on the backend to generate tenant- and device- specific authorization tokens. Intune then pushes down the corresponding authorization token and supplemental policy to each device in the assigned group. Together, these expand the S mode base policy on the device. 
     <!-- Intune link?-->
 
+> [!Note] When updating your supplemental policy, ensure that the new version number is strictly greater than the previous one. Using the same version number is not allowed by Intune. Refer to [Set-CIPolicyVersion](https://docs.microsoft.com/powershell/module/configci/set-cipolicyversion?view=win10-ps) for information on setting the version number.
+
 # Standard Process for Deploying Apps through Intune
 ![Deploying Apps through Intune](images/wdac-intune-app-deployment.png)
 Refer to [Intune Standalone - Win32 app management](https://docs.microsoft.com/intune/apps-win32-app-management)  for guidance on the existing procedure of packaging signed catalogs and app deployment.
