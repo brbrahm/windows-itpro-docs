@@ -16,9 +16,9 @@ ms.date: 09/18/2019
 
 -   Windows 10
 
-Beginning in 19H2, we've partnered with Microsoft Intune to allow Enterprise and Education customers to run business critical Win32 applications on their Intune-managed S mode devices. Enterprise and Education customers have expressed excitement about the security benefits that S mode has to offer, but we've also heard requests for more control over the application control policy running on their managed S mode devices. Some customers need to run critical Line of Business apps which are not in the Microsoft Store, and others need to run some of the Windows components that are normally blocked in S mode, such as PowerShell. 
+Beginning in <!--build number?-->, Microsoft Intune enables customers to deploy and run business critical Win32 applications as well as Windows components that are normally blocked in S mode (ex. PowerShell) on their Intune-managed Windows 10 in S mode (S mode) devices. 
 
-With Intune, IT Pros can now configure their managed S mode devices using a supplemental policy that expands the S mode base policy to authorize the apps their business uses. This feature moves S mode from “every app is Microsoft-verified" to “every app is verified by Microsoft or your organization”. 
+With Intune, IT Pros can now configure their managed S mode devices using a Windows Defender Application Control (WDAC) supplemental policy that expands the S mode base policy to authorize the apps their business uses. This feature changes the S mode security posture from “every app is Microsoft-verified" to “every app is verified by Microsoft or your organization”. 
 
 # Policy Authorization Process
 ![Policy Authorization](images/wdac-intune-policy-authorization.png)
